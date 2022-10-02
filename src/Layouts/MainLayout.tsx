@@ -263,7 +263,7 @@ const MainLayout = (props: MainLayoutProps) => {
 															animate={{
 																opacity:    1,
 																transition: {
-																	delay:    delay + 0.1 + index * 0.1,
+																	delay:    0.1 + index * 0.1,
 																	duration: 0.5
 																}
 															}}

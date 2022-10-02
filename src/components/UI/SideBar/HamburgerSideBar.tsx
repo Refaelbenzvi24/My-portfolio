@@ -155,10 +155,10 @@ const HamburgerSideBar = (props: HamburgerSideBarProps & typeof defaultProps) =>
 					${tw`fixed top-0 bottom-0 h-full`};
 					${isRTL ? tw`left-0` : tw`right-0`};
 					background-color: ${bgColor || theme.colorScheme.light};
-					width: ${windowWidth > 400 ? windowWidth / 2 : windowWidth}px;
+					width: ${windowWidth > 500 ? windowWidth / 2 : windowWidth}px;
 					z-index: ${theme.zIndex.appBar};
 				`}`}
-				custom={{ width: windowWidth > 400 ? windowWidth / 2 : windowWidth, height: windowHeight, isRTL }}
+				custom={{ width: windowWidth > 500 ? windowWidth / 2 : windowWidth, height: windowHeight, isRTL }}
 				variants={sidebar}>
 				{children}
 			</motion.div>
