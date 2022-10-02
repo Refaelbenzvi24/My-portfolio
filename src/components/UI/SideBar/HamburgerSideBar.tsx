@@ -1,11 +1,13 @@
-import { AnimatePresence, HTMLMotionProps, motion, MotionProps, SVGMotionProps, useCycle } from "framer-motion"
 import { useEffect, useRef } from "react"
-import { Button, isDark, theme } from "../index"
+
 import { css } from "@emotion/css"
-import tw from "twin.macro"
-import useWindowVars from "../../../hooks/useWindowVars"
 import clsx from "clsx"
+import { AnimatePresence, HTMLMotionProps, motion, SVGMotionProps, useCycle } from "framer-motion"
 import i18n from "i18next"
+import tw from "twin.macro"
+
+import { Button, isDark, theme } from '..'
+import useWindowVars from "../../../hooks/useWindowVars"
 
 
 const sidebar = {
@@ -17,8 +19,8 @@ const sidebar = {
 			delayChildren:   0.2,
 			type:            "spring",
 			stiffness:       20,
-			restDelta:       2
-		}
+			restDelta:       2,
+		},
 	}),
 	closed: ({ width, isRTL }: { width: number, isRTL: boolean }) => ({
 		paddingTop: 0,
@@ -29,14 +31,14 @@ const sidebar = {
 			delay:            0.5,
 			type:             "spring",
 			stiffness:        400,
-			damping:          40
-		}
-	})
+			damping:          40,
+		},
+	}),
 }
 
 const Path = (props: SVGMotionProps<"path">) => {
 	return (
-		// @ts-ignore - for some reason the types don't match up.
+		// @ts-expect-error - for some reason the types don't match up.
 		<motion.path
 			strokeWidth="2.5"
 			stroke="currentColor"
@@ -48,7 +50,7 @@ const Path = (props: SVGMotionProps<"path">) => {
 
 
 const defaultProps = {
-	width: 350
+	width: 350,
 }
 
 interface HamburgerSideBarProps extends HTMLMotionProps<"nav"> {
@@ -65,7 +67,7 @@ const HamburgerSideBar = (props: HamburgerSideBarProps & typeof defaultProps) =>
 	const isDarkMode = isDark()
 	const isRTL      = i18n.dir() === "rtl"
 
-	const { isMobile }                      = useWindowVars()
+	const { isMobile }                  = useWindowVars()
 	const { windowHeight, windowWidth } = useWindowVars()
 
 
@@ -83,25 +85,28 @@ const HamburgerSideBar = (props: HamburgerSideBarProps & typeof defaultProps) =>
 		const root = document.querySelector("#root") as HTMLDivElement
 
 		if (isOpen) {
+			const html = document.querySelector("html")
 			document.body.style.overflowY                   = "hidden"
-			document.querySelector("html")!.style.overflowY = "hidden"
 			root.style.overflowY                            = "hidden"
+			if (html) html.style.overflowY = "hidden"
 			if (!isMobile) root.style.paddingRight = "6px"
 		}
 
 		if (!isOpen) {
 			setTimeout(() => {
-				document.body.style.overflowY                   = "auto"
-				document.querySelector("html")!.style.overflowY = "auto"
-				root.style.overflowY                            = "auto"
+				const html                    = document.querySelector("html")
+				document.body.style.overflowY = "auto"
+				root.style.overflowY          = "auto"
+				if (html) html.style.overflowY = "auto"
 				if (!isMobile) root.style.paddingRight = ""
 			}, 900)
 		}
 
 		return () => {
-			document.body.style.overflowY                   = "auto"
-			document.querySelector("html")!.style.overflowY = "auto"
-			root.style.overflowY                            = "auto"
+			const html                    = document.querySelector("html")
+			document.body.style.overflowY = "auto"
+			root.style.overflowY          = "auto"
+			if (html) html.style.overflowY = "auto"
 			if (!isMobile) root.style.paddingRight = ""
 		}
 	}, [isOpen])
@@ -115,7 +120,7 @@ const HamburgerSideBar = (props: HamburgerSideBarProps & typeof defaultProps) =>
 			ref={containerRef}>
 
 			<AnimatePresence>
-				{isOpen && (
+				{isOpen ? (
 					<motion.div
 						onClick={() => toggleOpen()}
 						className={css`
@@ -132,8 +137,8 @@ const HamburgerSideBar = (props: HamburgerSideBarProps & typeof defaultProps) =>
 								type:      "spring",
 								duration:  0.5,
 								stiffness: 20,
-								restDelta: 2
-							}
+								restDelta: 2,
+							},
 						}}
 						exit={{
 							opacity:    0,
@@ -142,11 +147,11 @@ const HamburgerSideBar = (props: HamburgerSideBarProps & typeof defaultProps) =>
 								duration:  0.5,
 								type:      "spring",
 								stiffness: 400,
-								damping:   40
-							}
+								damping:   40,
+							},
 						}}
 					/>
-				)}
+				) : null}
 			</AnimatePresence>
 
 			<motion.div
@@ -181,28 +186,28 @@ const HamburgerSideBar = (props: HamburgerSideBarProps & typeof defaultProps) =>
 				id="theme-toggle-button"
 				icon
 				text
-				size={'28px'}
+				size="28px"
 				colorsForStates={theme.colorSchemeByState.secondary}
 				onClick={() => toggleOpen()}>
 				<svg width="23" height="23" viewBox="0 0 23 23">
 					<Path
 						variants={{
 							closed: { d: "M 2 2.5 L 20 2.5" },
-							open:   { d: "M 3 16.5 L 17 2.5" }
+							open:   { d: "M 3 16.5 L 17 2.5" },
 						}}
 					/>
 					<Path
 						d={isRTL ? "M 10 9.423 L 20 9.423" : "M 2 9.423 L 12 9.423"}
 						variants={{
 							closed: { opacity: 1 },
-							open:   { opacity: 0 }
+							open:   { opacity: 0 },
 						}}
 						transition={{ duration: 0.1 }}
 					/>
 					<Path
 						variants={{
 							closed: { d: "M 2 16.346 L 20 16.346" },
-							open:   { d: "M 3 2.5 L 17 16.346" }
+							open:   { d: "M 3 2.5 L 17 16.346" },
 						}}
 					/>
 				</svg>

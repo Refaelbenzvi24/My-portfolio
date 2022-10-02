@@ -16,16 +16,16 @@ import { conditionalTranslate } from "../Utils/utils"
 
 interface SideBarProps extends HTMLMotionProps<"nav"> {
 	dark?: boolean
-	width: number
+	width?: number
 	permanent?: boolean
-	shrinkPoint: number
+	shrinkPoint?: number
 	showButton?: boolean
 }
 
 interface StyledSideBarProps {
 	dark?: boolean
 	permanent?: boolean
-	width?: number
+	width: number
 	state?: boolean
 }
 

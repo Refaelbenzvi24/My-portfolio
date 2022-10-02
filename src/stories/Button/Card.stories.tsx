@@ -1,6 +1,6 @@
 import { Story } from "@storybook/react"
 
-import Card, { CardProps } from "../../components/UI/Cards/Card"
+import Card  from "../../components/UI/Cards/Card"
 
 
 export default {
@@ -16,7 +16,7 @@ export default {
 	},
 }
 
-const CardTemplate: Story<CardProps> = (args) => <Card {...args} />
+const CardTemplate: Story = (args) => <Card {...args} />
 
 export const Light = CardTemplate.bind({})
 Light.parameters   = {

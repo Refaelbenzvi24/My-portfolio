@@ -1,12 +1,14 @@
-import { ATagButton, Button, Col, Divider, isDark, Row, TextArea, TextField, theme, Tooltip, Typography } from "../UI"
-import { useFormik } from "formik"
-import * as Yup from "yup"
 import { ReactNode, useEffect, useRef, useState } from "react"
-import useAnimations, { generalAnimations } from "../../hooks/useAnimations"
+
+import { useFormik } from "formik"
 import { motion } from "framer-motion"
 import { Textfit } from "react-textfit"
-import useWindowVars from "../../hooks/useWindowVars"
+import * as Yup from "yup"
+
+import useAnimations, { generalAnimations } from "../../hooks/useAnimations"
 import useToasts from "../../hooks/useToasts"
+import useWindowVars from "../../hooks/useWindowVars"
+import { ATagButton, Button, Col, Divider, isDark, Row, TextArea, TextField, theme, Typography } from "../UI"
 
 
 interface ContactProps {
@@ -26,7 +28,7 @@ const Contact = (props: ContactProps) => {
 	const [nameIsInView, setNameIsInView]             = useState(false)
 	const [emailIsInView, setEmailIsInView]           = useState(false)
 	const [messageIsInView, setMessageIsInView]       = useState(false)
-	const [submitBtnIsInView, setSubmitIsInView]      = useState(false)
+	const [submitBtnIsInView, setSubmitBtnIsInView]   = useState(false)
 	const [getInTouchIsInView, setGetInTouchIsInView] = useState(false)
 
 	const { t }                        = useTranslation()
@@ -37,7 +39,7 @@ const Contact = (props: ContactProps) => {
 		initialValues:    {
 			name:    '',
 			email:   '',
-			message: ''
+			message: '',
 		},
 		validationSchema: Yup.object({
 			name:    Yup.string()
@@ -46,17 +48,13 @@ const Contact = (props: ContactProps) => {
 				         .required('contact.emailRequired')
 				         .email('contact.emailInvalid'),
 			message: Yup.string()
-				         .required('contact.messageRequired')
+				         .required('contact.messageRequired'),
 		}),
 		validateOnChange: false,
 		validateOnBlur:   false,
 		onSubmit:         async (values) => {
-			try {
-				await toasts.sendEmail(values)
-				formik.resetForm()
-			} catch (e) {
-				console.error(e)
-			}
+			await toasts.sendEmail(values)
+			formik.resetForm()
 		},
 	})
 
@@ -72,11 +70,12 @@ const Contact = (props: ContactProps) => {
 					animate={isTitleInView ? (animations.sectionTitle.inView) : animations.sectionTitle.outOfView}
 					viewport={{ once: true }}
 					onViewportEnter={() => setIsTitleInView(true)}
-					className={`items-center w-[100%]`}>
+					className="items-center w-[100%]">
 					<Textfit className="w-fit max-w-[60%]" mode="single" forceSingleModeWidth min={30}>
 						<Typography className={`whitespace-nowrap ${windowWidth > 1000 ? '' : 'w-fit'}`}
 						            size={windowWidth > 1000 ? '' : 'inherit'}
-						            variant={'h2'} color={theme.colorScheme.primary}>
+						            variant="h2"
+						            color={theme.colorScheme.primary}>
 							{t('contact.title')}
 						</Typography>
 					</Textfit>
@@ -85,7 +84,7 @@ const Contact = (props: ContactProps) => {
 					         color={theme.colorScheme.primary}/>
 				</Row>
 				<motion.form
-					className={`pt-[96px] ${windowWidth > 600 ? 'px-[60px]' : windowWidth > 350 ? 'px-4' : ''}`}
+					className={`pt-[96px] ${windowWidth > 600 ? 'px-[60px]' : (windowWidth > 350 ? 'px-4' : '')}`}
 					viewport={{ once: true }}
 					onViewportEnter={() => setIsFormInView(true)}
 					onSubmit={formik.handleSubmit}>
@@ -149,17 +148,17 @@ const Contact = (props: ContactProps) => {
 
 					<Button
 						viewport={{ once: true }}
-						onViewportEnter={() => setSubmitIsInView(true)}
+						onViewportEnter={() => setSubmitBtnIsInView(true)}
 						animate={
 							submitBtnIsInView ? animations.contact.formItem.inView : animations.contact.formItem.outOfView
 						}
 						className="mt-4 flex items-center justify-center"
 						type="submit"
-						width={'175px'}
-						height={'40px'}
+						width="175px"
+						height="40px"
 						disabled={formik.isSubmitting || !formik.isValid}
 						colorsForStates={theme.colorSchemeByState.primary}>
-						<Typography variant={'bold'} color={theme.colorScheme.light}>
+						<Typography variant="bold" color={theme.colorScheme.light}>
 							{t('contact.submit')}
 						</Typography>
 					</Button>
@@ -172,7 +171,7 @@ const Contact = (props: ContactProps) => {
 						getInTouchIsInView ? animations.contact.formItem.inView : animations.contact.formItem.outOfView
 					}>
 					<Row className="pt-[48px] justify-center">
-						<Typography variant={'button'}
+						<Typography variant="button"
 						            color={isDark() ? theme.colorScheme.light : theme.colorScheme.header1}
 						            size={0.8}
 						            weight={400}>
@@ -187,19 +186,22 @@ const Contact = (props: ContactProps) => {
 							animate={{
 								opacity:    1,
 								transition: {
-									duration: 0.5
-								}
+									duration: 0.5,
+								},
 							}}
 							whileHover={{
 								translateY: -5,
-								transition: { duration: 0.25, delay: 0 }
+								transition: { duration: 0.25, delay: 0 },
 							}}
 							colorsForStates={theme.colorSchemeByState.primary}
-							href={`mailto:${email}`} text icon size={'18px'}>
+							href={`mailto:${email}`}
+							text
+							icon
+							size="18px">
 							<IconIcOutlineEmail/>
 						</ATagButton>
 
-						{linksList.map(({ tooltip, link, icon }, index) => (
+						{linksList.map(({ link, icon }, index) => (
 							<ATagButton
 								key={index}
 								className="p-2"
@@ -208,15 +210,18 @@ const Contact = (props: ContactProps) => {
 									opacity:    1,
 									transition: {
 										delay:    0.1 + index * 0.1,
-										duration: 0.5
-									}
+										duration: 0.5,
+									},
 								}}
 								whileHover={{
 									translateY: -5,
-									transition: { duration: 0.25, delay: 0 }
+									transition: { duration: 0.25, delay: 0 },
 								}}
 								colorsForStates={theme.colorSchemeByState.primary}
-								href={link} text icon size={'18px'}>
+								href={link}
+								text
+								icon
+								size="18px">
 								{icon}
 							</ATagButton>
 						))}

@@ -13,7 +13,8 @@ export default () => {
 							font-display font-bold text-[12rem] lg:text-[16rem] text-neutrals-50 relative inline-block
 							before:left-0.5 before:glitch-1-clip before:animate-glitch-1 before:content-['404'] before:absolute
 							before:top-0 before:w-full before:h-full  after:-left-0.5 after:glitch-2-clip after:animate-glitch-2
-							after:content-['404'] after:absolute after:top-0 after:w-full after:h-full after:bg-neutrals-900 before:bg-neutrals-900 before:h-[50%] after:h-[50%]`}>
+							after:content-['404'] after:absolute after:top-0 after:w-full after:h-full after:bg-neutrals-900
+							 before:bg-neutrals-900 before:h-[50%] after:h-[50%]`}>
 						404
 					</div>
 					<h2 className="font-display font-bold text-brand md:text-xl uppercase mb-4 ">
@@ -25,7 +26,7 @@ export default () => {
 						Whoops! Nothing here...
 					</h3>
 					<p className="text-neutrals-50 leading-relaxed max-w-prose mb-4">
-						Let's rewind in time and get you...
+						Let&apos;s rewind in time and get you...
 					</p>
 					<a
 						className="text-lg text-neutrals-50 group inline-block items-center box-border border-b-[1px] border-b-neutrals-50 hover:border-transparent hover:text-brand transition-all duration-300"
@@ -39,10 +40,10 @@ export default () => {
 							stroke="currentColor"
 						>
 							<path
-								stroke-linecap="round"
-								stroke-linejoin="round"
-								stroke-width="2"
-								d="M9 5l7 7-7 7"></path>
+								strokeLinecap="round"
+								strokeLinejoin="round"
+								strokeWidth="2"
+								d="M9 5l7 7-7 7" />
 						</svg>
 						back home
 					</a>

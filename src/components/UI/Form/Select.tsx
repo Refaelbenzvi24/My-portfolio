@@ -26,11 +26,11 @@ const DropdownIndicator = (props: DropdownIndicatorProps<any>) => {
 		<components.DropdownIndicator {...props}>
 			<div className={css`
 				${[
-					theme.transitions([transformTransition('300ms')]),
-					theme.transforms([
-						conditionalRotate(isFocused, 180),
-					]),
-				]}
+			theme.transitions([transformTransition('300ms')]),
+			theme.transforms([
+				conditionalRotate(isFocused, 180),
+			]),
+		]}
 			`}>
 				<IconIonChevronDown/>
 			</div>
@@ -203,25 +203,24 @@ const SelectWithLabel = (props: SelectProps) => {
 
 	return (
 		<section ref={sectionRef}>
-			{!disableLabel && (label && ((isFocused || !!value) || persistentLabel))
-				&& (
-					<Label
-						{...{ dir, dark }}
-						initial={{
-							opacity: 0,
-						}}
-						transition={{
-							duration: 0.2,
-						}}
-						animate={{
-							opacity: 1,
-						}}
-						exit={{
-							opacity: 0,
-						}}>
-						{label}
-					</Label>
-				)}
+			{!disableLabel && (label && ((isFocused || !!value) || persistentLabel)) ? (
+				<Label
+					{...{ dir, dark }}
+					initial={{
+						opacity: 0,
+					}}
+					transition={{
+						duration: 0.2,
+					}}
+					animate={{
+						opacity: 1,
+					}}
+					exit={{
+						opacity: 0,
+					}}>
+					{label}
+				</Label>
+			) : null}
 			<motion.div
 				{...wrapperProps}
 				className={`${css`
@@ -231,7 +230,7 @@ const SelectWithLabel = (props: SelectProps) => {
 				<Select blurInputOnSelect
 				        {...restProps}
 				        isSearchable={false}
-				        placeholder={(placeholder || !isFocused) && (label)}
+				        placeholder={(placeholder || !isFocused) ? label : null}
 				        onFocus={(event) => {
 					        setIsFocused(true)
 					        if (onFocus) {
@@ -242,7 +241,7 @@ const SelectWithLabel = (props: SelectProps) => {
 					        setIsFocused(false)
 				        }}
 				        onChange={(value) => !!onChange && onChange(value as { label: string, value: string })}
-				        isRtl={dir && dir === "rtl"}
+				        isRtl={dir ? dir === "rtl" : null}
 				        theme={produce(defaultTheme, (draft) => {
 					        if (isDark()) {
 						        draft.colors.primary   = theme.colors.dark_400
@@ -260,7 +259,7 @@ const SelectWithLabel = (props: SelectProps) => {
 					        Menu,
 				        }}/>
 			</motion.div>
-			{!disableHelperText && helperText && (
+			{!disableHelperText && helperText ? (
 				<HelperText
 					initial={{
 						opacity: 0,
@@ -277,7 +276,7 @@ const SelectWithLabel = (props: SelectProps) => {
 					{...{ error }}>
 					{helperText}
 				</HelperText>
-			)}
+			) : null}
 		</section>
 	)
 }

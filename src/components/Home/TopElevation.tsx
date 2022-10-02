@@ -1,10 +1,11 @@
-import { AnimatePresence, motion } from "framer-motion"
 import { css } from "@emotion/css"
+import { AnimatePresence, motion } from "framer-motion"
 import tw from "twin.macro"
-import { Button, isDark, theme } from "../UI"
-import { interpolate, scrollToElement } from "../../utils/utils"
-import useWindowVars from "../../hooks/useWindowVars"
+
 import useAnimations from "../../hooks/useAnimations"
+import useWindowVars from "../../hooks/useWindowVars"
+import { interpolate, scrollToElement } from "../../utils/utils"
+import { Button, isDark, theme } from "../UI"
 
 
 interface TopElevationProps {
@@ -23,11 +24,11 @@ const TopElevation = ({ homeWrapperInView, experienceWrapperInView }: TopElevati
 			{...animations.fadeInOut}
 			transition={{ duration: 1, delay: 7 }}>
 			<AnimatePresence>
-				{(homeWrapperInView && !experienceWrapperInView) && (
+				{(homeWrapperInView && !experienceWrapperInView) ? (
 					<motion.div
 						initial={{
 							opacity: 0,
-							y:       -80
+							y:       -80,
 						}}
 						animate={{
 							opacity: 1,
@@ -35,7 +36,7 @@ const TopElevation = ({ homeWrapperInView, experienceWrapperInView }: TopElevati
 						}}
 						exit={{
 							opacity: 0,
-							y:       -40
+							y:       -40,
 						}}
 						transition={{ duration: 1 }}
 						className={css`
@@ -64,12 +65,12 @@ const TopElevation = ({ homeWrapperInView, experienceWrapperInView }: TopElevati
 
 							background-color: ${!(homeWrapperInView && !experienceWrapperInView) ? 'transparent' : (isDarkMode ? theme.colorScheme.dark2 : theme.colorScheme.light2)};
 							clip-path: polygon(0 ${!(homeWrapperInView && !experienceWrapperInView) ? 0 : interpolate(windowWidth, [15,
-								5], [1920, 200])}%, 100% 0, 100% 50%, 0 50%);
+						5], [1920, 200])}%, 100% 0, 100% 50%, 0 50%);
 
 
 							[dir=rtl] & {
 								clip-path: polygon(0 0, 100% ${!(homeWrapperInView && !experienceWrapperInView) ? 0 : interpolate((windowWidth), [15,
-									5], [1920, 200])}%, 100% 50%, 0 50%);
+						5], [1920, 200])}%, 100% 50%, 0 50%);
 							}
 
 							@media (max-width: 1500px) {
@@ -92,18 +93,19 @@ const TopElevation = ({ homeWrapperInView, experienceWrapperInView }: TopElevati
 									opacity:    [1, 0.2],
 									y:          [0, 20],
 									transition: {
-										y:       { duration: 0.7, repeat: Infinity, repeatType: 'reverse' },
-										opacity: { duration: 0.7, repeat: Infinity, repeatType: 'reverse' }
-									}
+										y:       { duration: 0.7, repeat: Number.POSITIVE_INFINITY, repeatType: 'reverse' },
+										opacity: { duration: 0.7, repeat: Number.POSITIVE_INFINITY, repeatType: 'reverse' },
+									},
 								}}
-								exit={{ opacity: 0, y: -100, }}
+								exit={{ opacity: 0, y: -100 }}
 								transition={{ duration: 0.6 }}
-								color={isDarkMode ? theme.colorScheme.subtitle2 : theme.colorScheme.subtitle1} size={'30px'}>
+								color={isDarkMode ? theme.colorScheme.subtitle2 : theme.colorScheme.subtitle1}
+								size="30px">
 								<IconFeMouse/>
 							</Button>
 						</div>
 					</motion.div>
-				)}
+				) : null}
 			</AnimatePresence>
 		</motion.div>
 	)

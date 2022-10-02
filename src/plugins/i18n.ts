@@ -11,19 +11,6 @@ import { Vars } from "../modules/vars"
 
 export type Language = 'en' | 'he';
 
-interface RequireContext {
-	keys(): string[];
-
-	(id: string): any;
-
-	<T>(id: string): T;
-
-	resolve(id: string): string;
-
-	/** The module id of the context module. This may be useful for module.hot.accept. */
-	id: string;
-}
-
 const language = () => {
 	const lang = LocalStorage.getLanguage() as string | undefined
 
@@ -31,7 +18,7 @@ const language = () => {
 
 	return (navigator.language).toString()
 		.includes('-') ? (navigator.language).toString()
-		.split('-')[0] as Language : (navigator.language).toString() as Language
+			.split('-')[0] as Language : (navigator.language).toString() as Language
 }
 
 

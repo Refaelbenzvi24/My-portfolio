@@ -89,7 +89,7 @@ const TextField = (props: TextFieldProps) => {
 			                placeholder={placeholder || (!persistentLabel ? label : '')}
 			                {...{ centered, onChange, value }}/>
 
-			{helperText && <HelperText {...{ error }}>{helperText}</HelperText>}
+			{helperText ? <HelperText {...{ error }}>{helperText}</HelperText> : null}
 		</section>
 	)
 }

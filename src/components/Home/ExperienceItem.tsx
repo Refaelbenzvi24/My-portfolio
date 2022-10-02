@@ -1,12 +1,14 @@
-import { Card, Col, isDark, Row, theme, Tooltip, Typography } from "../UI"
 import { ReactNode, useRef, useState } from "react"
-import { Textfit } from "react-textfit"
+
 import { css } from "@emotion/css"
+import { Textfit } from "react-textfit"
 import tw from "twin.macro"
-import ATagButton from "../UI/Buttons/ATagButton"
+
 import useAnimations from "../../hooks/useAnimations"
 import useWindowVars from "../../hooks/useWindowVars"
 import { interpolate } from "../../utils/utils"
+import { Card, Col, isDark, Row, theme, Tooltip, Typography } from "../UI"
+import ATagButton from "../UI/Buttons/ATagButton"
 
 
 export interface ExperienceData {
@@ -36,7 +38,10 @@ const ExperienceItem = (props: ExperienceData & { index: number }) => {
 
 	return (
 		<Row
-			animate={inView  ? animations.experienceItem.inView : ((index % 2) === 0 ?  animations.experienceItem.outOfViewLeft : animations.experienceItem.outOfViewRight)}
+			animate={inView
+				? animations.experienceItem.inView
+				:				((index % 2) === 0 ? animations.experienceItem.outOfViewLeft
+					:					animations.experienceItem.outOfViewRight)}
 			transition={{ duration: 1.2 }}
 			viewport={{ once: true }}
 			onViewportEnter={() => setInView(true)}
@@ -47,7 +52,9 @@ const ExperienceItem = (props: ExperienceData & { index: number }) => {
 				`}`}>
 					<a className={css`
 						${tw`h-full w-full absolute z-[1]`};
-						background: ${isDarkMode ? `linear-gradient(${theme.colorScheme.dark}10, ${theme.colorScheme.primary}99)` : `linear-gradient(${theme.colorScheme.light}10, ${theme.colorScheme.primary}99)`};
+						background: ${isDarkMode
+					? `linear-gradient(${theme.colorScheme.dark}10, ${theme.colorScheme.primary}99)`
+					:							`linear-gradient(${theme.colorScheme.light}10, ${theme.colorScheme.primary}99)`};
 						transition: all 250ms ease-in-out;
 						opacity: 1;
 
@@ -58,10 +65,11 @@ const ExperienceItem = (props: ExperienceData & { index: number }) => {
 								filter: none;
 							}
 						}
-					`} href={siteLink}/>
+					`}
+					   href={siteLink}/>
 					<img
 						src={image}
-						alt={''}
+						alt=""
 						className={css`
 							${tw`h-full w-full bg-cover`};
 
@@ -80,15 +88,16 @@ const ExperienceItem = (props: ExperienceData & { index: number }) => {
 					{windowWidth > mobileBreakpoint && (
 						<>
 							<Typography className={`${(index % 2) !== 0 ? 'pr-[20px] rtl:pl-[20px] rtl:pr-0' : 'pl-[20px]  rtl:pr-[20px] rtl:pl-0'}`}
-							            variant={'bold'}
-							            lineHeight={'140%'}
+							            variant="bold"
+							            lineHeight="140%"
 							            color={isDark() ? theme.colorScheme.body1 : theme.colorScheme.subtitle2}>
 								{dates}
 							</Typography>
 
-							<Textfit mode="single" forceSingleModeWidth={true}>
+							<Textfit mode="single" forceSingleModeWidth>
 								<Typography className={`${(index % 2) !== 0 ? 'pr-[20px] rtl:pl-[20px] rtl:pr-0' : 'pl-[20px]  rtl:pr-[20px] rtl:pl-0'}`}
-								            variant={'h3'} size={'inherit'}
+								            variant="h3"
+								            size="inherit"
 								            color={isDark() ? theme.colorScheme.light : theme.colorScheme.body1}>
 									{title}
 								</Typography>
@@ -103,12 +112,13 @@ const ExperienceItem = (props: ExperienceData & { index: number }) => {
 						      className={`py-[12px] pl-[18px] pr-[12px] ${windowWidth <= mobileBreakpoint ? '' : 'absolute'} ${((index % 2) !== 0 || windowWidth < mobileBreakpoint ? 'left-0 rtl:right-0 rtl:left-auto' : 'right-0 rtl:left-0 rtl:right-auto')}`}
 						      elevation={4}
 						      bgColor={isDark() ? `${theme.colorScheme.overlaysDark}e1` : `${theme.colorScheme.accent}e1`}
-						      height={'fit-content'} width={windowWidth <= mobileBreakpoint ? '' : '555px'}>
+						      height="fit-content"
+						      width={windowWidth <= mobileBreakpoint ? '' : '555px'}>
 							{windowWidth <= mobileBreakpoint && (
 								<>
 									<Typography
-										variant={'bold'}
-										lineHeight={'140%'}
+										variant="bold"
+										lineHeight="140%"
 										color={isDark() ? theme.colorScheme.body1 : theme.colorScheme.subtitle2}>
 										{dates}
 									</Typography>
@@ -121,7 +131,8 @@ const ExperienceItem = (props: ExperienceData & { index: number }) => {
 												line-clamp: 2;
 												-webkit-box-orient: vertical;
 											` : ''}
-											variant={'h3'} size={windowWidth > 700 ? 1.3 : 'inherit'}
+											variant="h3"
+											size={windowWidth > 700 ? 1.3 : 'inherit'}
 											color={isDark() ? theme.colorScheme.light : theme.colorScheme.body1}>
 											{title}
 										</Typography>
@@ -131,7 +142,7 @@ const ExperienceItem = (props: ExperienceData & { index: number }) => {
 								</>
 							)}
 
-							<Typography as={'span'} variant={'small'} color={isDark() ? theme.colorScheme.subtitle2 : theme.colorScheme.body2}>
+							<Typography as="span" variant="small" color={isDark() ? theme.colorScheme.subtitle2 : theme.colorScheme.body2}>
 								{description}
 							</Typography>
 						</Card>
@@ -145,7 +156,8 @@ const ExperienceItem = (props: ExperienceData & { index: number }) => {
 							{technologies.map((item, index) => (
 								<Typography className="whitespace-nowrap"
 								            as={typeof item === 'string' ? 'p' : 'span'}
-								            variant={'small'} color={isDark() ? theme.colorScheme.subtitle2 : theme.colorScheme.subtitle3}
+								            variant="small"
+								            color={isDark() ? theme.colorScheme.subtitle2 : theme.colorScheme.subtitle3}
 								            key={index}>
 									{item}
 								</Typography>
@@ -153,26 +165,35 @@ const ExperienceItem = (props: ExperienceData & { index: number }) => {
 						</Row>
 					</div>
 
-					<Row className={`space-x-3 rtl:flex-row-reverse rtl:justify-end pt-[16px] mb-1 pl-[6px]`}>
-						{githubLink && (
+					<Row className="space-x-3 rtl:flex-row-reverse rtl:justify-end pt-[16px] mb-1 pl-[6px]">
+						{githubLink ? (
 							<Tooltip
 								color={theme.colorScheme.overlaysDark}
-								tooltip={t('githubLink')} placement={'bottom-center'}>
-								<ATagButton className="p-0" colorsForStates={theme.colorSchemeByState.success}
-								            href={githubLink} text icon size={'24px'}>
+								tooltip={t('githubLink')}
+								placement="bottom-center">
+								<ATagButton className="p-0"
+								            colorsForStates={theme.colorSchemeByState.success}
+								            href={githubLink}
+								            text
+								            icon
+								            size="24px">
 									<IconEvaGithubOutline/>
 								</ATagButton>
 							</Tooltip>
-						)}
+						) : null}
 
-						{siteLink && (
-							<Tooltip tooltip={t('siteLink')} placement={'bottom-center'}>
-								<ATagButton className="p-0" colorsForStates={theme.colorSchemeByState.success}
-								            href={siteLink} text icon size={'24px'}>
+						{siteLink ? (
+							<Tooltip tooltip={t('siteLink')} placement="bottom-center">
+								<ATagButton className="p-0"
+								            colorsForStates={theme.colorSchemeByState.success}
+								            href={siteLink}
+								            text
+								            icon
+								            size="24px">
 									<IconLucideExternalLink/>
 								</ATagButton>
 							</Tooltip>
-						)}
+						) : null}
 					</Row>
 				</Col>
 			</Col>
@@ -181,7 +202,9 @@ const ExperienceItem = (props: ExperienceData & { index: number }) => {
 				<div className="cursor-pointer relative min-h-[320px] min-w-[530px]">
 					<a className={css`
 						${tw`absolute h-full w-full z-[1]`};
-						background: ${isDarkMode ? `linear-gradient(${theme.colorScheme.dark}10, ${theme.colorScheme.primary}99)` : `linear-gradient(${theme.colorScheme.light}10, ${theme.colorScheme.primary}99)`};
+						background: ${isDarkMode
+					? `linear-gradient(${theme.colorScheme.dark}10, ${theme.colorScheme.primary}99)`
+					:							`linear-gradient(${theme.colorScheme.light}10, ${theme.colorScheme.primary}99)`};
 						transition: all 250ms ease-in-out;
 						opacity: 1;
 
@@ -192,10 +215,11 @@ const ExperienceItem = (props: ExperienceData & { index: number }) => {
 								filter: none;
 							}
 						}
-					`} href={siteLink}/>
+					`}
+					   href={siteLink}/>
 					<img
 						src={image}
-						alt={''}
+						alt=""
 						className={css`
 							${tw`absolute h-full w-full`};
 

@@ -46,7 +46,7 @@ const IconButton = styled(motion.button)(({ color, dark, size }: IconButtonProps
 ])
 
 IconButton.defaultProps = {
-	size: 24
+	size: 24,
 }
 
 

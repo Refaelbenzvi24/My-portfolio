@@ -7,12 +7,12 @@ import { motion, HTMLMotionProps, AnimatePresence } from "framer-motion"
 import type { TFunctionResult } from 'i18next'
 import tw from "twin.macro"
 import { LongPressDetectEvents, useLongPress } from "use-long-press"
+import { LongPressEvent } from "use-long-press/dist/types"
 
 import { isDark, Typography } from '..'
+import useWindowVars from "../../../hooks/useWindowVars"
 import Portal from "../Portal/Portal"
 import theme from "../Utils/theme"
-import useWindowVars from "../../../hooks/useWindowVars"
-import { LongPressEvent } from "use-long-press/dist/types"
 
 
 type Placement = `${'top' | 'bottom' | 'center'}-${'left' | 'right' | 'center'}`
@@ -63,15 +63,6 @@ const defaultProps = {
 	preventDefaultEvent:  true,
 	mobileTimeout:        1000,
 	mobileThreshold:      500,
-}
-
-const getCoords = (elem: Element) => {
-	const box = elem.getBoundingClientRect()
-
-	const top  = Math.round(box.top)
-	const left = Math.round(box.left)
-
-	return { top, left }
 }
 
 interface CalcPlacementProps {
@@ -167,7 +158,7 @@ const Tooltip = (props: TooltipProps & typeof defaultProps) => {
 			const { width: tooltipWidth, height: tooltipHeight } = tooltipElement.current.getBoundingClientRect()
 			const { top, left }                                  = {
 				top:  elementWrapper.current.getBoundingClientRect().top,
-				left: elementWrapper.current.getBoundingClientRect().left
+				left: elementWrapper.current.getBoundingClientRect().left,
 			}
 			const { top: topOffset, left: leftOffset }           = calcPlacement({
 				placement,
@@ -216,7 +207,7 @@ const Tooltip = (props: TooltipProps & typeof defaultProps) => {
 	return (
 		<>
 			<AnimatePresence>
-				{visible && (
+				{visible ? (
 					<Portal>
 						<TooltipDiv
 							initial={{ opacity: 0, scale: 0.9 }}
@@ -228,24 +219,24 @@ const Tooltip = (props: TooltipProps & typeof defaultProps) => {
 							dark={darkMode}
 							{...restProps}
 							ref={tooltipElement}>
-							<Typography variant={'small'}
+							<Typography variant="small"
 							            as={typeof tooltip === 'string' ? 'p' : 'span'}
 							            color={darkMode ? theme.colorScheme.accent : theme.colorScheme.body2}>
 								{tooltip}
 							</Typography>
 						</TooltipDiv>
 					</Portal>
-				)}
+				) : null}
 			</AnimatePresence>
 			<div ref={elementWrapper}
 			     className="w-fit"
-			     onClick={(event) => {
-				     if (isClickableOnMobile && isTouchable) {
+			     {...((isClickableOnMobile && isTouchable) && {
+				     onClick: (event) => {
 					     event.stopPropagation()
 					     setVisible(true)
 					     if (isTouchable && !isPersistentOnMobile) setTimeout(() => setVisible(false), mobileTimeout)
-				     }
-			     }}
+				     },
+			     })}
 			     {...longPress()}
 			     onMouseEnter={() => !isTouchable && setVisible(true)}
 			     onMouseLeave={() => !isTouchable && setVisible(false)}>

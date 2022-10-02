@@ -1,28 +1,36 @@
-import AnimatedLandingLogo from "../components/Home/AnimatedLandingLogo"
-import { AnimatePresence, motion } from "framer-motion"
+import { ReactNode, useEffect, useState } from "react"
+
 import { css } from "@emotion/css"
+import { AnimatePresence, motion } from "framer-motion"
 import tw from "twin.macro"
+
+import Logo from "../assets/Logo.png"
+import AnimatedLandingLogo from "../components/Home/AnimatedLandingLogo"
+import LanguageSelector from "../components/LanguageSelector"
 import {
 	AppBar, ATagButton, Button, Col, Divider, HamburgerSideBar, isDark, Main, Navigation, NavigationItem, Row, theme, ThemeToggle, Tooltip,
-	Typography
+	Typography,
 } from "../components/UI"
-import { interpolate, scrollToElement } from "../utils/utils"
-import Logo from "../assets/Logo.png"
-import useAnimations from "../hooks/useAnimations"
-import { ReactNode, useEffect, useState } from "react"
 import { useMain } from "../context"
-import { Vars } from "../modules/vars"
+import useAnimations from "../hooks/useAnimations"
 import useWindowVars from "../hooks/useWindowVars"
-import LanguageSelector from "../components/LanguageSelector"
+import { Vars } from "../modules/vars"
+import { interpolate, scrollToElement } from "../utils/utils"
 
 
-type NavigationItemType = { label: string, value: string, isInView?: string, [key: string]: any }
+interface NavigationItemType {
+	label: string,
+	value: string,
+	isInView?: string,
+
+	[key: string]: any
+}
 
 interface MainLayoutProps {
 	children: ReactNode
 	navigationOptions: NavigationItemType[]
 	linksList: { link: string, icon: ReactNode, [key: string]: any }[]
-	currentNavigation?: NavigationItemType
+	currentNavigation: NavigationItemType
 	setCurrentNavigation?: (navigation: NavigationItemType) => void
 	email: string
 }
@@ -67,7 +75,7 @@ const MainLayout = (props: MainLayoutProps) => {
 							<motion.img
 								{...animations.appBar.logo}
 								transition={{
-									delay:    delay,
+									delay,
 									duration: 1,
 								}}
 								className={css`
@@ -100,14 +108,14 @@ const MainLayout = (props: MainLayoutProps) => {
 									}
 								`}
 								selected={currentNavigation}
-								options={navigationOptions}
-								navigationItemComp={({ label, value }, index) => (
+								options={navigationOptions}>
+								{({ label, value }, index) => (
 									<NavigationItem
 										{...{ label, value }}
 										{...animations.appBar.navigationItem}
 										transition={{
 											delay:    delay + 0.1 + index * 0.2,
-											duration: 0.5
+											duration: 0.5,
 										}}
 										key={index}
 										selected={currentNavigation}
@@ -115,7 +123,8 @@ const MainLayout = (props: MainLayoutProps) => {
 											if (setCurrentNavigation) setCurrentNavigation({ label, value })
 											scrollToElement(value)
 										}}/>
-								)}/>
+								)}
+							</Navigation>
 						</Row>
 
 						<Row className={`space-x-[18px] rtl:space-x-reverse	${css`
@@ -129,24 +138,24 @@ const MainLayout = (props: MainLayoutProps) => {
 						`}`}>
 							<Tooltip tooltip={t('language')}
 							         color={theme.colorScheme.overlaysDark}
-							         placement={'bottom-center'}>
+							         placement="bottom-center">
 								<LanguageSelector
 									{...animations.appBar.themeToggle}
 									transition={{
 										delay:    delay + 1,
-										duration: 0.5
+										duration: 0.5,
 									}}
 									color={theme.colorScheme.primary}/>
 							</Tooltip>
 
 							<Tooltip tooltip={t('theme')}
 							         color={theme.colorScheme.overlaysDark}
-							         placement={'bottom-center'}>
+							         placement="bottom-center">
 								<ThemeToggle
 									{...animations.appBar.themeToggle}
 									transition={{
 										delay:    delay + 1.1,
-										duration: 0.5
+										duration: 0.5,
 									}}/>
 							</Tooltip>
 						</Row>
@@ -168,7 +177,7 @@ const MainLayout = (props: MainLayoutProps) => {
 							bgColor={isDarkMode ? theme.colorScheme.dark : theme.colorScheme.light}
 							onIsOpenChange={setIsHamburgerSideBarOpen}>
 							<AnimatePresence>
-								{isHamburgerSideBarOpen && (
+								{isHamburgerSideBarOpen ? (
 									<>
 										<motion.div
 											className="flex flex-col h-full w-full"
@@ -184,14 +193,14 @@ const MainLayout = (props: MainLayoutProps) => {
 											<Row className="mt-[-34px] mx-[12px] space-x-[18px] rtl:space-x-reverse">
 												<Tooltip tooltip={t('theme')}
 												         color={theme.colorScheme.overlaysDark}
-												         placement={'top-center'}>
+												         placement="top-center">
 													<ThemeToggle
 														color={theme.colorScheme.secondary}/>
 												</Tooltip>
 
 												<Tooltip tooltip={t('language')}
 												         color={theme.colorScheme.overlaysDark}
-												         placement={'top-center'}>
+												         placement="top-center">
 													<LanguageSelector
 														color={theme.colorScheme.secondary}/>
 												</Tooltip>
@@ -201,11 +210,11 @@ const MainLayout = (props: MainLayoutProps) => {
 												className="space-y-4 mt-[-80px] items-center justify-center mt-auto"
 												vertical
 												options={navigationOptions}
-												selected={currentNavigation}
-												navigationItemComp={({ label, value }, index) => (
+												selected={currentNavigation}>
+												{({ label, value }, index) => (
 													<Button
 														key={index}
-														width={'fit-content'}
+														width="fit-content"
 														onClick={() => {
 															setIsHamburgerSideBarOpen(false)
 															setTimeout(() => {
@@ -214,21 +223,23 @@ const MainLayout = (props: MainLayoutProps) => {
 															}, 800)
 														}}
 														text>
-														<Typography variant={'button'}
-														            className="w-fit"
-														            size={1}
-														            weight={500}
-														            strokeSize={0.45}
-														            strokeColor={`${isDarkMode ? theme.colorScheme.light : theme.colorScheme.header1}`}
-														            color={`${isDarkMode ? theme.colorScheme.light : theme.colorScheme.header1} !important`}>
+														<Typography
+															variant="button"
+															className="w-fit"
+															size={1}
+															weight={500}
+															strokeSize={0.45}
+															strokeColor={`${isDarkMode ? theme.colorScheme.light : theme.colorScheme.header1}`}
+															color={`${isDarkMode ? theme.colorScheme.light : theme.colorScheme.header1} !important`}>
 															{label}
 														</Typography>
 													</Button>
-												)}/>
+												)}
+											</Navigation>
 
 											<Col className="mb-[40px] mt-auto z-[300]">
 												<Row className="justify-center">
-													<Typography variant={'button'}
+													<Typography variant="button"
 													            color={isDarkMode ? theme.colorScheme.light : theme.colorScheme.header1}
 													            size={0.8}
 													            weight={400}>
@@ -243,19 +254,22 @@ const MainLayout = (props: MainLayoutProps) => {
 														animate={{
 															opacity:    1,
 															transition: {
-																duration: 0.5
-															}
+																duration: 0.5,
+															},
 														}}
 														whileHover={{
 															translateY: -5,
-															transition: { duration: 0.25, delay: 0 }
+															transition: { duration: 0.25, delay: 0 },
 														}}
 														colorsForStates={theme.colorSchemeByState.primary}
-														href={`mailto:${email}`} text icon size={'18px'}>
+														href={`mailto:${email}`}
+														text
+														icon
+														size="18px">
 														<IconIcOutlineEmail/>
 													</ATagButton>
 
-													{linksList.map(({ tooltip, link, icon }, index) => (
+													{linksList.map(({ link, icon }, index) => (
 														<ATagButton
 															className="p-2"
 															key={index}
@@ -264,15 +278,18 @@ const MainLayout = (props: MainLayoutProps) => {
 																opacity:    1,
 																transition: {
 																	delay:    0.1 + index * 0.1,
-																	duration: 0.5
-																}
+																	duration: 0.5,
+																},
 															}}
 															whileHover={{
 																translateY: -5,
-																transition: { duration: 0.25, delay: 0 }
+																transition: { duration: 0.25, delay: 0 },
 															}}
 															colorsForStates={theme.colorSchemeByState.primary}
-															href={link} text icon size={'18px'}>
+															href={link}
+															text
+															icon
+															size="18px">
 															{icon}
 														</ATagButton>
 													))}
@@ -290,7 +307,7 @@ const MainLayout = (props: MainLayoutProps) => {
 											`}/>
 										</motion.div>
 									</>
-								)}
+								) : null}
 							</AnimatePresence>
 						</HamburgerSideBar>
 					</Row>
@@ -304,7 +321,7 @@ const MainLayout = (props: MainLayoutProps) => {
 					<Row>
 						<Col className="fixed bottom-0 left-[70px] w-[30px] items-center z-[300]">
 							<Col className="pb-[24px] space-y-[22px]">
-								{linksList.map(({ tooltip, link, icon }, index) => (
+								{linksList.map(({ link, icon }, index) => (
 									<ATagButton
 										className="p-2"
 										key={index}
@@ -313,15 +330,18 @@ const MainLayout = (props: MainLayoutProps) => {
 											opacity:    1,
 											transition: {
 												delay:    delay + 3.6 + index * 0.1,
-												duration: 0.5
-											}
+												duration: 0.5,
+											},
 										}}
 										whileHover={{
 											translateY: -5,
-											transition: { duration: 0.25, delay: 0 }
+											transition: { duration: 0.25, delay: 0 },
 										}}
 										colorsForStates={theme.colorSchemeByState.primary}
-										href={link} text icon size={'24px'}>
+										href={link}
+										text
+										icon
+										size="24px">
 
 										{icon}
 									</ATagButton>
@@ -332,9 +352,11 @@ const MainLayout = (props: MainLayoutProps) => {
 								{...animations.fadeInOut}
 								transition={{
 									delay:    delay + 3.6,
-									duration: 0.5
+									duration: 0.5,
 								}}
-								vertical size={'90px'} thickness={'2px'}/>
+								vertical
+								size="90px"
+								thickness="2px"/>
 						</Col>
 
 						<Col className="fixed bottom-0 right-[70px] items-center w-[30px] z-[300]">
@@ -344,16 +366,16 @@ const MainLayout = (props: MainLayoutProps) => {
 								            {...animations.email}
 								            transition={{
 									            delay:    delay + 3.6,
-									            duration: 0.5
+									            duration: 0.5,
 								            }}
 								            whileHover={{
 									            translateX: -5,
-									            transition: { duration: 0.25, delay: 0 }
+									            transition: { duration: 0.25, delay: 0 },
 								            }}
 								            text
 								            colorsForStates={theme.colorSchemeByState.primary}
 								            href={`mailto:${email}`}>
-									<Typography variant={'body'} weight={600} color={theme.colorScheme.primary}>
+									<Typography variant="body" weight={600} color={theme.colorScheme.primary}>
 										{email}
 									</Typography>
 								</ATagButton>
@@ -363,9 +385,12 @@ const MainLayout = (props: MainLayoutProps) => {
 								{...animations.fadeInOut}
 								transition={{
 									delay:    delay + 3.6,
-									duration: 0.5
+									duration: 0.5,
 								}}
-								className="mt-[120px]" vertical size={'90px'} thickness={'2px'}/>
+								className="mt-[120px]"
+								vertical
+								size="90px"
+								thickness="2px"/>
 						</Col>
 					</Row>
 				)}

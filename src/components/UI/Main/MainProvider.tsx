@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react'
 import type { ReactElement } from 'react'
 
+import UAParser from "ua-parser-js"
+
 import { defaultMainData, MainContext } from './MainContext'
 import type { MainProviderOptions } from './types'
-import UAParser from "ua-parser-js"
 
 let lastScrollY = 0
 
@@ -13,7 +14,7 @@ const {
 	      sideBarState: defaultSideBarState,
 	      sideBarOpts:  defaultSideBarOptions,
 	      overlayState: defaultOverlayState,
-      } = defaultMainData
+} = defaultMainData
 
 
 const MainProvider = (props: MainProviderOptions): ReactElement => {
@@ -38,12 +39,12 @@ const MainProvider = (props: MainProviderOptions): ReactElement => {
 	}
 
 	useEffect(() => {
-		addEventListener('touchstart', isTouchListener)
-		addEventListener('scroll', scrollDirectionHandler)
+		window.addEventListener('touchstart', isTouchListener)
+		window.addEventListener('scroll', scrollDirectionHandler)
 
 		return () => {
-			removeEventListener('touchstart', isTouchListener)
-			removeEventListener('scroll', scrollDirectionHandler)
+			window.removeEventListener('touchstart', isTouchListener)
+			window.removeEventListener('scroll', scrollDirectionHandler)
 		}
 	}, [])
 

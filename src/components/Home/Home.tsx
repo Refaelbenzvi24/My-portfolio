@@ -1,18 +1,19 @@
-import { ATagButton, Col, isDark, Row, theme, Typography } from "../UI"
 import { ReactNode, useEffect, useState, Suspense } from "react"
-import { Environment, ContactShadows } from '@react-three/drei'
-import { Canvas } from '@react-three/fiber'
+
+import { css } from "@emotion/css"
 import { useSpring } from '@react-spring/core'
 import { a as three } from '@react-spring/three'
-import LaptopModel from "./LaptopModel"
+import { Environment, ContactShadows } from '@react-three/drei'
+import { Canvas } from '@react-three/fiber'
 import { motion } from "framer-motion"
-import useAnimations from "../../hooks/useAnimations"
-import { Vars } from "../../modules/vars"
-import { useInView } from "react-intersection-observer"
-import useWindowVars from "../../hooks/useWindowVars"
-import { css } from "@emotion/css"
 import tw from "twin.macro"
+
+import useAnimations from "../../hooks/useAnimations"
+import useWindowVars from "../../hooks/useWindowVars"
+import { Vars } from "../../modules/vars"
 import { interpolate } from "../../utils/utils"
+import { ATagButton, Col, isDark, Row, theme, Typography } from "../UI"
+import LaptopModel from "./LaptopModel"
 
 
 interface HomeProps {
@@ -28,7 +29,7 @@ const Home = (props: HomeProps) => {
 
 	const [laptopAnimDuration, setLaptopAnimDuration] = useState(Vars.showAnimations ? 600 : 450)
 	const [colInView, setColInView]                   = useState(false)
-	const [laptopColInView, setLaptopInView]          = useState(false)
+	const [laptopColInView, setLaptopColInView]       = useState(false)
 
 	const { t }                         = useTranslation()
 	const animations                    = useAnimations()
@@ -64,7 +65,8 @@ const Home = (props: HomeProps) => {
 		<Row ref={innerRef}
 		     className={`${windowWidth > 1500 ? 'flex-row' : `flex-col`} ${css`
 			     padding-top: ${interpolate(windowHeight, [20, 200], [400, 902]) - interpolate(windowWidth, [30, 40], [1920, 0])}px;
-		     `} h-full`} id="home">
+		     `} h-full`}
+		     id="home">
 			<Col className="max-w-[920px]"
 			     viewport={{ once: true }}
 			     onViewportEnter={() => setColInView(true)}>
@@ -73,7 +75,8 @@ const Home = (props: HomeProps) => {
 					{...animations.home.homeItem}
 					transition={{ delay: delay + 0.2, duration: 0.5 }}>
 					<Typography
-						className="pl-[5px] whitespace-nowrap" variant={'bold'}
+						className="pl-[5px] whitespace-nowrap"
+						variant="bold"
 						size={windowWidth > 1300 ? '' : interpolate(windowWidth, [0.876, 1], [400, 1300])}
 						color={theme.colorScheme.primary}>
 						{t('home.hello')}
@@ -86,7 +89,7 @@ const Home = (props: HomeProps) => {
 					transition={{ delay: delay + 0.3, duration: 0.5 }}>
 					<Typography
 						className="pt-1.5 whitespace-nowrap"
-						variant={'h1'}
+						variant="h1"
 						size={windowWidth > 1300 ? '' : interpolate(windowWidth, [2, 4], [375, 1300])}
 						color={isDark() ? theme.colorScheme.light : theme.colorScheme.header1}>
 						{name}
@@ -97,7 +100,8 @@ const Home = (props: HomeProps) => {
 					initial={animations.home.homeItem.initial}
 					animate={colInView ? animations.home.homeItem.inView : animations.home.homeItem.outOfView}
 					transition={{ delay: delay + 0.5, duration: 0.5 }}>
-					<Typography className={` ${windowWidth > 700 ? 'whitespace-nowrap pt-2' : ''}`} variant={'h1'}
+					<Typography className={` ${windowWidth > 700 ? 'whitespace-nowrap pt-2' : ''}`}
+					            variant="h1"
 					            size={windowWidth > 1300 ? '' : interpolate(windowWidth, [1.6, 4], [200, 1300])}
 					            color={theme.colorScheme.secondary}>
 						{secondaryTitle}
@@ -110,7 +114,8 @@ const Home = (props: HomeProps) => {
 					animate={colInView ? animations.home.homeItem.inView : animations.home.homeItem.outOfView}
 					transition={{ delay: delay + 0.7, duration: 0.5 }}>
 					<Typography
-						className={`pt-2 max-w-[702px] ${windowWidth > 1100 ? 'pl-1.5' : 'pl-0.5'}`} variant={'body'}
+						className={`pt-2 max-w-[702px] ${windowWidth > 1100 ? 'pl-1.5' : 'pl-0.5'}`}
+						variant="body"
 						size={windowWidth > 1300 ? '' : interpolate(windowWidth, [0.875, 1], [375, 1300])}
 						color={isDark() ? theme.colorScheme.subtitle2 : theme.colorScheme.subtitle1}>
 						{description}
@@ -124,9 +129,9 @@ const Home = (props: HomeProps) => {
 					className={`mt-4 ${windowWidth > 1100 ? 'ml-1.5' : 'ml-1'} flex items-center justify-center`}
 					href={resumeLink}
 					colorsForStates={theme.colorSchemeByState.primary}
-					width={'175px'}
-					height={'40px'}>
-					<Typography centered variant={'bold'} color={theme.colorScheme.light}>
+					width="175px"
+					height="40px">
+					<Typography centered variant="bold" color={theme.colorScheme.light}>
 						{t('home.resume')}
 					</Typography>
 				</ATagButton>
@@ -135,7 +140,7 @@ const Home = (props: HomeProps) => {
 			<Col
 				className={`w-full ${windowWidth > 1500 ? '' : 'mt-14'} `}
 				viewport={{ once: true }}
-				onViewportEnter={() => setLaptopInView(true)}>
+				onViewportEnter={() => setLaptopColInView(true)}>
 				<motion.div
 					className="w-full h-full z-[20]"
 					initial={animations.home.homeItem.initial}
@@ -148,8 +153,10 @@ const Home = (props: HomeProps) => {
 								min-height: ${interpolate(windowWidth, [220, 340], [280, 1300])}px;
 							`};
 						}
-					`} dpr={[1, 2]} camera={{ position: [0, 0, -30], fov: 35 }}>
-						{/* @ts-ignore - types comes from the package and is out of my control.  */}
+					`}
+					        dpr={[1, 2]}
+					        camera={{ position: [0, 0, -30], fov: 35 }}>
+						{/* @ts-expect-error - types comes from the package and is out of my control.  */}
 						<three.pointLight position={[10, 10, 10]} intensity={1.5} color={spring.open.to([0, 1], ['#f0f0f0', '#d25578'])}/>
 						<Suspense fallback={null}>
 							<group rotation={[0, Math.PI, 0]}

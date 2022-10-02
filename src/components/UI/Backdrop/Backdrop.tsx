@@ -29,7 +29,7 @@ const BackdropDiv = styled(motion.div)(({ dark }: { dark?: boolean }) => [
 const Backdrop = ({ dark, active, className, animationTime, ...restProps }: BackdropProps) => {
 	return (
 		<AnimatePresence>
-			{active && (
+			{active ? (
 				<BackdropDiv {...restProps}
 				             initial={{
 					             opacity: 0,
@@ -44,7 +44,7 @@ const Backdrop = ({ dark, active, className, animationTime, ...restProps }: Back
 					             opacity: 0,
 				             }}
 				             className={`${clsx(className)}`}/>
-			)}
+			) : null}
 		</AnimatePresence>
 	)
 }

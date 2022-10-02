@@ -1,6 +1,6 @@
 import { useContext } from 'react'
-import { theme as uiTheme } from "../index"
 
+import { theme as uiTheme } from '..'
 import IconButton, { IconButtonProps } from '../Buttons/IconButton'
 import { ThemeContext } from './ThemeContext'
 

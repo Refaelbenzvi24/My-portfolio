@@ -1,10 +1,12 @@
+import { useEffect, useState } from "react"
+
+import { css } from "@emotion/react"
 import styled from "@emotion/styled"
 import { motion, HTMLMotionProps } from "framer-motion"
 import tw from "twin.macro"
-import { css } from "@emotion/react"
-import { CSSProperties, useEffect, useState } from "react"
-import theme from "../Utils/theme"
+
 import { useMain } from "../../../context"
+import theme from "../Utils/theme"
 
 
 interface AppBarWrapperProps {
@@ -14,7 +16,6 @@ interface AppBarWrapperProps {
 	darkBackgroundColor: `#${number}`
 	hasBackground: boolean
 }
-
 
 
 const AppBarWrapper = styled(motion.div)(({ height, hasBackground, backgroundColor, darkBackgroundColor, dark }: AppBarWrapperProps) => [
@@ -33,17 +34,20 @@ const AppBarWrapper = styled(motion.div)(({ height, hasBackground, backgroundCol
 
 	(props) => (hasBackground && (dark || props.theme.isDark)) && css`
 		background-color: ${darkBackgroundColor};
-	`
+	`,
 ])
 
 const defaultProps = {
 	backgroundColor:     theme.colorScheme.accent,
 	darkBackgroundColor: theme.colorScheme.overlaysDark,
-	height:              84
+	height:              84,
 }
 
 interface AppBarProps extends HTMLMotionProps<"div"> {
 	hideOnScroll?: boolean
+	backgroundColor?: string
+	darkBackgroundColor?: string
+	height?: number
 }
 
 const AppBar = (props: AppBarProps & typeof defaultProps & Omit<AppBarWrapperProps, 'hasBackground'>) => {
@@ -57,7 +61,7 @@ const AppBar = (props: AppBarProps & typeof defaultProps & Omit<AppBarWrapperPro
 
 	const controlAppbar = () => {
 		if (typeof window !== 'undefined') {
-			if (window.scrollY > lastScrollY && scrollY > 20) setShow(false)
+			if (window.scrollY > lastScrollY && window.scrollY > 20) setShow(false)
 
 			if (!(window.scrollY > lastScrollY)) setShow(true)
 
@@ -86,19 +90,15 @@ const AppBar = (props: AppBarProps & typeof defaultProps & Omit<AppBarWrapperPro
 	}, [])
 
 	useEffect(() => {
-		if (scrollY > 20) {
-			if (show) setHasBackground(true)
-		}
+		if (window.scrollY > 20 && show) setHasBackground(true)
 
-		if (scrollY <= 20) {
-			if (show) setHasBackground(false)
-		}
-	}, [scrollY])
+		if (window.scrollY <= 20 && show) setHasBackground(false)
+	}, [window.scrollY])
 
 	useEffect(() => {
-		setAppBarOpts(prev => ({
+		setAppBarOpts((prev) => ({
 			...prev,
-			height: props.height
+			height: props.height,
 		}))
 	}, [props.height])
 
@@ -106,7 +106,7 @@ const AppBar = (props: AppBarProps & typeof defaultProps & Omit<AppBarWrapperPro
 		<AppBarWrapper
 			hasBackground={hasBackground}
 			animate={{
-				translateY: show ? 0 : '-100%'
+				translateY: show ? 0 : '-100%',
 			}}
 			transition={{
 				duration: 0.3,

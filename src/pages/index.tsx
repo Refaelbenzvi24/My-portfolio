@@ -1,25 +1,23 @@
-import { css } from "@emotion/css"
-import tw from "twin.macro"
-import { AnimatePresence, motion } from "framer-motion"
-
-
 import { useEffect, useState } from "react"
-import { useInView } from "react-intersection-observer"
 
-import { Vars } from "../modules/vars"
+import { css } from "@emotion/css"
+import { AnimatePresence, motion } from "framer-motion"
+import { useInView } from "react-intersection-observer"
+import tw from "twin.macro"
+
+import Contact from "../components/Home/Contact"
+import Credit from "../components/Home/Credit"
+import Experience from "../components/Home/Experience"
 import Home from "../components/Home/Home"
 import Projects from "../components/Home/Projects"
-import Experience from "../components/Home/Experience"
 import Skills from "../components/Home/Skills"
-import Contact from "../components/Home/Contact"
+import TopElevation from "../components/Home/TopElevation"
 import { Button, Col, Portal, theme, Tooltip } from "../components/UI"
+import data from "../data"
 import useAnimations, { generalAnimations } from "../hooks/useAnimations"
 import useWindowVars from "../hooks/useWindowVars"
-import { interpolate, scrollToElement } from "../utils/utils"
 import MainLayout from "../Layouts/MainLayout"
-import data from "../data"
-import Credit from "../components/Home/Credit"
-import TopElevation from "../components/Home/TopElevation"
+import { interpolate, scrollToElement } from "../utils/utils"
 
 
 export default () => {
@@ -56,14 +54,14 @@ export default () => {
 			navigationOptions={navigationOptions}>
 
 			<Col
-				className={`${windowWidth > 1500 ? 'max-w-[1240px]' : windowWidth > 1300 ? 'max-w-[920px]' : css`
+				className={`${windowWidth > 1500 ? 'max-w-[1240px]' : (windowWidth > 1300 ? 'max-w-[920px]' : css`
 					padding-left: ${interpolate(windowWidth, [160, 20], [1300, 200])}px;
 					padding-right: ${interpolate(windowWidth, [160, 20], [1300, 200])}px;
-				`} z-[10] mx-auto`}
+				`)} z-[10] mx-auto`}
 				{...animations.fadeInOut}
 				transition={{
 					delay:    1.5,
-					duration: 0.5
+					duration: 0.5,
 				}}>
 
 				<Home innerRef={homeWrapperRef} {...homeData}/>
@@ -104,8 +102,8 @@ export default () => {
 							            `}
 							            z-index: ${theme.zIndex.fab};
 						            `}>
-							<Tooltip tooltip={t('backToTop')} placement={'center-left'}>
-								<Button size={'30px'}
+							<Tooltip tooltip={t('backToTop')} placement="center-left">
+								<Button size="30px"
 								        onClick={() => scrollToElement('#main')}
 								        colorsForStates={theme.colorSchemeByState.secondary}
 								        color={theme.colorScheme.light}

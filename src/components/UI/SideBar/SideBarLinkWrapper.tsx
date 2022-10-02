@@ -16,8 +16,8 @@ const SideBarLink = (props: HTMLMotionProps<"div">) => {
 	const { windowWidth } = windowVariables()
 
 	const { shrinkPoint } = {
-		shrinkPoint: defaultShrinkPoint,
 		...sideBarOpts,
+		shrinkPoint: sideBarOpts.shrinkPoint || defaultShrinkPoint,
 	}
 
 	const action = () => {

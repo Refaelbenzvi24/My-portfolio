@@ -1,4 +1,5 @@
 import type { Language } from 'plugins/i18n'
+
 import { LocalStorage } from "../modules/LocalStorage"
 import { IconButton } from './UI'
 import { IconButtonProps } from "./UI/Buttons/IconButton"
@@ -20,7 +21,7 @@ const LanguageSelector = (props: IconButtonProps) => {
 	return (
 		<IconButton {...props}
 		            id="language-toggle-button"
-		            onClick={languageToggle}>
+		            onClick={async () => await languageToggle()}>
 			<IconCarbonLanguage/>
 		</IconButton>
 	)

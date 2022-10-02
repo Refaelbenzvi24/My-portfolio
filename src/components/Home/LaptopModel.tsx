@@ -1,16 +1,16 @@
 import { useEffect, useRef, useState } from "react"
-import { Group } from "three"
+
+import { a as three, Interpolation } from '@react-spring/three'
 import { useGLTF } from "@react-three/drei"
 import { GroupProps, useFrame } from "@react-three/fiber"
+import { Group } from "three"
 import * as THREE from "three"
-import { a as three } from '@react-spring/three'
 import { GLTF } from "three/examples/jsm/loaders/GLTFLoader"
-import { Interpolation } from "@react-spring/three"
 
 
 type GLTFResult = GLTF & {
-	nodes: { [key: string]: THREE.Mesh }
-	materials: { [key: string]: THREE.MeshStandardMaterial }
+	nodes: Record<string, THREE.Mesh>
+	materials: Record<string, THREE.MeshStandardMaterial>
 }
 
 interface LaptopModelProps extends GroupProps {
@@ -45,19 +45,19 @@ const LaptopModel = (props: LaptopModelProps) => {
 				e.stopPropagation()
 				setHovered(true)
 			}}
-			onPointerOut={(e) => setHovered(false)}
+			onPointerOut={() => setHovered(false)}
 			dispose={null}>
 			<three.group rotation-x={hinge} position={[0, -0.04, 0.41]}>
 				<group position={[0, 2.96, -0.13]} rotation={[Math.PI / 2, 0, 0]}>
-					<mesh material={materials.aluminium} geometry={nodes['Cube008'].geometry}/>
-					<mesh material={materials['matte.001']} geometry={nodes['Cube008_1'].geometry}/>
-					<mesh material={materials['screen.001']} geometry={nodes['Cube008_2'].geometry}/>
+					<mesh material={materials.aluminium} geometry={nodes.Cube008.geometry}/>
+					<mesh material={materials['matte.001']} geometry={nodes.Cube008_1.geometry}/>
+					<mesh material={materials['screen.001']} geometry={nodes.Cube008_2.geometry}/>
 				</group>
 			</three.group>
 			<mesh material={materials.keys} geometry={nodes.keyboard.geometry} position={[1.79, 0, 3.45]}/>
 			<group position={[0, -0.1, 3.39]}>
-				<mesh material={materials.aluminium} geometry={nodes['Cube002'].geometry}/>
-				<mesh material={materials.trackpad} geometry={nodes['Cube002_1'].geometry}/>
+				<mesh material={materials.aluminium} geometry={nodes.Cube002.geometry}/>
+				<mesh material={materials.trackpad} geometry={nodes.Cube002_1.geometry}/>
 			</group>
 			<mesh material={materials.touchbar} geometry={nodes.touchbar.geometry} position={[0, -0.03, 1.2]}/>
 		</group>

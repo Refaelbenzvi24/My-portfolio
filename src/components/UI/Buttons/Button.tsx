@@ -1,12 +1,11 @@
-import { css, PropsOf, Theme } from "@emotion/react"
+import { CSSProperties } from "react"
+
+import { css } from "@emotion/react"
 import styled from "@emotion/styled"
-import { CustomDomComponent, ForwardRefComponent, HTMLMotionProps, motion, SVGMotionProps } from "framer-motion"
+import {  motion } from "framer-motion"
 import tw from 'twin.macro'
 
 import theme from "../Utils/theme"
-import { ComponentType, CSSProperties, DetailedHTMLFactory, forwardRef, PropsWithChildren, ReactHTML, Ref, SVGProps } from "react"
-import { color } from "@storybook/theming"
-import { CreateStyledComponent } from "@emotion/styled/base"
 
 
 export interface ColorsForState {
@@ -48,7 +47,7 @@ const Button = styled(motion.button)(({
 	width,
 	fab,
 	centered,
-	dark
+	dark,
 }: ButtonProps) => [
 	tw`text-sm font-semibold cursor-pointer border-none bg-transparent`,
 	icon && tw`p-2 w-fit h-fit`,
@@ -58,10 +57,10 @@ const Button = styled(motion.button)(({
 	fab && tw`rounded-full`,
 
 	height && css`
-		height: ${icon ? 'fit-content' : typeof height === 'number' ? `${height}px` : height};
+		height: ${icon ? 'fit-content' : (typeof height === 'number' ? `${height}px` : height)};
 	`,
 	width && css`
-		width: ${icon ? 'fit-content' : typeof width === 'number' ? `${width}px` : width};
+		width: ${icon ? 'fit-content' : (typeof width === 'number' ? `${width}px` : width)};
 	`,
 	size && css`
 		font-size: ${size};

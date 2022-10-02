@@ -1,7 +1,7 @@
 import { Story } from "@storybook/react"
 
-import Button, { ButtonProps } from "../../components/UI/Buttons/Button"
-import IconButton, { IconButtonProps } from "../../components/UI/Buttons/IconButton"
+import Button from "../../components/UI/Buttons/Button"
+import IconButton from "../../components/UI/Buttons/IconButton"
 
 
 export default {
@@ -17,7 +17,7 @@ export default {
 	},
 }
 
-const ButtonTemplate: Story<ButtonProps> = (args) => <Button {...args} />
+const ButtonTemplate: Story = (args) => <Button {...args} />
 
 export const Light = ButtonTemplate.bind({})
 Light.parameters   = {
@@ -39,7 +39,7 @@ Dark.args         = {
 	disabled: false,
 }
 
-const IconButtonTemplate: Story<IconButtonProps> = (args) => <IconButton {...args} />
+const IconButtonTemplate: Story = (args) => <IconButton {...args} />
 
 export const IconLight = IconButtonTemplate.bind({})
 IconLight.parameters   = {

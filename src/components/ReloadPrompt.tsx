@@ -1,6 +1,5 @@
 import { useRegisterSW } from 'virtual:pwa-register/react'
 
-import { Card, Portal } from "./UI"
 import useToasts from "../hooks/useToasts"
 
 

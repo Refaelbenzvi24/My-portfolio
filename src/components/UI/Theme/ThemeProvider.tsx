@@ -2,11 +2,11 @@ import type { ReactElement } from 'react'
 import { useEffect, useState } from 'react'
 
 import { ThemeProvider as EmotionThemeProvider } from '@emotion/react'
+import i18n from "i18next"
 
 import { LocalStorage } from '../../../modules/LocalStorage'
 import { ThemeContext, getInitialTheme } from './ThemeContext'
 import type { ThemeName, ThemeProviderOptions } from './types'
-import i18n from "i18next"
 
 
 const rawSetTheme = (theme: ThemeName) => {

@@ -1,14 +1,15 @@
-import fitnesshubCover from "./assets/FitnesshubCover.png"
-import { Row, theme, Tooltip } from "./components/UI"
-import { Icon } from "./components/UI"
+import { ReactNode } from "react"
+
 import { css } from "@emotion/css"
 import tw from "twin.macro"
+
+import fitnesshubCover from "./assets/FitnesshubCover.png"
 import flashcardsCover from "./assets/FlashcardsCover.png"
 import shifterCover from "./assets/ShifterCover.png"
-import { ReactNode } from "react"
 import { ExperienceData } from "./components/Home/ExperienceItem"
-import { SkillsData } from "./components/Home/Skills"
 import { ProjectData } from "./components/Home/Projects"
+import { SkillsData } from "./components/Home/Skills"
+import { Icon, Row, theme, Tooltip } from "./components/UI"
 
 
 interface Data {
@@ -34,25 +35,29 @@ const data = (): Data => {
 	const linksList: Data["linksList"] = [
 		{
 			link: 'https://www.linkedin.com/in/refael-ben-zvi/',
-			icon: <IconFaBrandsLinkedinIn/>
+			icon: <IconFaBrandsLinkedinIn/>,
 		}, {
 			link: 'https://github.com/Refaelbenzvi24',
-			icon: <IconIonLogoGithub/>
+			icon: <IconIonLogoGithub/>,
 		}, {
 			link: 'https://wa.me/972542418018',
-			icon: <IconCibWhatsapp/>
-		}
+			icon: <IconCibWhatsapp/>,
+		},
 	]
 
 	const homeData: Data["homeData"] = {
 		name:           t('home.name'),
 		secondaryTitle: t('home.secondaryTitle'),
 		description:    <>
-			                {t('home.description.firstLine')} <br/>
-			                {t('home.description.secondLine')} <br/>
+			                {t('home.description.firstLine')}
+			                {' '}
+			                <br/>
+			                {t('home.description.secondLine')}
+			                {' '}
+			                <br/>
 			                {t('home.description.thirdLine')}
 		                </>,
-		resumeLink:     'https://drive.google.com/file/d/1VqavIntpFoSSL_5qZlnwDt9WDplPJ2zX/view?usp=sharing'
+		resumeLink:     'https://drive.google.com/file/d/1VqavIntpFoSSL_5qZlnwDt9WDplPJ2zX/view?usp=sharing',
 	}
 
 	const experience: Data["experience"] = [
@@ -60,25 +65,35 @@ const data = (): Data => {
 			title:        'FitnessHub - Freelance Full Stack Developer',
 			dates:        '2021-2022',
 			image:        fitnesshubCover,
-			technologies: [<Tooltip
-				tooltip={
-					<>
-						M - MongoDB <br/>
-						E - Express <br/>
-						V - Vue <br/>
-						N - Node.js
-					</>
-				}
-				isClickableOnMobile
-				isPersistentOnMobile
-				placement={'bottom-left'} elevation={1} offsetY={1} offsetX={1}>
-				<Row className="justify-center items-center">
-					<Icon className="mb-0.5 mr-0.5" color={theme.colorScheme.subtitle2} size={10}>
-						<IconEntypoInfoWithCircle/>
-					</Icon>
-					MEVN
-				</Row>
-			</Tooltip>, 'Material UI', 'GCloud', 'Multer', 'CI/CD'],
+			technologies: [
+				<Tooltip
+					tooltip={(
+						<>
+							M - MongoDB
+							{' '}
+							<br/>
+							E - Express
+							{' '}
+							<br/>
+							V - Vue
+							{' '}
+							<br/>
+							N - Node.js
+						</>
+					)}
+					isClickableOnMobile
+					isPersistentOnMobile
+					placement="bottom-left"
+					elevation={1}
+					offsetY={1}
+					offsetX={1}>
+					<Row className="justify-center items-center">
+						<Icon className="mb-0.5 mr-0.5" color={theme.colorScheme.subtitle2} size={10}>
+							<IconEntypoInfoWithCircle/>
+						</Icon>
+						MEVN
+					</Row>
+				</Tooltip>, 'Material UI', 'GCloud', 'Multer', 'CI/CD'],
 			siteLink:     'https://fitnesshub-fit.vercel.app/',
 			description:  <>
 				              <p>
@@ -99,25 +114,35 @@ const data = (): Data => {
 			title:        'FlashCards - Full Stack Developer',
 			dates:        '2022',
 			image:        flashcardsCover,
-			technologies: [<Tooltip
-				tooltip={
-					<>
-						M - MongoDB <br/>
-						E - Express <br/>
-						R - React <br/>
-						N - Node.js
-					</>
-				}
-				isClickableOnMobile
-				isPersistentOnMobile
-				placement={'bottom-left'} elevation={1} offsetY={1} offsetX={1}>
-				<Row className="justify-center items-center">
-					<Icon className="mb-0.5 mr-0.5" color={theme.colorScheme.subtitle2} size={10}>
-						<IconEntypoInfoWithCircle/>
-					</Icon>
-					MERN
-				</Row>
-			</Tooltip>, 'Emotion', 'Tailwindcss', 'GCloud', 'Netlify'],
+			technologies: [
+				<Tooltip
+					tooltip={(
+						<>
+							M - MongoDB
+							{' '}
+							<br/>
+							E - Express
+							{' '}
+							<br/>
+							R - React
+							{' '}
+							<br/>
+							N - Node.js
+						</>
+					)}
+					isClickableOnMobile
+					isPersistentOnMobile
+					placement="bottom-left"
+					elevation={1}
+					offsetY={1}
+					offsetX={1}>
+					<Row className="justify-center items-center">
+						<Icon className="mb-0.5 mr-0.5" color={theme.colorScheme.subtitle2} size={10}>
+							<IconEntypoInfoWithCircle/>
+						</Icon>
+						MERN
+					</Row>
+				</Tooltip>, 'Emotion', 'Tailwindcss', 'GCloud', 'Netlify'],
 			githubLink:   'https://github.com/flashcards-app',
 			siteLink:     'https://flashcardsapps.netlify.app/',
 			description:  <>
@@ -140,26 +165,34 @@ const data = (): Data => {
 			image:        shifterCover,
 			technologies: [
 				<Tooltip
-					tooltip={
+					tooltip={(
 						<>
-							M - MongoDB <br/>
-							E - Express <br/>
-							R - React <br/>
+							M - MongoDB
+							{' '}
+							<br/>
+							E - Express
+							{' '}
+							<br/>
+							R - React
+							{' '}
+							<br/>
 							N - Node.js
 						</>
-					}
-					placement={'bottom-left'}
+					)}
+					placement="bottom-left"
 					isClickableOnMobile
 					isPersistentOnMobile
-					elevation={1} offsetY={1} offsetX={1}>
+					elevation={1}
+					offsetY={1}
+					offsetX={1}>
 					<Row className="justify-center items-center">
 						<Icon className="mb-0.5 mr-0.5" color={theme.colorScheme.subtitle2} size={10}>
 							<IconEntypoInfoWithCircle/>
 						</Icon>
 						MERN
 					</Row>
-				</Tooltip>
-				, 'CSS Modules', 'Moment.js', 'Vercel'],
+				</Tooltip>,
+				'CSS Modules', 'Moment.js', 'Vercel'],
 			githubLink:   'https://github.com/Cleary-by-francesca',
 			siteLink:     'https://shifterapp.netlify.app/',
 			description:  <>
@@ -217,22 +250,22 @@ const data = (): Data => {
 				             {t('projects.rollingBall.description')}
 			             </>,
 			githubLink:  'https://github.com/Refaelbenzvi24/Rolling-Ball',
-		}
+		},
 	]
 
 	const skillsList: Data["skillsList"] = [
 		[{
 			Languages: ['TypeScript', 'JavaScript', 'Python', 'C#'],
-			Frontend:  ['React', 'Vue', 'HTML', 'CSS/SCSS/SASS', 'React Native']
+			Frontend:  ['React', 'Vue', 'HTML', 'CSS/SCSS/SASS', 'React Native'],
 		}],
 		[{
 			DB:      ['MongoDB', 'Firebase', 'ElasticSearch'],
-			Backend: ['Node.js', 'Express', 'Mongoose', 'Flask']
+			Backend: ['Node.js', 'Express', 'Mongoose', 'Flask'],
 		}],
 		[{
 			'Testing / Automation': ['Jest', 'Cypress', 'Chai', 'Mocha', 'Selenium'],
-			Other:                  ['Git', 'Docker', 'CI/CD', 'Google Cloud', 'Netlify', 'Vercel']
-		}]
+			Other:                  ['Git', 'Docker', 'CI/CD', 'Google Cloud', 'Netlify', 'Vercel'],
+		}],
 	]
 
 	const navigationOptions: Data["navigationOptions"] = [

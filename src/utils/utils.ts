@@ -1,10 +1,10 @@
 export const scrollToElement = (selector: string) => {
 	const element = document.querySelector(selector)
 
-	element!.scrollIntoView({ behavior: 'smooth' })
+	if (element) element.scrollIntoView({ behavior: 'smooth' })
 }
 
-export const scrollToSelector = (selector: string, offset: number = -100) => {
+export const scrollToSelector = (selector: string, offset = -100) => {
 	const element = document.querySelector(selector)
 
 	if (element) {
@@ -28,8 +28,8 @@ export const isElementInViewport = (el: Element) => {
 	const rect = el.getBoundingClientRect()
 
 	return (
-		rect.top >= 0 &&
-		rect.left >= 0
+		rect.top >= 0
+		&& rect.left >= 0
 	)
 }
 

@@ -1,9 +1,10 @@
+import { CSSProperties, DetailedHTMLProps, ElementType, HTMLAttributes } from "react"
+
 import { css } from "@emotion/react"
 import styled, { StyledTags } from "@emotion/styled"
 import tw from "twin.macro"
 
-import { CSSProperties, DetailedHTMLProps, ElementType, HTMLAttributes, ReactNode } from "react"
-import { theme } from "../index"
+import { theme } from '..'
 
 
 type TypographyParagraphTypes = 'subtitle' | 'body' | 'bold' | 'small' | 'preTitle' | 'button' | 'link'
@@ -32,7 +33,7 @@ const settings: Record<TypographyVariantOptions, SettingsItem> = {
 	small:    { htmlTag: 'p', fontFamily: 'Work Sans, Heebo', weight: 500, size: 0.875, spacing: 0, lineHeight: '140%', uppercase: false },
 	preTitle: { htmlTag: 'p', fontFamily: 'Work Sans, Heebo', weight: 700, size: 0.825, spacing: 0.03, lineHeight: '100%', uppercase: true },
 	button:   { htmlTag: 'p', fontFamily: 'Work Sans, Heebo', weight: 700, size: 0.625, spacing: 0.03, lineHeight: '100%', uppercase: true },
-	link:     { htmlTag: 'p', fontFamily: 'Work Sans, Heebo', weight: 700, size: 1, spacing: 0, lineHeight: '100%', uppercase: false }
+	link:     { htmlTag: 'p', fontFamily: 'Work Sans, Heebo', weight: 700, size: 1, spacing: 0, lineHeight: '100%', uppercase: false },
 } as const
 
 interface TypographyStyledProps {
@@ -58,7 +59,7 @@ const TypographyStyled = styled.p(({
 	spacing,
 	variant,
 	color,
-	centered
+	centered,
 }: TypographyStyledProps) => [
 	color && css`
 		color: ${color};
@@ -86,7 +87,7 @@ const TypographyStyled = styled.p(({
 	`,
 ])
 
-const Typography = <Variant extends TypographyVariantOptions, As>(props: { as?: ElementType } & (Variant extends TypographyVariantOptions
+const Typography = <Variant extends TypographyVariantOptions>(props: { as?: ElementType } & (Variant extends TypographyVariantOptions
 	?
 	DetailedHTMLProps<HTMLAttributes<HTMLParagraphElement>, HTMLParagraphElement>
 	:

@@ -7,15 +7,16 @@
       "message": "Your Message"
     },
     "submit": "Send",
+    "emailSending": "Sending in process...",
+    "emailSent": "Your message has sent successfully",
+    "sendingError": "Error occurred while sending your message",
     "nameRequired": "The name field is required",
     "emailRequired": "The email field is required",
     "emailInvalid": "You must enter valid email address",
-    "messageRequired": "You must add a message",
-    "emailSending": "Sending in process...",
-    "emailSent": "Your message has sent successfully",
-    "sendingError": "Error occurred while sending your message"
+    "messageRequired": "You must add a message"
   },
   "getInTouch": "GET IN TOUCH",
+  "credit": "Designed & Developed by Refael Ben Zvi",
   "experience": {
     "title": "Experience",
     "fitnesshub": {
@@ -88,8 +89,8 @@
     "contact": "Contact"
   },
   "dismiss": "Dismiss",
+  "reloadPrompt": "",
   "language": "Lanuage",
   "theme": "Theme",
-  "credit": "Designed & Developed by Refael Ben Zvi",
   "backToTop": "Back To Top"
 }

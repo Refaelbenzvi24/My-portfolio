@@ -7,15 +7,16 @@
       "message": "ההודעה שלך"
     },
     "submit": "שליחה",
+    "emailSending": "שליחה מתבצעת...",
+    "emailSent": "הודעתך נשלחה בהצלחה",
+    "sendingError": "אירעה שגיאה בעת שליחת ההודעה",
     "nameRequired": "יש להזין שם",
     "emailRequired": "יש להזין אימייל",
     "emailInvalid": "יש להזין אימייל תקין",
-    "messageRequired": "יש להזין הודעה",
-    "emailSending": "שליחה מתבצעת...",
-    "emailSent": "הודעתך נשלחה בהצלחה",
-    "sendingError": "אירעה שגיאה בעת שליחת ההודעה"
+    "messageRequired": "יש להזין הודעה"
   },
   "getInTouch": "GET IN TOUCH",
+  "credit": "פותח ועוצב ע\"י רפאל בן צבי",
   "experience": {
     "title": "נסיון",
     "fitnesshub": {
@@ -88,8 +89,8 @@
     "contact": "יצירת קשר"
   },
   "dismiss": "הסר",
+  "reloadPrompt": "",
   "language": "שפה",
   "theme": "נושא",
-  "credit": "פותח ועוצב ע\"י רפאל בן צבי",
   "backToTop": "חזרה לראש העמוד"
 }

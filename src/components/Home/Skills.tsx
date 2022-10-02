@@ -1,14 +1,14 @@
-import { Card, Col, Divider, isDark, Row, theme, Typography } from "../UI"
-import useAnimations from "../../hooks/useAnimations"
-import { motion } from "framer-motion"
-import { Textfit } from "react-textfit"
-import useWindowVars from "../../hooks/useWindowVars"
 import { useState } from "react"
 
+import { motion } from "framer-motion"
+import { Textfit } from "react-textfit"
 
-export interface SkillsData {
-	[key: string]: string[]
-}
+import useAnimations from "../../hooks/useAnimations"
+import useWindowVars from "../../hooks/useWindowVars"
+import { Card, Col, Divider, isDark, Row, theme, Typography } from "../UI"
+
+
+export type SkillsData = Record<string, string[]>;
 
 const SkillCard = (props: { skillItem: string, rowIndex: number, colIndex: number, index: number }) => {
 	const { skillItem, rowIndex, colIndex, index } = props
@@ -25,13 +25,16 @@ const SkillCard = (props: { skillItem: string, rowIndex: number, colIndex: numbe
 			viewport={{ once: true }}
 			transition={{
 				duration: 0.8,
-				delay:    0.2 * rowIndex + 0.1 * colIndex + 0.1 * index
+				delay:    0.2 * rowIndex + 0.1 * colIndex + 0.1 * index,
 			}}
 			className={windowWidth > 350 ? "ml-[10px] px-[16px] py-[6px] mt-[12px]" : "ml-[6px] px-[8px] py-[4px] mt-[6px]"}
 			elevation={1}
 			bgColor={isDark() ? theme.colorScheme.overlaysDark : theme.colorScheme.white}
-			height={'fit-content'} width={'fit-content'} key={index}>
-			<Typography className="whitespace-nowrap" variant={'small'}
+			height="fit-content"
+			width="fit-content"
+			key={index}>
+			<Typography className="whitespace-nowrap"
+				variant="small"
 			            size={windowWidth > 350 ? '' : 0.9}
 			            color={isDark() ? theme.colorScheme.accent : theme.colorScheme.body2}>
 				{skillItem}
@@ -57,9 +60,9 @@ const Skill = (props: { skill: [string, string[]], rowIndex: number, colIndex: n
 				animate={inView ? animations.skills.skillTitle.inView : animations.skills.skillTitle.outOfView}
 				transition={{
 					duration: 0.8,
-					delay:    0.2 * rowIndex + 0.1 * colIndex
+					delay:    0.2 * rowIndex + 0.1 * colIndex,
 				}}>
-				<Typography variant={'h3'} size={windowWidth > 350 ? '' : 1.25} color={isDark() ? theme.colorScheme.accent : theme.colorScheme.header2}>
+				<Typography variant="h3" size={windowWidth > 350 ? '' : 1.25} color={isDark() ? theme.colorScheme.accent : theme.colorScheme.header2}>
 					{skill[0]}
 				</Typography>
 			</motion.div>
@@ -90,11 +93,12 @@ const Skills = (props: { data: SkillsData[][], innerRef: (node?: Element | null)
 				animate={isTitleInView ? animations.sectionTitle.inView : animations.sectionTitle.outOfView}
 				viewport={{ once: true }}
 				onViewportEnter={() => setIsTitleInView(true)}
-				className={`items-center w-[100%]`}>
+				className="items-center w-[100%]">
 				<Textfit className="w-fit max-w-[60%]" mode="single" forceSingleModeWidth min={30}>
 					<Typography className={`whitespace-nowrap ${windowWidth > 1000 ? '' : 'w-fit'}`}
 					            size={windowWidth > 1000 ? '' : 'inherit'}
-					            variant={'h2'} color={theme.colorScheme.primary}>
+					            variant="h2"
+						color={theme.colorScheme.primary}>
 						{t('skills.title')}
 					</Typography>
 				</Textfit>

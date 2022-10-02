@@ -1,9 +1,10 @@
-import { Col, isDark, Portal, Row, theme } from "../UI"
 import { css } from "@emotion/css"
-import tw from "twin.macro"
 import { AnimatePresence, motion } from "framer-motion"
-import Logo from "../../assets/Logo.png"
 import i18n from "i18next"
+import tw from "twin.macro"
+
+import Logo from "../../assets/Logo.png"
+import { Col, isDark, Portal, Row, theme } from "../UI"
 
 
 interface AnimatedLandingLogoProps {
@@ -17,12 +18,12 @@ const AnimatedLandingLogo = (props: AnimatedLandingLogoProps) => {
 
 	return (
 		<AnimatePresence>
-			{isVisible && (
+			{isVisible ? (
 				<Portal>
 					<Row className="fixed w-full h-full z-[1400]">
 						<Col
 							initial={{
-								translateX: 0
+								translateX: 0,
 							}}
 							exit={{
 								translateX: isRTL ? '100%' : '-100%',
@@ -30,7 +31,7 @@ const AnimatedLandingLogo = (props: AnimatedLandingLogoProps) => {
 							transition={{
 								bounce:   3,
 								damping:  2,
-								duration: 1.5
+								duration: 1.5,
 							}}
 							className={css`
 								${tw`w-[52%] h-full overflow-y-hidden overflow-x-hidden justify-center`};
@@ -40,7 +41,7 @@ const AnimatedLandingLogo = (props: AnimatedLandingLogoProps) => {
 								initial={{
 									opacity:    0,
 									translateY: '-10%',
-									translateX: isRTL ? '-50%' : '50%'
+									translateX: isRTL ? '-50%' : '50%',
 								}}
 								animate={{
 									opacity:    1,
@@ -49,14 +50,15 @@ const AnimatedLandingLogo = (props: AnimatedLandingLogoProps) => {
 								transition={{
 									bounce:   3,
 									delay:    0.5,
-									duration: 1
+									duration: 1,
 								}}
-								src={Logo} alt={''}/>
+								src={Logo}
+								alt=""/>
 						</Col>
 
 						<Col
 							initial={{
-								translateX: 0
+								translateX: 0,
 							}}
 							exit={{
 								translateX: isRTL ? '-100%' : '100%',
@@ -64,7 +66,7 @@ const AnimatedLandingLogo = (props: AnimatedLandingLogoProps) => {
 							transition={{
 								bounce:   3,
 								damping:  2,
-								duration: 1.5
+								duration: 1.5,
 							}}
 							className={css`
 								${tw`w-[52%] h-full overflow-y-hidden overflow-x-hidden justify-center`};
@@ -74,7 +76,7 @@ const AnimatedLandingLogo = (props: AnimatedLandingLogoProps) => {
 								initial={{
 									opacity:    0,
 									translateY: '-10%',
-									translateX: isRTL ? '50%' : '-50%'
+									translateX: isRTL ? '50%' : '-50%',
 								}}
 								animate={{
 									opacity:    1,
@@ -83,13 +85,14 @@ const AnimatedLandingLogo = (props: AnimatedLandingLogoProps) => {
 								transition={{
 									bounce:   3,
 									delay:    0.5,
-									duration: 1
+									duration: 1,
 								}}
-								src={Logo} alt={''}/>
+								src={Logo}
+								alt=""/>
 						</Col>
 					</Row>
 				</Portal>
-			)}
+			) : null}
 		</AnimatePresence>
 	)
 }

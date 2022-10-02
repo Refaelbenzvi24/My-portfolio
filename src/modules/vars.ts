@@ -32,7 +32,7 @@ export class Vars {
 		Vars.emailJs        = {
 			publicKey:  envVars.VITE_EMAILJS_PUBLIC_KEY,
 			templateId: envVars.VITE_EMAILJS_TEMPLATE_ID,
-			serviceId:  envVars.VITE_EMAILJS_SERVICE_ID
+			serviceId:  envVars.VITE_EMAILJS_SERVICE_ID,
 		}
 		Vars.language       = { default: envVars.VITE_DEFAULT_LANGUAGE as Language }
 		Vars.theme          = { default: envVars.VITE_DEFAULT_THEME as ThemeName }

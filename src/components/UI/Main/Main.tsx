@@ -28,8 +28,6 @@ const Main = (props: MainProps) => {
 	const { shrinkPoint }               = sideBarOpts
 
 	useEffect(() => {
-
-
 		if (overlaysRoot?.childNodes && overlaysRoot.childNodes.length > 0) {
 			setOverlayState(true)
 		} else if (overlaysRoot?.childNodes.length === 0) {
@@ -59,20 +57,20 @@ const Main = (props: MainProps) => {
 
 				     ${[
 					     theme.transitions([marginTransition()]),
-					     theme.utils.conditionalMargins(shouldApplyMargins(), `${sideBarOpts.width as number}px`),
+					     theme.utils.conditionalMargins(shouldApplyMargins(), `${sideBarOpts.width}px`),
 				     ]}
 				     ${clsx(className)}
 			     `}>
 
 
 				{
-					sideBar && (
+					sideBar ? (
 						<Backdrop {...{ dark }}
 						          active={overlayState}
 						          id="overlay-background"
 						          role="presentation"
 						          onClick={overlayAction}/>
-					)
+					) : null
 				}
 
 				{children}

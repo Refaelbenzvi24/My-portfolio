@@ -4,14 +4,14 @@ import { css } from "@emotion/css"
 import styled from "@emotion/styled"
 import autoAnimate from "@formkit/auto-animate"
 import clsx from "clsx"
-import { motion } from "framer-motion"
+import { HTMLMotionProps, motion } from "framer-motion"
 import tw from "twin.macro"
 
 import HelperText from "../Form/HelperText"
 import Button, { ButtonProps } from "./Button"
 
 
-interface FormButtonProps extends ButtonProps {
+interface FormButtonProps extends ButtonProps, HTMLMotionProps<"button"> {
 	helperText?: string
 	error?: boolean
 	centered?: boolean
@@ -34,12 +34,11 @@ const FormButton = (props: FormButtonProps) => {
 	return (
 		<ButtonWrapper {...{ dark, centered }} ref={buttonWrapperRef}>
 			{
-				helperText
-				&& (
+				helperText ? (
 					<HelperText className="text-center" {...{ error }}>
 						{helperText}
 					</HelperText>
-				)
+				) : null
 			}
 			<Button {...restProps}
 			        {...{ dark }}

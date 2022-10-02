@@ -1,13 +1,13 @@
+import { ReactElement } from "react"
+
 import {
 	useRoutes,
 } from 'react-router-dom'
-
-import ErrorsBoundary from "./components/ErrorsBoundary"
-import ReloadPrompt from './components/ReloadPrompt'
-import Providers, { useTheme } from "./context"
-import routes from '~react-pages'
-import { ReactElement } from "react"
 import { ToastContainer } from 'react-toastify'
+
+import ReloadPrompt from './components/ReloadPrompt'
+import { useTheme } from "./context"
+import routes from '~react-pages'
 
 
 function Pages(): ReactElement | null {

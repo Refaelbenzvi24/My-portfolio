@@ -1,9 +1,11 @@
-import { Col, Divider, Row, theme, Typography } from "../UI"
-import ExperienceItem, { ExperienceData } from "./ExperienceItem"
+import { useState } from "react"
+
+import { Textfit } from "react-textfit"
+
 import useAnimations from "../../hooks/useAnimations"
 import useWindowVars from "../../hooks/useWindowVars"
-import { Textfit } from "react-textfit"
-import { useState } from "react"
+import { Col, Divider, Row, theme, Typography } from "../UI"
+import ExperienceItem, { ExperienceData } from "./ExperienceItem"
 
 
 const Experience = (props: { data: ExperienceData[], innerRef: (node?: Element | null) => void }) => {
@@ -22,11 +24,12 @@ const Experience = (props: { data: ExperienceData[], innerRef: (node?: Element |
 				animate={inView ? animations.sectionTitle.inView : animations.sectionTitle.outOfView}
 				viewport={{ once: true }}
 				onViewportEnter={() => setInView(true)}
-				className={`items-center w-[100%]`}>
+				className="items-center w-[100%]">
 				<Textfit className="w-fit max-w-[60%]" mode="single" forceSingleModeWidth min={30}>
 					<Typography className={`whitespace-nowrap ${windowWidth > 1000 ? '' : 'w-fit'}`}
 					            size={windowWidth > 1000 ? '' : 'inherit'}
-					            variant={'h2'} color={theme.colorScheme.primary}>
+					            variant="h2"
+						color={theme.colorScheme.primary}>
 						{t('experience.title')}
 					</Typography>
 				</Textfit>

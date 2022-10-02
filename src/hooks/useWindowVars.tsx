@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+
 import { useMain } from "../context"
 
 
@@ -30,14 +31,14 @@ const useWindowVars = () => {
 
 
 	useEffect(() => {
-		addEventListener('resize', setWindowData)
-		addEventListener('mousemove', setMouseData)
-		addEventListener('touchmove', setTouchData)
+		window.addEventListener('resize', setWindowData)
+		window.addEventListener('mousemove', setMouseData)
+		window.addEventListener('touchmove', setTouchData)
 
 		return () => {
-			removeEventListener('resize', setWindowData)
-			removeEventListener('mousemove', setMouseData)
-			removeEventListener('touchmove', setTouchData)
+			window.removeEventListener('resize', setWindowData)
+			window.removeEventListener('mousemove', setMouseData)
+			window.removeEventListener('touchmove', setTouchData)
 		}
 	}, [])
 

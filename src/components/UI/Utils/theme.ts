@@ -70,7 +70,7 @@ const theme = {
 		subtitle1:    '#9999b0',
 		subtitle2:    '#cccccc',
 		subtitle3:    '#939393',
-		white:        '#ffffff'
+		white:        '#ffffff',
 	},
 
 	colorSchemeByState: {
@@ -78,36 +78,36 @@ const theme = {
 			default: '#5F9BF3',
 			hover:   '#82b2f6',
 			active:  '#437bcb',
-			...disabledState
+			...disabledState,
 		},
 		secondary: {
 			default:  '#e08e73',
 			hover:    '#f1a48a',
 			active:   '#c7806a',
 			disabled: '#cccccc',
-			...disabledState
+			...disabledState,
 		},
 		success:   {
 			default:  '#31D0AA',
 			hover:    '#42e8bf',
 			active:   '#25af8f',
 			disabled: '#cccccc',
-			...disabledState
+			...disabledState,
 		},
 		body2:     {
 			default:  '#787898',
 			hover:    '#8e8eb0',
 			active:   '#6a6a88',
 			disabled: '#cccccc',
-			...disabledState
+			...disabledState,
 		},
 		accent:    {
 			default:  '#F0F4F8',
 			hover:    '#ffffff',
 			active:   '#e1e3e7',
 			disabled: '#cccccc',
-			...disabledState
-		}
+			...disabledState,
+		},
 	},
 
 	shadows: {
