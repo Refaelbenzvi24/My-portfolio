@@ -1,0 +1,17 @@
+node_modules
+.DS_Store
+.idea
+dist
+dev-dist
+dist-ssr
+*.local
+.nyc_output
+.eslintcache
+.vscode
+
+coverage
+cypress/screenshots
+cypress/videos
+
+# Local Netlify folder
+.netlify/state.json

@@ -1,0 +1,37 @@
+import type { CSSProperties, ReactElement } from 'react'
+import { Dispatch, SetStateAction } from "react"
+
+
+export interface MainProviderOptions {
+	children: ReactElement;
+}
+
+export interface MainDataType {
+	isMobile: boolean
+	isTouchable: boolean
+	scrollDirection: 'up' | 'down'
+	appBarState: boolean
+	appBarOpts: AppBarOptions
+	sideBarState: boolean
+	sideBarOpts: SideBarOptions
+	overlayState: boolean
+	disableAnimations: boolean
+}
+
+export interface MainContextType extends MainDataType {
+	setAppBarState: Dispatch<SetStateAction<boolean>>
+	setAppBarOpts: Dispatch<SetStateAction<AppBarOptions>>
+	setSideBarState: Dispatch<SetStateAction<boolean>>
+	setSideBarOpts: Dispatch<SetStateAction<SideBarOptions>>
+	setOverlayState: Dispatch<SetStateAction<boolean>>
+	setDisableAnimations: Dispatch<SetStateAction<boolean>>
+}
+
+export interface AppBarOptions {
+	height: number
+}
+
+export interface SideBarOptions {
+	width: number;
+	shrinkPoint: number;
+}

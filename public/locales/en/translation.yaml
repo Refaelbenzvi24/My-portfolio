@@ -1,0 +1,95 @@
+{
+  "contact": {
+    "title": "Contact Me",
+    "labels": {
+      "name": "Your Name",
+      "email": "Your Email",
+      "message": "Your Message"
+    },
+    "submit": "Send",
+    "nameRequired": "The name field is required",
+    "emailRequired": "The email field is required",
+    "emailInvalid": "You must enter valid email address",
+    "messageRequired": "You must add a message",
+    "emailSending": "Sending in process...",
+    "emailSent": "Your message has sent successfully",
+    "sendingError": "Error occurred while sending your message"
+  },
+  "getInTouch": "GET IN TOUCH",
+  "experience": {
+    "title": "Experience",
+    "fitnesshub": {
+      "description": {
+        "firstLine": "Working in collaboration with a fitness trainer and his trainees on a recipes and fitness web app.",
+        "firstBullet": "Developed and designed the entire system from scratch using Vue 2 on the client side and Node.js with Express on the server.",
+        "secondBullet": "Implemented Fuzzy & Full-Text Search with scored results in MongoDB.",
+        "thirdBullet": "Built multiple management panels for simple data management while applying the DRY principle."
+      }
+    },
+    "flashcards": {
+      "description": {
+        "firstLine": "Led the development of the flashcards app. This app allows developers to practice programming questions before interviews & generally.",
+        "secondLine": "Worked with a mentor that has a 7 years experience as a Team Lead in the industry and another developer.",
+        "firstBullet": "Built and designed the entire app and deployed it on GCloud.",
+        "secondBullet": "Developed a fully responsive & reusable UI using Emotion & Tailwind CSS.",
+        "thirdBullet": "Developed and taken a part in most of the features in the app."
+      }
+    },
+    "shifter": {
+      "description": {
+        "firstLine": "Shifter's a web app that gives simple solutions for employees management.",
+        "secondLine": "Used as a Team Leader with 2 developers along side me and a UI/UX Designer, we have worked in a tight time frame of 3 weeks and finished the project with a satisfactory final product.",
+        "firstBullet": "Built the UI components from scratch by the design system.",
+        "secondBullet": "Managed the division of tasks and the team members productivity.",
+        "thirdBullet": "Developed and taken a part in most of the features in the app."
+      }
+    }
+  },
+  "githubLink": "Github",
+  "siteLink": "Site",
+  "home": {
+    "hello": "Hi, my name is",
+    "resume": "My Resume",
+    "name": "Refael Ben Zvi",
+    "secondaryTitle": "I’m a Full Stack Developer",
+    "description": {
+      "firstLine": "With hands-on experience in designing and developing software from idea to production while keeping a focus on the end-user.",
+      "secondLine": "Loves tackling a complex problem and taking it apart into solvable factors.",
+      "thirdLine": "Very passionate about new technologies as well as clean code, always strives to get better and learn new things."
+    }
+  },
+  "projects": {
+    "title": "My Projects",
+    "viterect": {
+      "description": "A boilerplate/template built using Vite and React with a lot of configured and implemented tools ready to use, usefull for thoose who want to start a new project and prefer to not invest their time in configuration and the setup of the project which can take a lot of time and delay the development. i18n for translation, PWA, file-based routing, API requests using React Query, unit testing using Jest and E2E tests with Cypress, CI/CD with GitHub Actions and GCloud."
+    },
+    "messagingApp": {
+      "description": {
+        "firstLine": "A messaging app that allows all active users to comunicate with each others.",
+        "secondLine": "Client: built on the Viterect boilerplate and Socket.io for a full-duplex communication,implemented users auth, Formik for form state managemnt, implemented 3 versions:",
+        "contextBullet": "With Context API",
+        "reduxBullet": "With Redux",
+        "recoilBullet": "With Recoil",
+        "thirdLine": "Server: Express RESTFul API for users authentication, Socket.io for messaging, validation via Joi, Mongoose for MongoDB object modeling."
+      }
+    },
+    "rollingBall": {
+      "description": "This is my first project, it s a game developed using Unity. The game is Level based game in which the player needs to avoid obstacles and collect gems in order to complete levels and unlock new layouts."
+    }
+  },
+  "skills": {
+    "title": "Skills"
+  },
+  "nav": {
+    "home": "Home",
+    "experience": "Experience",
+    "projects": "Projects",
+    "skills": "Skills",
+    "contact": "Contact"
+  },
+  "dismiss": "Dismiss",
+  "language": "Lanuage",
+  "theme": "Theme",
+  "credit": "Designed & Developed by Refael Ben Zvi",
+  "backToTop": "Back To Top"
+}
