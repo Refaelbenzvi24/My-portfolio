@@ -4,7 +4,7 @@ import { css } from "@emotion/css"
 import { AnimatePresence, motion } from "framer-motion"
 import tw from "twin.macro"
 
-import Logo from "../assets/Logo.webp"
+import Logo from "../assets/LogoSmall.webp"
 import AnimatedLandingLogo from "../components/Home/AnimatedLandingLogo"
 import LanguageSelector from "../components/LanguageSelector"
 import {
@@ -162,11 +162,19 @@ const MainLayout = (props: MainLayoutProps) => {
 					</AppBar>
 				) : (
 					<Row className="w-full items-center">
+
 						<motion.img
 							{...animations.appBar.logo}
 							className={css`
-								${tw`h-[90px] w-[90px]`};
-								margin-left: ${windowWidth > 1200 ? '60' : `${Math.max(interpolate(windowWidth, [20, 60], [700, 1200]), 20)}`}px;
+								${tw`h-[72px] w-[72px]`};
+
+								[dir="ltr"] & {
+									margin-left: ${windowWidth > 1200 ? '60' : `${Math.max(interpolate(windowWidth, [20, 60], [700, 1200]), 20)}`}px;
+								}
+
+								[dir="rtl"] & {
+									margin-right: ${windowWidth > 1200 ? '60' : `${Math.max(interpolate(windowWidth, [20, 60], [700, 1200]), 20)}`}px;
+								}
 							`}
 							src={Logo}
 							alt="RBZ"/>
