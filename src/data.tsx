@@ -14,7 +14,7 @@ import { Icon, Row, theme, Tooltip } from "./components/UI"
 
 interface Data {
 	email: string,
-	linksList: { link: string, icon: ReactNode, [key: string]: any }[],
+	linksList: { tooltip: string, link: string, icon: ReactNode, [key: string]: any }[],
 	homeData: {
 		name: string,
 		secondaryTitle: string
@@ -34,14 +34,17 @@ const data = (): Data => {
 
 	const linksList: Data["linksList"] = [
 		{
-			link: 'https://www.linkedin.com/in/refael-ben-zvi/',
-			icon: <IconFaBrandsLinkedinIn/>,
+			tooltip: 'LinkedIn',
+			link:    'https://linkedin.com/in/refael-ben-zvi/',
+			icon:    <IconFaBrandsLinkedinIn/>,
 		}, {
-			link: 'https://github.com/Refaelbenzvi24',
-			icon: <IconIonLogoGithub/>,
+			tooltip: 'GitHub',
+			link:    'https://github.com/Refaelbenzvi24',
+			icon:    <IconIonLogoGithub/>,
 		}, {
-			link: 'https://wa.me/972542418018',
-			icon: <IconCibWhatsapp/>,
+			tooltip: 'WhatsApp',
+			link:    'https://wa.me/972542418018',
+			icon:    <IconCibWhatsapp/>,
 		},
 	]
 

@@ -1,4 +1,4 @@
-import { ReactNode, useEffect, useRef, useState } from "react"
+import { ReactNode, useRef, useState } from "react"
 
 import { useFormik } from "formik"
 import { motion } from "framer-motion"
@@ -24,16 +24,15 @@ const Contact = (props: ContactProps) => {
 	const toasts           = useToasts()
 
 	const [isTitleInView, setIsTitleInView]           = useState(false)
-	const [isFormInView, setIsFormInView]             = useState(false)
 	const [nameIsInView, setNameIsInView]             = useState(false)
 	const [emailIsInView, setEmailIsInView]           = useState(false)
 	const [messageIsInView, setMessageIsInView]       = useState(false)
 	const [submitBtnIsInView, setSubmitBtnIsInView]   = useState(false)
 	const [getInTouchIsInView, setGetInTouchIsInView] = useState(false)
 
-	const { t }                        = useTranslation()
-	const { windowWidth, isTouchable } = useWindowVars()
-	const animations                   = useAnimations()
+	const { t }           = useTranslation()
+	const { windowWidth } = useWindowVars()
+	const animations      = useAnimations()
 
 	const formik = useFormik({
 		initialValues:    {
@@ -58,11 +57,6 @@ const Contact = (props: ContactProps) => {
 		},
 	})
 
-	useEffect(() => {
-		if (!isTouchable && nameTextFieldRef.current && isFormInView) nameTextFieldRef.current.focus({ preventScroll: true })
-		if (!isTouchable && nameTextFieldRef.current && !isFormInView) nameTextFieldRef.current.blur()
-	}, [isFormInView])
-
 	return (
 		<Col className="overflow-hidden" ref={innerRef} id="contact">
 			<Col {...generalAnimations.fadeInOut}>
@@ -83,10 +77,8 @@ const Contact = (props: ContactProps) => {
 					<Divider className={`ml-[16px] rtl:mr-[16px] mt-[6px] ${windowWidth > 1000 ? 'mr-[330px] rtl:ml-[330px]' : 'w-[40%]'}`}
 					         color={theme.colorScheme.primary}/>
 				</Row>
-				<motion.form
+				<form
 					className={`pt-[96px] ${windowWidth > 600 ? 'px-[60px]' : (windowWidth > 350 ? 'px-4' : '')}`}
-					viewport={{ once: true }}
-					onViewportEnter={() => setIsFormInView(true)}
 					onSubmit={formik.handleSubmit}>
 					<Col>
 						<motion.div
@@ -162,7 +154,7 @@ const Contact = (props: ContactProps) => {
 							{t('contact.submit')}
 						</Typography>
 					</Button>
-				</motion.form>
+				</form>
 
 				<Col
 					viewport={{ once: true }}
@@ -182,6 +174,7 @@ const Contact = (props: ContactProps) => {
 					<Row className="pt-[14px] pb-[24px] justify-center space-x-[18px] rtl:space-x-reverse">
 						<ATagButton
 							className="p-2"
+							aria-label="Email"
 							{...animations.bottomLinks}
 							animate={{
 								opacity:    1,
@@ -201,10 +194,11 @@ const Contact = (props: ContactProps) => {
 							<IconIcOutlineEmail/>
 						</ATagButton>
 
-						{linksList.map(({ link, icon }, index) => (
+						{linksList.map(({ tooltip, link, icon }, index) => (
 							<ATagButton
 								key={index}
 								className="p-2"
+								aria-label={tooltip}
 								{...animations.bottomLinks}
 								animate={{
 									opacity:    1,

@@ -77,34 +77,30 @@ const useToasts = () => {
 				{offlineReady
 					? (
 						<Typography variant="body">
-							{t('reloadPrompt')}
-							App ready to work offline
+							{t('reloadPrompt.offlineReady')}
 						</Typography>
 					)
-					: <Typography variant="body">New content available, click on reload button to update.</Typography>}
+					: <Typography variant="body">{t('reloadPrompt.newContent')}</Typography>}
 
 				{needRefresh ? (
 					<Button
 						text
 						colorsForStates={isDarkMode ? theme.colorSchemeByState.accent : theme.colorSchemeByState.body2}
-						onClick={() => {
-							updateServiceWorker(true)
-							toast.dismiss('reload-prompt-toast')
-						}}>
-						Reload
+						onClick={() => toast.dismiss('reload-prompt-toast')}>
+						{t('reloadPrompt.reload')}
 					</Button>
 				) : null}
 				<Button
 					text
 					colorsForStates={isDarkMode ? theme.colorSchemeByState.accent : theme.colorSchemeByState.body2}
-					onClick={() => {
-						toast.dismiss('reload-prompt-toast')
-						close()
-					}}>
-					Close
+					onClick={() => toast.dismiss('reload-prompt-toast')}>
+					{t('reloadPrompt.close')}
 				</Button>
 			</Row>
 		), {
+			onClose:      () => {
+				needRefresh ? updateServiceWorker(false) : close()
+			},
 			toastId:      'reload-prompt-toast',
 			position:     "bottom-left",
 			rtl:          i18n.dir() === 'rtl',

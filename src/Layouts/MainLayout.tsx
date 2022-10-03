@@ -4,7 +4,7 @@ import { css } from "@emotion/css"
 import { AnimatePresence, motion } from "framer-motion"
 import tw from "twin.macro"
 
-import Logo from "../assets/Logo.png"
+import Logo from "../assets/Logo.webp"
 import AnimatedLandingLogo from "../components/Home/AnimatedLandingLogo"
 import LanguageSelector from "../components/LanguageSelector"
 import {
@@ -29,7 +29,7 @@ interface NavigationItemType {
 interface MainLayoutProps {
 	children: ReactNode
 	navigationOptions: NavigationItemType[]
-	linksList: { link: string, icon: ReactNode, [key: string]: any }[]
+	linksList: { tooltip: string, link: string, icon: ReactNode, [key: string]: any }[]
 	currentNavigation: NavigationItemType
 	setCurrentNavigation?: (navigation: NavigationItemType) => void
 	email: string
@@ -79,7 +79,7 @@ const MainLayout = (props: MainLayoutProps) => {
 									duration: 1,
 								}}
 								className={css`
-									${tw`h-[90px] w-[90px]`};
+									${tw`h-[72px] w-[72px]`};
 
 									[dir="ltr"] & {
 										margin-left: ${windowWidth > 1200 ? '60' : `${Math.max(interpolate(windowWidth, [20, 60], [700, 1200]), 20)}`}px;
@@ -251,6 +251,7 @@ const MainLayout = (props: MainLayoutProps) => {
 													<ATagButton
 														className="p-2"
 														{...animations.bottomLinks}
+														aria-label="Email"
 														animate={{
 															opacity:    1,
 															transition: {
@@ -269,10 +270,11 @@ const MainLayout = (props: MainLayoutProps) => {
 														<IconIcOutlineEmail/>
 													</ATagButton>
 
-													{linksList.map(({ link, icon }, index) => (
+													{linksList.map(({ tooltip, link, icon }, index) => (
 														<ATagButton
 															className="p-2"
 															key={index}
+															aria-label={tooltip}
 															{...animations.bottomLinks}
 															animate={{
 																opacity:    1,
@@ -321,10 +323,11 @@ const MainLayout = (props: MainLayoutProps) => {
 					<Row>
 						<Col className="fixed bottom-0 left-[70px] w-[30px] items-center z-[300]">
 							<Col className="pb-[24px] space-y-[22px]">
-								{linksList.map(({ link, icon }, index) => (
+								{linksList.map(({ tooltip, link, icon }, index) => (
 									<ATagButton
 										className="p-2"
 										key={index}
+										aria-label={tooltip}
 										{...animations.bottomLinks}
 										animate={{
 											opacity:    1,

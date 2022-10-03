@@ -89,7 +89,12 @@
     "contact": "Contact"
   },
   "dismiss": "Dismiss",
-  "reloadPrompt": "",
+  "reloadPrompt": {
+    "offlineReady": "Ready to work offline.",
+    "newContent": "New content available, click on reload button to update.",
+    "reload": "Reload",
+    "close": "Close"
+  },
   "language": "Lanuage",
   "theme": "Theme",
   "backToTop": "Back To Top"

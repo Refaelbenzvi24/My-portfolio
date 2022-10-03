@@ -47,11 +47,12 @@ const Project = (props: ProjectData & { index: number }) => {
 								tooltip={t('githubLink')}
 								placement="top-center">
 								<ATagButton className="p-0"
-									colorsForStates={theme.colorSchemeByState.success}
+								            aria-label={`link to ${title} github`}
+								            colorsForStates={theme.colorSchemeByState.success}
 								            href={githubLink}
-									text
-									icon
-									size="24px">
+								            text
+								            icon
+								            size="24px">
 									<IconEvaGithubOutline/>
 								</ATagButton>
 							</Tooltip>
@@ -60,11 +61,12 @@ const Project = (props: ProjectData & { index: number }) => {
 						{siteLink ? (
 							<Tooltip tooltip={t('siteLink')} placement="top-center">
 								<ATagButton className="p-0"
-									colorsForStates={theme.colorSchemeByState.success}
+								            aria-label={`link to ${title} website`}
+								            colorsForStates={theme.colorSchemeByState.success}
 								            href={siteLink}
-									text
-									icon
-									size="24px">
+								            text
+								            icon
+								            size="24px">
 									<IconLucideExternalLink/>
 								</ATagButton>
 							</Tooltip>
@@ -106,13 +108,14 @@ const Projects = (props: { data: ProjectData[], innerRef: (node?: Element | null
 					<Typography className={`whitespace-nowrap ${windowWidth > 1000 ? '' : 'w-fit'}`}
 					            size={windowWidth > 1000 ? '' : 'inherit'}
 					            variant="h2"
-						color={theme.colorScheme.primary}>
+					            color={theme.colorScheme.primary}>
 						{t('projects.title')}
 					</Typography>
 				</Textfit>
 
-				<Divider className={`ml-[16px] rtl:mr-[16px] mt-[6px] ${windowWidth > 1000 ? 'mr-[330px] rtl:ml-[330px]' : (windowWidth > 350 ? 'w-[40%]' : 'w-[30%]')}`}
-				         color={theme.colorScheme.primary}/>
+				<Divider
+					className={`ml-[16px] rtl:mr-[16px] mt-[6px] ${windowWidth > 1000 ? 'mr-[330px] rtl:ml-[330px]' : (windowWidth > 350 ? 'w-[40%]' : 'w-[30%]')}`}
+					color={theme.colorScheme.primary}/>
 			</Row>
 
 			{data.map((project, index) => (

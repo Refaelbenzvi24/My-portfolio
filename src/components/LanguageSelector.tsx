@@ -6,7 +6,7 @@ import { IconButtonProps } from "./UI/Buttons/IconButton"
 
 
 const LanguageSelector = (props: IconButtonProps) => {
-	const { i18n }                 = useTranslation()
+	const { i18n } = useTranslation()
 
 	const changeLanguage = async (language: Language): Promise<void> => {
 		await i18n.changeLanguage(language)
@@ -20,6 +20,7 @@ const LanguageSelector = (props: IconButtonProps) => {
 
 	return (
 		<IconButton {...props}
+		            aria-label="language"
 		            id="language-toggle-button"
 		            onClick={async () => await languageToggle()}>
 			<IconCarbonLanguage/>

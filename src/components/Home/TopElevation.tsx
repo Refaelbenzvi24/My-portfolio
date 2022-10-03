@@ -65,12 +65,12 @@ const TopElevation = ({ homeWrapperInView, experienceWrapperInView }: TopElevati
 
 							background-color: ${!(homeWrapperInView && !experienceWrapperInView) ? 'transparent' : (isDarkMode ? theme.colorScheme.dark2 : theme.colorScheme.light2)};
 							clip-path: polygon(0 ${!(homeWrapperInView && !experienceWrapperInView) ? 0 : interpolate(windowWidth, [15,
-						5], [1920, 200])}%, 100% 0, 100% 50%, 0 50%);
+								5], [1920, 200])}%, 100% 0, 100% 50%, 0 50%);
 
 
 							[dir=rtl] & {
 								clip-path: polygon(0 0, 100% ${!(homeWrapperInView && !experienceWrapperInView) ? 0 : interpolate((windowWidth), [15,
-						5], [1920, 200])}%, 100% 50%, 0 50%);
+									5], [1920, 200])}%, 100% 50%, 0 50%);
 							}
 
 							@media (max-width: 1500px) {
@@ -85,6 +85,7 @@ const TopElevation = ({ homeWrapperInView, experienceWrapperInView }: TopElevati
 							<Button
 								className={`${windowWidth > 1500 ? 'mb-[250px]' : 'mb-[450px]'} `}
 								onClick={() => scrollToElement('#experience')}
+								aria-label="Scroll down"
 								icon
 								text
 								colorsForStates={theme.colorSchemeByState.secondary}

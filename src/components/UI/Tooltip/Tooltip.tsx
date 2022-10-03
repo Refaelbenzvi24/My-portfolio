@@ -77,6 +77,11 @@ interface CalcPlacementProps {
 
 type CalcPlacement = (props: CalcPlacementProps) => { top: number, left: number }
 
+const checkForFocusableChildren = (element: HTMLElement) => {
+	const focusableChildren = element.querySelectorAll('a, button, input, textarea, select, details, [tabindex]')
+	return focusableChildren.length > 0
+}
+
 const calcPlacement: CalcPlacement = ({ placement, elementWidth, elementHeight, tooltipWidth, tooltipHeight, offsetX, offsetY }) => {
 	let top            = 0
 	let left           = 0
@@ -126,12 +131,13 @@ const Tooltip = (props: TooltipProps & typeof defaultProps) => {
 	      } = props
 
 
-	const darkMode              = dark || isDark()
-	const [visible, setVisible] = useState(false)
-	const [top, setTop]         = useState<number>()
-	const [left, setLeft]       = useState<number>()
-	const elementWrapper        = useRef<HTMLDivElement>(null)
-	const tooltipElement        = useRef<HTMLDivElement>(null)
+	const darkMode                                  = dark || isDark()
+	const [visible, setVisible]                     = useState(false)
+	const [top, setTop]                             = useState<number>()
+	const [left, setLeft]                           = useState<number>()
+	const elementWrapper                            = useRef<HTMLDivElement>(null)
+	const tooltipElement                            = useRef<HTMLDivElement>(null)
+	const [hasFocusableChild, setHasFocusableChild] = useState(false)
 
 	const callback = useCallback((event: LongPressEvent) => {
 		preventDefaultEvent && event.preventDefault()
@@ -196,6 +202,11 @@ const Tooltip = (props: TooltipProps & typeof defaultProps) => {
 	}, [])
 
 	useEffect(() => {
+		if (elementWrapper.current) setHasFocusableChild(checkForFocusableChildren(elementWrapper.current))
+	}, [elementWrapper])
+
+
+	useEffect(() => {
 		setPosition()
 		if (visible && isTouchable) document.body.addEventListener('click', hide)
 
@@ -210,6 +221,7 @@ const Tooltip = (props: TooltipProps & typeof defaultProps) => {
 				{visible ? (
 					<Portal>
 						<TooltipDiv
+							role="tooltip"
 							initial={{ opacity: 0, scale: 0.9 }}
 							animate={{ opacity: 1, scale: 1 }}
 							exit={{ opacity: 0, scale: 0.9 }}
@@ -230,6 +242,7 @@ const Tooltip = (props: TooltipProps & typeof defaultProps) => {
 			</AnimatePresence>
 			<div ref={elementWrapper}
 			     className="w-fit"
+			     tabIndex={hasFocusableChild ? -1 : 0}
 			     {...((isClickableOnMobile && isTouchable) && {
 				     onClick: (event) => {
 					     event.stopPropagation()
@@ -238,6 +251,8 @@ const Tooltip = (props: TooltipProps & typeof defaultProps) => {
 				     },
 			     })}
 			     {...longPress()}
+			     onFocus={() => setVisible(true)}
+			     onBlur={() => setVisible(false)}
 			     onMouseEnter={() => !isTouchable && setVisible(true)}
 			     onMouseLeave={() => !isTouchable && setVisible(false)}>
 				{children}

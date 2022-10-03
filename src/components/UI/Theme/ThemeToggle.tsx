@@ -15,6 +15,7 @@ const ThemeToggle = (props: IconButtonProps) => {
 	return (
 		<IconButton color={uiTheme.colorScheme.primary}
 		            {...props}
+		            aria-label="theme"
 		            id="theme-toggle-button"
 		            onClick={themeToggle}>
 			{theme === 'light' ? <IconCarbonLight/> : <IconCarbonMoon/>}

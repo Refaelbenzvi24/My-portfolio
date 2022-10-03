@@ -89,7 +89,12 @@
     "contact": "יצירת קשר"
   },
   "dismiss": "הסר",
-  "reloadPrompt": "",
+  "reloadPrompt": {
+    "offlineReady": "מוכן לפעול במצב אופליין",
+    "newContent": "יש תוכן חדש, רענן את הדף כדי לראות אותו",
+    "reload": "רענן",
+    "close": "סגירה"
+  },
   "language": "שפה",
   "theme": "נושא",
   "backToTop": "חזרה לראש העמוד"

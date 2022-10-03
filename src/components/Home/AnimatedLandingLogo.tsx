@@ -3,7 +3,7 @@ import { AnimatePresence, motion } from "framer-motion"
 import i18n from "i18next"
 import tw from "twin.macro"
 
-import Logo from "../../assets/Logo.png"
+import Logo from "../../assets/Logo.webp"
 import { Col, isDark, Portal, Row, theme } from "../UI"
 
 
@@ -39,11 +39,13 @@ const AnimatedLandingLogo = (props: AnimatedLandingLogoProps) => {
 							`}>
 							<motion.img
 								initial={{
+									scale:      0.9,
 									opacity:    0,
 									translateY: '-10%',
 									translateX: isRTL ? '-50%' : '50%',
 								}}
 								animate={{
+									scale:      0.9,
 									opacity:    1,
 									translateY: 0,
 								}}
@@ -74,11 +76,13 @@ const AnimatedLandingLogo = (props: AnimatedLandingLogoProps) => {
 							`}>
 							<motion.img
 								initial={{
+									scale:      0.9,
 									opacity:    0,
 									translateY: '-10%',
 									translateX: isRTL ? '50%' : '-50%',
 								}}
 								animate={{
+									scale:      0.9,
 									opacity:    1,
 									translateY: 0,
 								}}

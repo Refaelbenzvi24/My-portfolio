@@ -40,8 +40,8 @@ const ExperienceItem = (props: ExperienceData & { index: number }) => {
 		<Row
 			animate={inView
 				? animations.experienceItem.inView
-				:				((index % 2) === 0 ? animations.experienceItem.outOfViewLeft
-					:					animations.experienceItem.outOfViewRight)}
+				: ((index % 2) === 0 ? animations.experienceItem.outOfViewLeft
+					: animations.experienceItem.outOfViewRight)}
 			transition={{ duration: 1.2 }}
 			viewport={{ once: true }}
 			onViewportEnter={() => setInView(true)}
@@ -53,8 +53,8 @@ const ExperienceItem = (props: ExperienceData & { index: number }) => {
 					<a className={css`
 						${tw`h-full w-full absolute z-[1]`};
 						background: ${isDarkMode
-					? `linear-gradient(${theme.colorScheme.dark}10, ${theme.colorScheme.primary}99)`
-					:							`linear-gradient(${theme.colorScheme.light}10, ${theme.colorScheme.primary}99)`};
+							? `linear-gradient(${theme.colorScheme.dark}10, ${theme.colorScheme.primary}99)`
+							: `linear-gradient(${theme.colorScheme.light}10, ${theme.colorScheme.primary}99)`};
 						transition: all 250ms ease-in-out;
 						opacity: 1;
 
@@ -66,6 +66,7 @@ const ExperienceItem = (props: ExperienceData & { index: number }) => {
 							}
 						}
 					`}
+					   aria-label={`link to ${title} website`}
 					   href={siteLink}/>
 					<img
 						src={image}
@@ -172,6 +173,7 @@ const ExperienceItem = (props: ExperienceData & { index: number }) => {
 								tooltip={t('githubLink')}
 								placement="bottom-center">
 								<ATagButton className="p-0"
+								            aria-label={`link to ${title} github`}
 								            colorsForStates={theme.colorSchemeByState.success}
 								            href={githubLink}
 								            text
@@ -186,6 +188,7 @@ const ExperienceItem = (props: ExperienceData & { index: number }) => {
 							<Tooltip tooltip={t('siteLink')} placement="bottom-center">
 								<ATagButton className="p-0"
 								            colorsForStates={theme.colorSchemeByState.success}
+								            aria-label={`link to ${title} website`}
 								            href={siteLink}
 								            text
 								            icon
@@ -203,8 +206,8 @@ const ExperienceItem = (props: ExperienceData & { index: number }) => {
 					<a className={css`
 						${tw`absolute h-full w-full z-[1]`};
 						background: ${isDarkMode
-					? `linear-gradient(${theme.colorScheme.dark}10, ${theme.colorScheme.primary}99)`
-					:							`linear-gradient(${theme.colorScheme.light}10, ${theme.colorScheme.primary}99)`};
+							? `linear-gradient(${theme.colorScheme.dark}10, ${theme.colorScheme.primary}99)`
+							: `linear-gradient(${theme.colorScheme.light}10, ${theme.colorScheme.primary}99)`};
 						transition: all 250ms ease-in-out;
 						opacity: 1;
 
@@ -216,6 +219,7 @@ const ExperienceItem = (props: ExperienceData & { index: number }) => {
 							}
 						}
 					`}
+					   aria-label={`link to ${title} website`}
 					   href={siteLink}/>
 					<img
 						src={image}
