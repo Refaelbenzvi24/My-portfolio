@@ -16,7 +16,10 @@
     "messageRequired": "יש להזין הודעה"
   },
   "getInTouch": "GET IN TOUCH",
-  "credit": "פותח ועוצב ע\"י רפאל בן צבי",
+  "credit": {
+    "main": "פותח ועוצב ע\"י ",
+    "name": "רפאל בן צבי"
+  },
   "experience": {
     "title": "נסיון",
     "fitnesshub": {

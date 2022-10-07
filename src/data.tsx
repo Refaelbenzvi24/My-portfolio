@@ -84,6 +84,7 @@ const data = (): Data => {
 							N - Node.js
 						</>
 					)}
+					dir="ltr"
 					isClickableOnMobile
 					isPersistentOnMobile
 					placement="bottom-left"
@@ -133,6 +134,7 @@ const data = (): Data => {
 							N - Node.js
 						</>
 					)}
+					dir="ltr"
 					isClickableOnMobile
 					isPersistentOnMobile
 					placement="bottom-left"
@@ -182,6 +184,7 @@ const data = (): Data => {
 							N - Node.js
 						</>
 					)}
+					dir="ltr"
 					placement="bottom-left"
 					isClickableOnMobile
 					isPersistentOnMobile

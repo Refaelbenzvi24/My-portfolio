@@ -9,10 +9,14 @@ const Credit = () => {
 			<ATagButton href="https://github.com/Refaelbenzvi24/My-portfolio"
 			            text
 			            colorsForStates={theme.colorSchemeByState.primary}>
-				<Row>
+				<Row className="flex-wrap justify-center">
 					<IconEvaGithubOutline/>
 					<Typography variant="small">
-						{t('credit')}
+						{t('credit.main')}
+					</Typography>
+					&nbsp;
+					<Typography variant="small">
+						{t('credit.name')}
 					</Typography>
 				</Row>
 			</ATagButton>

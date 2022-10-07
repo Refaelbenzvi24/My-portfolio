@@ -14,12 +14,6 @@ interface NavigationWrapperProps {
 const NavigationWrapper = styled(motion.div)(({ vertical }: NavigationWrapperProps) => [
 	tw`flex`,
 	vertical ? tw`flex-col` : tw`flex-row`,
-
-	css`
-		& > div {
-			margin-right: 45px;
-		}
-	`,
 ])
 
 interface NavigationProps extends Omit<HTMLMotionProps<"div">, 'children'>, NavigationWrapperProps {

@@ -23,22 +23,35 @@ const NavigationItem = (props: NavigationItemProps) => {
 	const buttonRef = useRef(null)
 
 	return (
-		<div
-			className={css`
+		<Button
+			ref={buttonRef}
+			className={`p-0 ${css`
 				${tw`cursor-pointer relative`};
 
-				* {
+				div {
 					transition: width 350ms ease-in-out;
 				}
 
-				&:hover * {
+				[dir=ltr] & {
+					margin-right: 45px;
+				}
+
+				[dir=rtl] & {
+					margin-left: 45px;
+				}
+
+				&:hover div {
 					width: 100% !important;
 				}
-			`}>
+			`}`}
+			onClick={onSelect}
+			colorsForStates={theme.colorSchemeByState.primary}
+			text
+			{...restProps}>
 			<div className="absolute w-full bottom-0">
 				<motion.div
 					initial={{
-						translateY: 5,
+						translateY: 8,
 						width:      0,
 					}}
 					animate={(selected?.value === value) ? {
@@ -54,20 +67,14 @@ const NavigationItem = (props: NavigationItemProps) => {
 					`}/>
 			</div>
 
-			<Button
-				ref={buttonRef}
-				className="p-0"
-				onClick={onSelect}
-				colorsForStates={theme.colorSchemeByState.primary}
-				text
-				{...restProps}>
-				<Typography
-					color={theme.colorScheme.primary}
-					variant="preTitle">
-					{label}
-				</Typography>
-			</Button>
-		</div>
+
+			<Typography
+				className="whitespace-nowrap"
+				color={theme.colorScheme.primary}
+				variant="preTitle">
+				{label}
+			</Typography>
+		</Button>
 	)
 }
 

@@ -80,7 +80,8 @@ const useToasts = () => {
 							{t('reloadPrompt.offlineReady')}
 						</Typography>
 					)
-					: <Typography variant="body">{t('reloadPrompt.newContent')}</Typography>}
+					: <Typography variant="body">{t('reloadPrompt.newContent')}</Typography>
+				}
 
 				{needRefresh ? (
 					<Button
