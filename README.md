@@ -1,37 +1,69 @@
 # Documentation
 
-- [Features used in the project](https://github.com/Refaelbenzvi24/Viterect-vite-react-boilerplate#features)
+## Table Of Content
+
+- [Documentation](#documentation)
+  - [Table Of Content](#Table-Of-Content)
+  - [Running the project](#Running-the-project)
+  - [Usage](#usage)
+    - [Using your own data](#Using-your-own-data)
+    - [Disabling animations in development](#Disabling-animations-in-development)
+  - [Contributing](#Contributing)
+  - [Scripts](#Scripts)
 
 ## Running the project
 
 > requires Node >= 14
 
-clone the repo `git clone git@github.com:flashcards-app/frontend.git flashcards-frontend`
+clone the repo `git clone git@github.com:Refaelbenzvi24/My-portfolio.git`
 
 then
 
 ```bash
-cd flashcards-frontend
+cd My-portfolio
 pnpm i # If you don't have pnpm installed, run: npm install -g pnpm
 pnpm run dev
 ```
 
 And, enjoy :)
 
+## Usage
+
+### Using your own data
+
+All the data is stored in `data.ts` file, you can change it to your own data.
+
+I have used i18next for internationalization, so you'll need to edit
+the `public/locales/${your language}/translation.yaml` file to change the text.
+
+### Disabling animations in development
+
+go to `src/modules/vars.ts` and change the following in line 31:
+
+```ts
+Vars.showAnimations = envVars.VITE_ENV === 'production' || true
+```
+
+to
+
+```ts
+Vars.showAnimations = envVars.VITE_ENV === 'production' || false
+```
 
 ## Contributing
 
-Feel free to submit PRs for small issues. For large issues or features, open an issue first. 
+Feel free to submit PRs for small issues. For large issues or features, open an issue first.
 
 ### Option 1 - Simple Typo Fixes
 
-For small issues, like a typo or broken link, use Github's inline file editor or web editor (open by pressing <kbd>.</kbd> in your fork's code tab) to make the fix and submit a pull request. 
+For small issues, like a typo or broken link, use Github's inline file editor or web editor (open by pressing <kbd>
+.</kbd> in your fork's code tab) to make the fix and submit a pull request.
 
 ### Option 2 - Work on your own Fork
 
-For more complex contributions, like new features, you should work on the project on your local system. 
+For more complex contributions, like new features, you should work on the project on your local system.
 
-First, follow the steps in [Running the project](https://github.com/flashcards-app/frontend#running-the-project).
+First, follow the steps in [Running the project](https://github.com/Refaelbenzvi24/My-portfolio#running-the-project).
 
 ```shell
 git checkout -b my-fix
@@ -41,7 +73,7 @@ git commit -m "fix: corrected a typo"
 git push origin my-fix
 ```
 
-Lastly, open a pull request on GitHub. Once merged, your changes will automatically be deployed to the live site via the CI/CD pipeline. 
+Lastly, open a pull request on GitHub.
 
 ## Scripts
 
@@ -58,7 +90,6 @@ Lastly, open a pull request on GitHub. Once merged, your changes will automatica
   coverage.
 - `extract-translations` - extract translations from source files using `i18next`. configuration file for this is
   on `i18next-parser.config.js`. The generated files will be on the `public/locales` folder.
-- `pnpm prepare:husky` - install husky.
 - `pnpm lint` - runs TypeScript and ESLint.
 - `pnpm lint:eslint` - runs ESLint.
 - `pnpm lint:tsc` - runs TypeScript.
@@ -70,15 +101,3 @@ Lastly, open a pull request on GitHub. Once merged, your changes will automatica
 - `pnpm coverage:jest` - open the coverage report in the browser for jest.
 - `pnpm coverage:cypress` - open the coverage report in the browser for cypress.
 - `pnpm validate` - runs `lint`, `test:ci` and `test:e2e:ci`.
-
-## Deploy to GCloud
-
-### Setup
-
-Generate a [service account key](https://cloud.google.com/iam/docs/creating-managing-service-account-keys) copy the
-whole file object content to the [GitHub secrets](https://docs.github.com/en/actions/security-guides/encrypted-secrets)
-with the key PROJECT_GCP_KEY and the project id to PROJECT_GCP_ID,
-
-### Deployment
-
-Every push to the master/main branch will trigger a deployment to GCloud.
