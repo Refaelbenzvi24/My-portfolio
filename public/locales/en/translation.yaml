@@ -71,19 +71,19 @@
     "flashcards": {
       "description": {
         "firstLine": "Led the development of the flashcards app. This app allows developers to practice programming questions before interviews & generally.",
-        "secondLine": "Worked with a mentor that has a 7 years experience as a Team Lead in the industry and another developer.",
+        "secondLine": "Worked with a mentor with 7 years of experience as a Team Lead in the industry and another developer.",
         "firstBullet": "Built and designed the entire app and deployed it on GCloud.",
         "secondBullet": "Developed a fully responsive & reusable UI using Emotion & Tailwind CSS.",
-        "thirdBullet": "Developed and taken a part in most of the features in the app."
+        "thirdBullet": "Developed and took part in most of the features in the app."
       }
     },
     "shifter": {
       "description": {
         "firstLine": "Shifter's a web app that gives simple solutions for employees management.",
-        "secondLine": "Used as a Team Leader with 2 developers along side me and a UI/UX Designer, we have worked in a tight time frame of 3 weeks and finished the project with a satisfactory final product.",
+        "secondLine": "Used as a Team Leader with 2 developers along side me and a UI/UX Designer, we worked in a tight time frame of 3 weeks and finished the project with a satisfactory final product.",
         "firstBullet": "Built the UI components from scratch by the design system.",
         "secondBullet": "Managed the division of tasks and the team members productivity.",
-        "thirdBullet": "Developed and taken a part in most of the features in the app."
+        "thirdBullet": "Developed and took part in most of the features in the app."
       }
     }
   },
