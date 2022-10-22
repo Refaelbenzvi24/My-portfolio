@@ -12,7 +12,6 @@ import '@fontsource/work-sans/700.css'
 import 'react-toastify/dist/ReactToastify.css'
 
 import App from './App'
-import ErrorsBoundary from "./components/ErrorsBoundary"
 import { ProgressSpinner } from './components/UI'
 import Providers from "./context"
 import Plugins from "./plugins"
@@ -26,11 +25,9 @@ const Main = () => {
 		<>
 			<GlobalStyles/>
 			<Suspense fallback={<ProgressSpinner/>}>
-				<ErrorsBoundary>
 					<Providers>
 						<App/>
 					</Providers>
-				</ErrorsBoundary>
 			</Suspense>
 		</>
 	)

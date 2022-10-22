@@ -4,7 +4,6 @@ import i18n from 'i18next'
 import LanguageDetector from 'i18next-browser-languagedetector'
 import Backend from 'i18next-http-backend'
 import { LocalStorage } from 'modules/LocalStorage'
-import moment from 'moment'
 
 import { Vars } from "../modules/vars"
 
@@ -18,7 +17,7 @@ const language = () => {
 
 	return (navigator.language).toString()
 		.includes('-') ? (navigator.language).toString()
-			.split('-')[0] as Language : (navigator.language).toString() as Language
+		.split('-')[0] as Language : (navigator.language).toString() as Language
 }
 
 
@@ -34,13 +33,6 @@ const language = () => {
 		nsSeparator:       '.',
 		interpolation:     {
 			escapeValue: false,
-			format:      (value, format): string => {
-				if (value instanceof Date) {
-					return moment(value)
-						.format(format)
-				}
-				return value as string
-			},
 		},
 		react:             {
 			useSuspense: true,
