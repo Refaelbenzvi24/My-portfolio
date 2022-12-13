@@ -25,9 +25,9 @@ const Main = () => {
 		<>
 			<GlobalStyles/>
 			<Suspense fallback={<ProgressSpinner/>}>
-					<Providers>
-						<App/>
-					</Providers>
+				<Providers>
+					<App/>
+				</Providers>
 			</Suspense>
 		</>
 	)

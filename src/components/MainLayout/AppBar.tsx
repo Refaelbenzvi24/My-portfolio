@@ -7,6 +7,7 @@ import Logo from "../../assets/LogoSmall.webp"
 import LanguageSelector from "../LanguageSelector"
 import useAnimations from "../../hooks/useAnimations"
 import useWindowVars from "../../hooks/useWindowVars"
+import AnimationsToggle from "../AnimationsToggle"
 
 
 export interface NavigationItemType {
@@ -112,13 +113,23 @@ const MainLayoutAppBar = (props: MainLayoutAppBarProps) => {
 						color={theme.colorScheme.primary}/>
 				</Tooltip>
 
+				<Tooltip tooltip={t('animations')}
+				         color={theme.colorScheme.overlaysDark}
+				         placement="bottom-center">
+					<AnimationsToggle {...animations.appBar.themeToggle}
+					                  transition={{
+						                  delay:    delay + 1.1,
+						                  duration: 0.5,
+					                  }}/>
+				</Tooltip>
+
 				<Tooltip tooltip={t('theme')}
 				         color={theme.colorScheme.overlaysDark}
 				         placement="bottom-center">
 					<ThemeToggle
 						{...animations.appBar.themeToggle}
 						transition={{
-							delay:    delay + 1.1,
+							delay:    delay + 1.2,
 							duration: 0.5,
 						}}/>
 				</Tooltip>

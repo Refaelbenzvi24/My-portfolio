@@ -9,6 +9,7 @@ import useAnimations from "../../hooks/useAnimations"
 import useWindowVars from "../../hooks/useWindowVars"
 import { ReactNode, useState } from "react"
 import { NavigationItemType } from "./AppBar"
+import AnimationsToggle from "../AnimationsToggle"
 
 
 interface MainLayoutMobileAppBarProps {
@@ -72,6 +73,13 @@ const MainLayoutMobileAppBar = (props: MainLayoutMobileAppBarProps) => {
 									         color={theme.colorScheme.overlaysDark}
 									         placement="top-center">
 										<ThemeToggle
+											color={theme.colorScheme.secondary}/>
+									</Tooltip>
+
+									<Tooltip tooltip={t('animations')}
+									         color={theme.colorScheme.overlaysDark}
+									         placement="bottom-center">
+										<AnimationsToggle
 											color={theme.colorScheme.secondary}/>
 									</Tooltip>
 

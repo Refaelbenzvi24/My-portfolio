@@ -46,6 +46,6 @@ export { default as theme } from './Utils/theme'
 export { default as HamburgerSideBar } from './SideBar/HamburgerSideBar'
 
 
-export const isDark: () => boolean = () => useThemeValue() === 'dark'
+export const isDark = () => useThemeValue() === 'dark'
 
 export default {}

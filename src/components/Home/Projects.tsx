@@ -6,17 +6,20 @@ import useAnimations from "../../hooks/useAnimations"
 import useWindowVars from "../../hooks/useWindowVars"
 import { Col, Divider, isDark, Row, theme, Tooltip, Typography } from "../UI"
 import ATagButton from "../UI/Buttons/ATagButton"
+import { css } from "@emotion/css"
+import tw from "twin.macro"
 
 
 export interface ProjectData {
 	title: string
 	description: ReactNode
 	githubLink?: string
+	technologies?: string[]
 	siteLink?: string
 }
 
-const Project = (props: ProjectData & { index: number }) => {
-	const { title, description, githubLink, siteLink, index } = props
+const Project = (props: ProjectData & { index: number, listLength: number }) => {
+	const { title, description, githubLink, siteLink, technologies, index, listLength } = props
 
 	const { windowWidth } = useWindowVars()
 	const animation       = useAnimations()
@@ -33,9 +36,9 @@ const Project = (props: ProjectData & { index: number }) => {
 			}}
 			viewport={{ once: true }}
 			onViewportEnter={() => setInView(true)}
-			className="items-center space-y-[30px]">
-			<Col className="pl-[10px]">
-				<Row className={`justify-between pt-[24px] ${windowWidth > 1000 ? 'pr-[150px] rtl:pr-0 rtl:pl-[150px]' : ''}`}>
+			className={`items-center space-y-[30px] w-full`}>
+			<Col className="pl-[10px] w-full">
+				<Row className={`justify-between pt-[24px] `}>
 					<Typography variant="h3" color={isDark() ? theme.colorScheme.accent : theme.colorScheme.body1}>
 						{title}
 					</Typography>
@@ -81,9 +84,43 @@ const Project = (props: ProjectData & { index: number }) => {
 					color={isDark() ? theme.colorScheme.subtitle2 : theme.colorScheme.subtitle1}>
 					{description}
 				</Typography>
+
+				{!!technologies && (
+					<Row className="flex flex-wrap mt-4">
+						<p className={css`
+							color: ${theme.colorScheme.secondary};
+						`}>{t('technologies')}:</p>
+
+						<ul className={css`
+							${tw`flex flex-wrap list-disc rtl:mr-8`}
+							& > li {
+								${tw`ml-8`};
+							}
+
+							li:first-child::marker {
+								color: transparent;
+							}
+
+							li:not(:first-child)::marker {
+								color: ${theme.colorScheme.secondary};
+							}
+						`}>
+							{technologies.map(tech => (
+								<li key={tech}>
+									<Typography
+										variant="body"
+										as={typeof description === 'string' ? 'p' : 'span'}
+										color={isDark() ? theme.colorScheme.subtitle2 : theme.colorScheme.subtitle1}>
+										{tech}
+									</Typography>
+								</li>
+							))}
+						</ul>
+					</Row>
+				)}
 			</Col>
 
-			{index !== 2 && <Divider size="60%" opacity="40%" color={theme.colorScheme.subtitle1}/>}
+			{index !== listLength - 1 && <Divider className="mt-12" size="60%" opacity="40%" color={theme.colorScheme.subtitle1}/>}
 		</Col>
 	)
 }
@@ -119,7 +156,7 @@ const Projects = (props: { data: ProjectData[], innerRef: (node?: Element | null
 			</Row>
 
 			{data.map((project, index) => (
-				<Project {...project} key={index} index={index}/>
+				<Project {...project} key={index} index={index} listLength={data.length}/>
 			))}
 		</Col>
 	)

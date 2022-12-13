@@ -23,7 +23,7 @@ interface Data {
 	}
 	experience: ExperienceData[]
 	projects: ProjectData[]
-	skillsList: SkillsData[][]
+	skillsList: SkillsData[]
 	navigationOptions: { label: string, value: string, [key: string]: any }[]
 }
 
@@ -60,12 +60,12 @@ const data = (): Data => {
 			                <br/>
 			                {t('home.description.thirdLine')}
 		                </>,
-		resumeLink:     'https://drive.google.com/file/d/1VqavIntpFoSSL_5qZlnwDt9WDplPJ2zX/view?usp=sharing',
+		resumeLink:     'https://drive.google.com/file/d/13Ka8Ii_-iuz22BqavhnzsT9oC-y509cs/view?usp=sharing',
 	}
 
 	const experience: Data["experience"] = [
 		{
-			title:        'FitnessHub - Freelance Full Stack Developer',
+			title:        'FitnessHub - Full Stack Developer - Self employed',
 			dates:        '2021-2022',
 			image:        fitnesshubCover,
 			technologies: [
@@ -99,6 +99,7 @@ const data = (): Data => {
 					</Row>
 				</Tooltip>, 'Material UI', 'GCloud', 'Multer', 'CI/CD'],
 			siteLink:     'https://fitnesshub-fit.vercel.app/',
+			videoLink:    'https://www.youtube.com/watch?v=XGT6-gnB93Y',
 			description:  <>
 				              <p>
 					              {t('experience.fitnesshub.description.firstLine')}
@@ -115,7 +116,7 @@ const data = (): Data => {
 				              </ul>
 			              </>,
 		}, {
-			title:        'FlashCards - Full Stack Developer',
+			title:        'FlashCards - Full Stack Developer - Internship',
 			dates:        '2022',
 			image:        flashcardsCover,
 			technologies: [
@@ -165,7 +166,7 @@ const data = (): Data => {
 				              </ul>
 			              </>,
 		}, {
-			title:        'Shifter - Full Stack Developer',
+			title:        'Shifter - Full Stack Developer - Internship',
 			dates:        '2022',
 			image:        shifterCover,
 			technologies: [
@@ -219,59 +220,121 @@ const data = (): Data => {
 		}]
 
 	const projects: Data["projects"] = [
+
 		{
-			title:       'Viterect Vite React Boilerplate',
-			description: <>
-				             {t('projects.viterect.description')}
-			             </>,
-			githubLink:  'https://github.com/Refaelbenzvi24/Viterect-vite-react-boilerplate',
-			siteLink:    'https://viterect-358000.oa.r.appspot.com/about',
-		}, {
-			title:       'Messaging-app',
-			description: <>
-				             <p>
-					             {t('projects.messagingApp.description.firstLine')}
-				             </p>
-				             <p>
-					             {t('projects.messagingApp.description.secondLine')}
-				             </p>
-				             <ul className={css`
-					             ${tw`pl-4 pt-2 rtl:pl-0 rtl:pr-4 list-disc`}
-					             li::marker {
-						             color: ${theme.colorScheme.secondary};
-					             }
-				             `}>
-					             <li>{t('projects.messagingApp.description.contextBullet')}</li>
-					             <li>{t('projects.messagingApp.description.reduxBullet')}</li>
-					             <li>{t('projects.messagingApp.description.recoilBullet')}</li>
-				             </ul>
-				             <p>
-					             {t('projects.messagingApp.description.thirdLine')}
-				             </p>
-			             </>,
-			githubLink:  'https://github.com/Refaelbenzvi24/Messaging-frontend',
-		}, {
-			title:       'Rolling-Ball',
-			description: <>
-				             {t('projects.rollingBall.description')}
-			             </>,
-			githubLink:  'https://github.com/Refaelbenzvi24/Rolling-Ball',
+			title:        'Viterect - Vite React Boilerplate',
+			description:  <>
+				              {t('projects.viterect.description')}
+			              </>,
+			technologies: ['React', 'React Query', 'Styled Components', 'TailwindCSS', 'More on GitHub...'],
+			githubLink:   'https://github.com/Refaelbenzvi24/Viterect-vite-react-boilerplate',
+			siteLink:     'https://viterect-358000.oa.r.appspot.com/about'
 		},
+		{
+			title:        'Messaging app',
+			description:  <>
+				              <p>
+					              {t('projects.messagingApp.description.firstLine')}
+				              </p>
+				              <p>
+					              {t('projects.messagingApp.description.secondLine')}
+				              </p>
+				              <ul className={css`
+					              ${tw`pl-4 py-1.5 ml-4 rtl:pl-0 rtl:pr-4 list-decimal`}
+					              li::marker {
+						              color: ${theme.colorScheme.secondary};
+					              }
+				              `}>
+					              <li>{t('projects.messagingApp.description.contextBullet')}</li>
+					              <li>{t('projects.messagingApp.description.reduxBullet')}</li>
+					              <li>{t('projects.messagingApp.description.recoilBullet')}</li>
+				              </ul>
+				              <p>
+					              {t('projects.messagingApp.description.thirdLine')}
+				              </p>
+			              </>,
+			technologies: ['React', 'Redux', 'Context API', 'Recoil.js', 'Styled Components', 'TailwindCSS'],
+			githubLink:   'https://github.com/Refaelbenzvi24/Messaging-frontend',
+		},
+		{
+			title:        'Demo Microservices System',
+			description:  <>
+				              <p>{t('projects.demoMicroservicesSystem.description.firstLine')}</p>
+				              <ul className={css`
+					              ${tw`pl-4 ml-4 py-1.5 rtl:pl-0 rtl:pr-4 list-decimal`}
+					              li::marker {
+						              color: ${theme.colorScheme.secondary};
+					              }
+				              `}>
+					              <li>
+						              {t('projects.demoMicroservicesSystem.description.firstModule')}
+					              </li>
+					              <li>
+						              {t('projects.demoMicroservicesSystem.description.secondModule.firstLine')}
+
+						              <ul className={css`
+							              ${tw`pl-4 py-1.5 rtl:pl-0 rtl:pr-4 list-disc`}
+							              li::marker {
+								              color: ${theme.colorScheme.secondary};
+							              }
+						              `}>
+							              <li>{t('projects.demoMicroservicesSystem.description.secondModule.firstBullet')}</li>
+							              <li>{t('projects.demoMicroservicesSystem.description.secondModule.secondBullet')}</li>
+						              </ul>
+					              </li>
+					              <li>{t('projects.demoMicroservicesSystem.description.thirdModule')}</li>
+				              </ul>
+			              </>,
+			technologies: ['Python', 'RabbitMQ', 'Docker', 'PDM'],
+			githubLink:   'https://github.com/Refaelbenzvi24/Mini-microservices-docker-rabbitmq-system'
+		},
+		{
+			title:        'Superscraper Telegram Bot',
+			description:  <>
+				              <p>{t('projects.telegramBot.description')}</p>
+			              </>,
+			technologies: ['Python', 'RabbitMQ', 'PyQuery', 'Celery', 'Docker', 'SQLAlchemy', 'PostgreSQL'],
+			githubLink:   'https://github.com/Refaelbenzvi24/superscraper-telegram-bot'
+		},
+		{
+			title:        'Hotel tasks dashboard',
+			description:  <>
+				              <p>{t('projects.hotelTasksDashboard.description')}</p>
+			              </>,
+			technologies: ['React Native', 'TailwindCSS', 'Mirage.js'],
+			githubLink:   'https://github.com/Refaelbenzvi24/Hotel-tasks-dashboard',
+		},
+		{
+			title:        'Deliveroo - food delivery',
+			description:  <>
+				              <p>{t('projects.deliveroo.description')}</p>
+			              </>,
+			technologies: ['React Native', 'TailwindCSS', 'Sanity(CMS)'],
+			githubLink:   'https://github.com/Refaelbenzvi24/Hotel-tasks-dashboard',
+		},
+		{
+			title:        'Rolling Ball',
+			description:  <>
+				              <p>{t('projects.rollingBall.description')}</p>
+			              </>,
+			technologies: ['Unity', 'C#'],
+			githubLink:   'https://github.com/Refaelbenzvi24/Rolling-Ball',
+		}
 	]
 
 	const skillsList: Data["skillsList"] = [
-		[{
-			Languages: ['TypeScript', 'JavaScript', 'Python', 'C#'],
-			Frontend:  ['React', 'Vue', 'HTML', 'CSS/SCSS/SASS', 'React Native'],
-		}],
-		[{
-			DB:      ['MongoDB', 'Firebase', 'ElasticSearch'],
-			Backend: ['Node.js', 'Express', 'Mongoose', 'Flask'],
-		}],
-		[{
+		{
+			Languages: ['TypeScript', 'JavaScript', 'Python', 'C#', 'C++'],
+			Frontend:  ['React', 'Vue', 'Next.js', 'React Native', 'HTML', 'CSS/SCSS/SASS', 'TailwindCSS', 'Styled Components'],
+		},
+		{
+			DB:      ['MongoDB', 'SQL', 'PostgreSQL', "ORM's", 'Mongoose', 'Firebase', 'ElasticSearch'],
+			Backend: ['Node.js', 'Express', 'FastAPI', 'Flask', 'Celery'],
+		},
+		{
 			'Testing / Automation': ['Jest', 'Cypress', 'Chai', 'Mocha', 'Selenium'],
-			Other:                  ['Git', 'Docker', 'CI/CD', 'Google Cloud', 'Netlify', 'Vercel'],
-		}],
+			Other:                  ['Git', 'Docker', 'CI/CD', 'Google Cloud', 'Netlify', 'Vercel', 'RabbitMQ', 'Event Driven', 'Microservices'],
+		},
 	]
 
 	const navigationOptions: Data["navigationOptions"] = [

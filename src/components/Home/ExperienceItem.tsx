@@ -18,11 +18,12 @@ export interface ExperienceData {
 	description: ReactNode
 	technologies: (string | ReactNode)[]
 	githubLink?: string
+	videoLink?: string
 	siteLink?: string
 }
 
 const ExperienceItem = (props: ExperienceData & { index: number }) => {
-	const { githubLink, siteLink, image, technologies, dates, title, description, index } = props
+	const { githubLink, videoLink, siteLink, image, technologies, dates, title, description, index } = props
 
 	const mobileBreakpoint = 1000
 
@@ -95,7 +96,7 @@ const ExperienceItem = (props: ExperienceData & { index: number }) => {
 								{dates}
 							</Typography>
 
-							<Textfit mode="single" forceSingleModeWidth>
+							<Textfit mode="single" max={24} forceSingleModeWidth>
 								<Typography className={`${(index % 2) !== 0 ? 'pr-[20px] rtl:pl-[20px] rtl:pr-0' : 'pl-[20px]  rtl:pr-[20px] rtl:pl-0'}`}
 								            variant="h3"
 								            size="inherit"
@@ -167,6 +168,23 @@ const ExperienceItem = (props: ExperienceData & { index: number }) => {
 					</div>
 
 					<Row className="space-x-3 rtl:flex-row-reverse rtl:justify-end pt-[16px] mb-1 pl-[6px]">
+						{videoLink ? (
+							<Tooltip
+								color={theme.colorScheme.overlaysDark}
+								tooltip={t('videoLink')}
+								placement="bottom-center">
+								<ATagButton className="p-0"
+								            aria-label={`link to ${title} video`}
+								            colorsForStates={theme.colorSchemeByState.success}
+								            href={videoLink}
+								            text
+								            icon
+								            size="24px">
+									<IconOcticonVideo16/>
+								</ATagButton>
+							</Tooltip>
+						) : null}
+
 						{githubLink ? (
 							<Tooltip
 								color={theme.colorScheme.overlaysDark}

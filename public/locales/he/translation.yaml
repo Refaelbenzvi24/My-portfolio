@@ -49,19 +49,21 @@
       }
     }
   },
+  "videoLink": "וידיאו",
   "githubLink": "לגיטאב",
   "siteLink": "לאתר",
   "home": {
     "hello": "היי, קוראים לי",
     "resume": "לקורות חיים שלי",
     "name": "רפאל בן צבי",
-    "secondaryTitle": "אני מפתח פול סטאק",
+    "secondaryTitle": "אני מפתח תוכנה",
     "description": {
       "firstLine": "עם ניסיון מעשי בתכנון ופיתוח תוכנה מרעיון לפרודקשן, תוך כדי התמקדות במשתמשי הקצה.",
       "secondLine": "אוהב להתמודד עם בעיה מורכבת ולפרק אותה לגורמים הניתנים לפתרון.",
       "thirdLine": "בעל תשוקה לטכנולוגיות חדשות וקוד נקי, שואף תמיד להשתפר וללמוד דברים חדשים."
     }
   },
+  "technologies": "טכנולוגיות",
   "projects": {
     "title": "הפרוייקטים שלי",
     "viterect": {
@@ -77,13 +79,43 @@
         "thirdLine": "צד שרת: RESTful API עם Express לאוטנטקצייה, Socket.io לשליחת הודעות, ולידאציות עם Joi וMongoose לobject modeling בMongoDB. "
       }
     },
+    "demoMicroservicesSystem": {
+      "description": {
+        "firstLine": "מערכת מיקרוסרביסים קטנה המבוססת על 3 מודולים:",
+        "firstModule": "password_module: מחפש בתיקיה 'theHarvester', אשר מכילה קבצים ותיקיות ומנסה לחלץ סיסמא אשר נמצאת בתוך אחד מהקבצים.",
+        "secondModule": {
+          "firstLine": "analyze_module: מנתח את התיקיה בצורה הבא:",
+          "firstBullet": "מחפש בתיקיה את מספר הקבצים מכל סוג(לדוג' ,py, .txt. וכו')",
+          "secondBullet": "מוצא את 10 הקבצים הגדולים ביותר בתיקיה."
+        },
+        "thirdModule": "controller_module: מפעיל את המודולים האחרים ומוציא את הפלט שלהם לתוך json."
+      }
+    },
+    "telegramBot": {
+      "description": "בוט טלגרם לחיפוש נעליים באינטרנט ע\"פ דרישה."
+    },
+    "hotelTasksDashboard": {
+      "description": "הפרויקט הזה הוא דאשבורד לניהול משימות עבור בית מלון. האפליקציה מאפשרת יצירת משימות חדשות, הצגתן, סינון לפי סטטוס ומעקב אחר זמן ההשלמה שלהן. מטרת הפרויקט היא ללמוד React Native תוך כדי יצירת ממשק משתמש פיקסל פרפקט ע\"י דיסייגן סיסטם מאפס ומסכים מוגדרים מראש. בפרוייקט זה השתמשתי ב-Mirage.js עבור API Mocking."
+    },
+    "deliveroo": {
+      "description": "פרוייקט זה הוא הדגמה פשוטה לאפליקציית הזמנת מזון צד לקוח בלבד שנכתבה עם React Native ו-JavaScript.מטרת הפרוייקט היא ללמוד React Native, זה הפרויקט הראשון שלי באמצעות React Native."
+    },
     "rollingBall": {
       "description": "זהו הפרוייקט הראשון שלי, זה משחק שפיתחתי ב Unity. המשחק הוא משחק מבוסס שלבים בו השחקן צריך לעקוף מכשולים ולאסוף יהלומים ע\"מ לעבור שלבים ולפתוח layouts חדשים."
+    },
+    "hotelTsaksDashboard": {
+      "description": ""
+    },
+    "demoMicroservices": {
+      "description": ""
     }
   },
   "skills": {
     "title": "כישורים"
   },
+  "language": "שפה",
+  "animations": "אנימציות",
+  "theme": "נושא",
   "nav": {
     "home": "ראשי",
     "experience": "נסיון",
@@ -98,7 +130,5 @@
     "reload": "רענן",
     "close": "סגירה"
   },
-  "language": "שפה",
-  "theme": "נושא",
   "backToTop": "חזרה לראש העמוד"
 }

@@ -34,7 +34,7 @@ const SkillCard = (props: { skillItem: string, rowIndex: number, colIndex: numbe
 			width="fit-content"
 			key={index}>
 			<Typography className="whitespace-nowrap"
-				variant="small"
+			            variant="small"
 			            size={windowWidth > 350 ? '' : 0.9}
 			            color={isDark() ? theme.colorScheme.accent : theme.colorScheme.body2}>
 				{skillItem}
@@ -77,7 +77,7 @@ const Skill = (props: { skill: [string, string[]], rowIndex: number, colIndex: n
 	)
 }
 
-const Skills = (props: { data: SkillsData[][], innerRef: (node?: Element | null) => void }) => {
+const Skills = (props: { data: SkillsData[], innerRef: (node?: Element | null) => void }) => {
 	const { data, innerRef } = props
 
 	const [isTitleInView, setIsTitleInView] = useState(false)
@@ -98,7 +98,7 @@ const Skills = (props: { data: SkillsData[][], innerRef: (node?: Element | null)
 					<Typography className={`whitespace-nowrap ${windowWidth > 1000 ? '' : 'w-fit'}`}
 					            size={windowWidth > 1000 ? '' : 'inherit'}
 					            variant="h2"
-						color={theme.colorScheme.primary}>
+					            color={theme.colorScheme.primary}>
 						{t('skills.title')}
 					</Typography>
 				</Textfit>
@@ -108,13 +108,13 @@ const Skills = (props: { data: SkillsData[][], innerRef: (node?: Element | null)
 			</Row>
 
 			<Col className="pt-[14px]" dir="ltr">
-				{data.map((row, rowIndex) => (
+				{data.map((row, rowIndex) =>
 					<Row className="pt-[30px] w-full" key={rowIndex}>
-						{row.map((col) => Object.entries(col).map((skill, colIndex) => (
+						{Object.entries(row).map((skill, colIndex) => (
 							<Skill key={colIndex} {...{ skill, rowIndex, colIndex }}/>
-						)))}
+						))}
 					</Row>
-				))}
+				)}
 			</Col>
 		</Col>
 	)

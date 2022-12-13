@@ -5,6 +5,9 @@ import UAParser from "ua-parser-js"
 
 import { defaultMainData, MainContext } from './MainContext'
 import type { MainProviderOptions } from './types'
+import { LocalStorage } from "../../../modules/LocalStorage"
+import { Vars } from "../../../modules/vars"
+
 
 let lastScrollY = 0
 
@@ -14,21 +17,31 @@ const {
 	      sideBarState: defaultSideBarState,
 	      sideBarOpts:  defaultSideBarOptions,
 	      overlayState: defaultOverlayState,
-} = defaultMainData
+      } = defaultMainData
+
+const getIsAnimationActive = () => {
+	const isAnimationActive = LocalStorage.getIsAnimationsActive()
+
+	if (isAnimationActive !== undefined) return isAnimationActive
+
+	LocalStorage.setIsAnimationsActive(Vars.showAnimations)
+
+	return Vars.showAnimations
+}
 
 
 const MainProvider = (props: MainProviderOptions): ReactElement => {
 	const { children } = props
 
-	const [appBarState, setAppBarState]             = useState(defaultAppBarState)
-	const [appBarOptions, setAppBarOptions]         = useState(defaultAppBarOptions)
-	const [sideBarState, setSideBarState]           = useState(defaultSideBarState)
-	const [overlayState, setOverlayState]           = useState(defaultOverlayState)
-	const [sideBarOptions, setSideBarOptions]       = useState(defaultSideBarOptions)
-	const [disableAnimations, setDisableAnimations] = useState(false)
-	const [isMobile, setIsMobile]                   = useState<boolean>(false)
-	const [isTouchable, setIsTouchable]             = useState<boolean>(false)
-	const [scrollDirection, setScrollDirection]     = useState<'up' | 'down'>('down')
+	const [appBarState, setAppBarState]               = useState(defaultAppBarState)
+	const [appBarOptions, setAppBarOptions]           = useState(defaultAppBarOptions)
+	const [sideBarState, setSideBarState]             = useState(defaultSideBarState)
+	const [overlayState, setOverlayState]             = useState(defaultOverlayState)
+	const [sideBarOptions, setSideBarOptions]         = useState(defaultSideBarOptions)
+	const [isAnimationsActive, setIsAnimationsActive] = useState(getIsAnimationActive())
+	const [isMobile, setIsMobile]                     = useState<boolean>(false)
+	const [isTouchable, setIsTouchable]               = useState<boolean>(false)
+	const [scrollDirection, setScrollDirection]       = useState<'up' | 'down'>('down')
 
 	const isTouchListener = () => setIsTouchable(() => true)
 
@@ -74,8 +87,8 @@ const MainProvider = (props: MainProviderOptions): ReactElement => {
 				setSideBarOpts: setSideBarOptions,
 				overlayState,
 				setOverlayState,
-				disableAnimations,
-				setDisableAnimations,
+				isAnimationsActive,
+				setIsAnimationsActive,
 			}
 		}>
 			{children}

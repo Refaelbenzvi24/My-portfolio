@@ -2,6 +2,7 @@ import { AnimationProps } from "framer-motion"
 import i18n from "i18next"
 
 import { Vars } from "../modules/vars"
+import { useMain } from "../context"
 
 
 interface AnimationsObject extends Record<string, AnimationProps & { inView?: object, outOfView?: object } | AnimationsObject> {
@@ -24,7 +25,8 @@ export const generalAnimations = {
 } as const
 
 const useAnimations = () => {
-	const isRTL = i18n.dir() === 'rtl'
+	const {isAnimationsActive} = useMain()
+	const isRTL                = i18n.dir() === 'rtl'
 
 	const animations = {
 		...generalAnimations,
@@ -153,7 +155,7 @@ const useAnimations = () => {
 		)
 	}
 
-	if (!Vars.showAnimations) {
+	if (!isAnimationsActive) {
 		return removeAnimations(animations as AnimationsObject) as typeof animations
 	}
 

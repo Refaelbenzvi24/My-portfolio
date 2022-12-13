@@ -1,4 +1,4 @@
-import { ReactNode, useEffect, useState, Suspense } from "react"
+import { ReactNode, useEffect, useState, Suspense, lazy } from "react"
 
 import { css } from "@emotion/css"
 import { useSpring } from '@react-spring/core'
@@ -13,8 +13,10 @@ import useWindowVars from "../../hooks/useWindowVars"
 import { Vars } from "../../modules/vars"
 import { interpolate } from "../../utils/utils"
 import { ATagButton, Col, isDark, Row, theme, Typography } from "../UI"
-import LaptopModel from "./LaptopModel"
+import { useMain } from "../../context"
 
+
+const LaptopModel = lazy(() => import('./LaptopModel'))
 
 interface HomeProps {
 	name: string,
@@ -27,7 +29,9 @@ interface HomeProps {
 const Home = (props: HomeProps) => {
 	const { name, secondaryTitle, description, resumeLink, innerRef } = props
 
-	const [laptopAnimDuration, setLaptopAnimDuration] = useState(Vars.showAnimations ? 600 : 450)
+	const {isAnimationsActive} = useMain()
+
+	const [laptopAnimDuration, setLaptopAnimDuration] = useState(isAnimationsActive ? 600 : 450)
 	const [colInView, setColInView]                   = useState(false)
 	const [laptopColInView, setLaptopColInView]       = useState(false)
 
@@ -37,12 +41,12 @@ const Home = (props: HomeProps) => {
 
 	const delay = 6
 
-	const [open, setOpen] = useState(!Vars.showAnimations)
+	const [open, setOpen] = useState(!isAnimationsActive)
 
 	const spring = useSpring({ open: Number(open), config: { duration: laptopAnimDuration } })
 
 	useEffect(() => {
-		if (Vars.showAnimations) {
+		if (isAnimationsActive) {
 			if (laptopColInView) {
 				setTimeout(() => {
 					setOpen(true)
@@ -114,7 +118,7 @@ const Home = (props: HomeProps) => {
 					animate={colInView ? animations.home.homeItem.inView : animations.home.homeItem.outOfView}
 					transition={{ delay: delay + 0.7, duration: 0.5 }}>
 					<Typography
-						className={`pt-2 max-w-[702px] ${windowWidth > 1100 ? 'pl-1.5' : 'pl-0.5'}`}
+						className={`pt-2 max-w-[702px]  ${windowWidth > 1100 ? 'pl-1.5 min-w-[600px]' : 'pl-0.5'}`}
 						variant="body"
 						size={windowWidth > 1300 ? '' : interpolate(windowWidth, [0.875, 1], [375, 1300])}
 						color={isDark() ? theme.colorScheme.subtitle2 : theme.colorScheme.subtitle1}>
@@ -146,20 +150,22 @@ const Home = (props: HomeProps) => {
 					initial={animations.home.homeItem.initial}
 					animate={laptopColInView ? animations.home.homeItem.inView : animations.home.homeItem.outOfView}
 					transition={{ delay: delay + 1, duration: 0.5 }}>
-					<Canvas className={css`
-						& > div {
-							${tw`mx-auto`};
-							${windowWidth > 1500 ? tw`max-w-[420px]` : css`
-								min-height: ${interpolate(windowWidth, [220, 340], [280, 1300])}px;
-							`};
-						}
-					`}
-					        dpr={[1, 2]}
-					        camera={{ position: [0, 0, -30], fov: 35 }}>
+					<Canvas
+						className={css`
+							& > div {
+								${tw`mx-auto`};
+								${windowWidth > 1500 ? tw`max-w-[420px]` : css`
+									min-height: ${interpolate(windowWidth, [220, 340], [280, 1300])}px;
+								`};
+							}
+						`}
+						dpr={[1, 2]}
+						camera={{ position: [0, 0, -30], fov: 35 }}>
 						{/* @ts-expect-error - types comes from the package and is out of my control.  */}
 						<three.pointLight position={[10, 10, 10]} intensity={1.5} color={spring.open.to([0, 1], ['#f0f0f0', '#d25578'])}/>
 						<Suspense fallback={null}>
-							<group rotation={[0, Math.PI, 0]}
+							<group visible={laptopColInView}
+							       rotation={[0, Math.PI, 0]}
 							       onClick={(e) => {
 								       e.stopPropagation()
 								       setOpen(!open)

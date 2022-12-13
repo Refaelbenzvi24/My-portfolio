@@ -63,7 +63,7 @@ const AppBar = (props: AppBarProps & typeof defaultProps & Omit<AppBarWrapperPro
 		if (typeof window !== 'undefined') {
 			if (window.scrollY > lastScrollY && window.scrollY > 20) setShow(false)
 
-			if (!(window.scrollY > lastScrollY)) setShow(true)
+			if (window.scrollY <= lastScrollY) setShow(true)
 
 			setLastScrollY(window.scrollY)
 		}

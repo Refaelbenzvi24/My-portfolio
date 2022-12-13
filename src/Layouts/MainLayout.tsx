@@ -26,10 +26,10 @@ interface MainLayoutProps {
 const MainLayout = (props: MainLayoutProps) => {
 	const { children, navigationOptions, currentNavigation, setCurrentNavigation, linksList, email } = props
 
+	const { isAnimationsActive } = useMain()
 
-	const [isLogoVisible, setIsLogoVisible] = useState<boolean>(Vars.showAnimations)
+	const [isLogoVisible, setIsLogoVisible] = useState<boolean>(isAnimationsActive)
 
-	const { disableAnimations } = useMain()
 
 	const animations      = useAnimations()
 	const { windowWidth } = useWindowVars()
@@ -50,7 +50,7 @@ const MainLayout = (props: MainLayoutProps) => {
 				className={css`
 					${tw`h-full w-full mx-auto`}
 
-					${disableAnimations && css` * {
+					${isAnimationsActive && css` * {
 						transition: none !important;
 					}`}
 				`}>

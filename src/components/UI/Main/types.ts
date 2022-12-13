@@ -15,7 +15,7 @@ export interface MainDataType {
 	sideBarState: boolean
 	sideBarOpts: SideBarOptions
 	overlayState: boolean
-	disableAnimations: boolean
+	isAnimationsActive: boolean
 }
 
 export interface MainContextType extends MainDataType {
@@ -24,7 +24,7 @@ export interface MainContextType extends MainDataType {
 	setSideBarState: Dispatch<SetStateAction<boolean>>
 	setSideBarOpts: Dispatch<SetStateAction<SideBarOptions>>
 	setOverlayState: Dispatch<SetStateAction<boolean>>
-	setDisableAnimations: Dispatch<SetStateAction<boolean>>
+	setIsAnimationsActive: Dispatch<SetStateAction<boolean>>
 }
 
 export interface AppBarOptions {

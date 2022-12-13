@@ -12,6 +12,7 @@ import TsconfigPaths from 'vite-tsconfig-paths'
 import istanbul from 'rollup-plugin-istanbul'
 import macrosPlugin from 'vite-plugin-babel-macros'
 import { extendRoute, onRouteGenerate } from './router.config'
+import viteCompression from 'vite-plugin-compression'
 import highlightJs from 'highlight.js'
 
 
@@ -135,6 +136,9 @@ export default defineConfig({
 
 		// https://github.com/aleclarson/vite-tsconfig-paths
 		TsconfigPaths(),
+
+		// https://github.com/vbenjs/vite-plugin-compression
+		viteCompression(),
 
 		ENV === 'test' &&
 		istanbul({
