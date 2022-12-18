@@ -22,7 +22,7 @@ const {
 const getIsAnimationActive = () => {
 	const isAnimationActive = LocalStorage.getIsAnimationsActive()
 
-	if (isAnimationActive !== undefined) return isAnimationActive
+	if (isAnimationActive !== null) return isAnimationActive
 
 	LocalStorage.setIsAnimationsActive(Vars.showAnimations)
 

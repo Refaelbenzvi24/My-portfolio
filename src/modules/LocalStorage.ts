@@ -28,7 +28,7 @@ export class LocalStorage {
 
 	static getIsAnimationsActive() {
 		const isAnimationsActive = localStorage.getItem(LocalStorage.IS_ANIMATIONS_ACTIVE)
-		return isAnimationsActive === 'true'
+		return isAnimationsActive === null ? null : isAnimationsActive === 'true'
 	}
 
 	static setIsAnimationsActive(isAnimationsActive: boolean) {
