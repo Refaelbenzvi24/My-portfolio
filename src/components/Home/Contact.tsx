@@ -7,8 +7,8 @@ import * as Yup from "yup"
 
 import useAnimations, { generalAnimations } from "../../hooks/useAnimations"
 import useToasts from "../../hooks/useToasts"
-import useWindowVars from "../../hooks/useWindowVars"
 import { ATagButton, Button, Col, Divider, isDark, Row, TextArea, TextField, theme, Typography } from "../UI"
+import useDimensions from "../../hooks/useDimensions"
 
 
 interface ContactProps {
@@ -31,7 +31,7 @@ const Contact = (props: ContactProps) => {
 	const [getInTouchIsInView, setGetInTouchIsInView] = useState(false)
 
 	const { t }           = useTranslation()
-	const { windowWidth } = useWindowVars()
+	const { windowWidth } = useDimensions()
 	const animations      = useAnimations()
 
 	const formik = useFormik({

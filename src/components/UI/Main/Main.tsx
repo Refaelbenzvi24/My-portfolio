@@ -6,11 +6,11 @@ import tw from "twin.macro"
 import type { ReactDivProps } from 'types'
 
 import { useMain } from "../../../context"
-import WindowVars from '../../../hooks/useWindowVars'
 import Backdrop from "../Backdrop/Backdrop"
 import theme from "../Utils/theme"
 import { marginTransition } from "../Utils/transitions"
 import MainProvider from './MainProvider'
+import useDimensions from "../../../hooks/useDimensions"
 
 
 interface MainProps extends ReactDivProps {
@@ -22,7 +22,7 @@ const Main = (props: MainProps) => {
 	const { appBarState, appBarOpts, sideBarState: sideBar, sideBarOpts, overlayState, setSideBarState, setOverlayState } = useMain()
 
 	const overlaysRoot    = document.querySelector('#portals-root')
-	const { windowWidth } = WindowVars()
+	const { windowWidth } = useDimensions()
 
 	const { children, className, dark } = props
 	const { shrinkPoint }               = sideBarOpts

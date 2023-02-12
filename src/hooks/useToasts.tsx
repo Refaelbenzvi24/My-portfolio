@@ -4,13 +4,14 @@ import { toast } from "react-toastify"
 
 import { Button, isDark, Row, theme, Typography } from "../components/UI"
 import { Vars } from "../modules/vars"
-import useWindowVars from "./useWindowVars"
+import useDimensions from "./useDimensions"
+import { useMain } from "../context"
 
 
 const useToasts = () => {
 	const isDarkMode      = isDark()
-	const { isTouchable } = useWindowVars()
-	const { windowWidth } = useWindowVars()
+	const { isTouchable } = useMain()
+	const { windowWidth } = useDimensions()
 
 	const { t } = useTranslation()
 

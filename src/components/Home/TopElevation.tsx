@@ -3,9 +3,9 @@ import { AnimatePresence, motion } from "framer-motion"
 import tw from "twin.macro"
 
 import useAnimations from "../../hooks/useAnimations"
-import useWindowVars from "../../hooks/useWindowVars"
 import { interpolate, scrollToElement } from "../../utils/utils"
 import { Button, isDark, theme } from "../UI"
+import useDimensions from "../../hooks/useDimensions"
 
 
 interface TopElevationProps {
@@ -15,7 +15,7 @@ interface TopElevationProps {
 
 const TopElevation = ({ homeWrapperInView, experienceWrapperInView }: TopElevationProps) => {
 	const isDarkMode                    = isDark()
-	const { windowWidth, windowHeight } = useWindowVars()
+	const { windowWidth, windowHeight } = useDimensions()
 
 	const animations = useAnimations()
 

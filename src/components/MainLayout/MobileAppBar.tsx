@@ -6,10 +6,10 @@ import Logo from "../../assets/LogoSmall.webp"
 import { ATagButton, Button, Col, HamburgerSideBar, isDark, Navigation, Row, theme, ThemeToggle, Tooltip, Typography } from "../UI"
 import LanguageSelector from "../LanguageSelector"
 import useAnimations from "../../hooks/useAnimations"
-import useWindowVars from "../../hooks/useWindowVars"
 import { ReactNode, useState } from "react"
 import { NavigationItemType } from "./AppBar"
 import AnimationsToggle from "../AnimationsToggle"
+import useDimensions from "../../hooks/useDimensions"
 
 
 interface MainLayoutMobileAppBarProps {
@@ -26,7 +26,7 @@ const MainLayoutMobileAppBar = (props: MainLayoutMobileAppBarProps) => {
 	const [isHamburgerSideBarOpen, setIsHamburgerSideBarOpen] = useState<boolean>(false)
 
 	const animations      = useAnimations()
-	const { windowWidth } = useWindowVars()
+	const { windowWidth } = useDimensions()
 
 	const { t } = useTranslation()
 

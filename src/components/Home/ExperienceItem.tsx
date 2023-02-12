@@ -5,10 +5,10 @@ import { Textfit } from "react-textfit"
 import tw from "twin.macro"
 
 import useAnimations from "../../hooks/useAnimations"
-import useWindowVars from "../../hooks/useWindowVars"
 import { interpolate } from "../../utils/utils"
 import { Card, Col, isDark, Row, theme, Tooltip, Typography } from "../UI"
 import ATagButton from "../UI/Buttons/ATagButton"
+import useDimensions from "../../hooks/useDimensions"
 
 
 export interface ExperienceData {
@@ -29,7 +29,7 @@ const ExperienceItem = (props: ExperienceData & { index: number }) => {
 
 	const { t } = useTranslation()
 
-	const { windowWidth } = useWindowVars()
+	const { windowWidth } = useDimensions()
 	const animations      = useAnimations()
 	const isDarkMode      = isDark()
 

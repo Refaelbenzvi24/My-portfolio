@@ -7,11 +7,11 @@ import { HTMLMotionProps, motion } from "framer-motion"
 import tw from "twin.macro"
 
 import { useMain } from "../../../context"
-import windowVariables from '../../../hooks/useWindowVars'
 import { defaultMainData } from '../Main/MainContext'
 import theme from "../Utils/theme"
 import { transformTransition } from "../Utils/transitions"
 import { conditionalTranslate } from "../Utils/utils"
+import useDimensions from "../../../hooks/useDimensions"
 
 
 interface SideBarProps extends HTMLMotionProps<"nav"> {
@@ -63,7 +63,7 @@ const SideBar = (props: SideBarProps & typeof defaultProps) => {
 
 	const { dark, children, permanent, width, className, shrinkPoint, showButton, ...restProps } = props
 
-	const { windowWidth } = windowVariables()
+	const { windowWidth } = useDimensions()
 
 
 	const setOpenState = (state: boolean) => {

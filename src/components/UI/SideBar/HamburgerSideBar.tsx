@@ -7,7 +7,8 @@ import i18n from "i18next"
 import tw from "twin.macro"
 
 import { Button, isDark, theme } from '..'
-import useWindowVars from "../../../hooks/useWindowVars"
+import useDimensions from "../../../hooks/useDimensions"
+import { useMain } from "../../../context"
 
 
 const sidebar = {
@@ -67,8 +68,8 @@ const HamburgerSideBar = (props: HamburgerSideBarProps & typeof defaultProps) =>
 	const isDarkMode = isDark()
 	const isRTL      = i18n.dir() === "rtl"
 
-	const { isMobile }                  = useWindowVars()
-	const { windowHeight, windowWidth } = useWindowVars()
+	const { isMobile }                  = useMain()
+	const { windowHeight, windowWidth } = useDimensions()
 
 
 	const [isOpen, toggleOpen] = useCycle(false, true)

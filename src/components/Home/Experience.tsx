@@ -3,9 +3,9 @@ import { useState } from "react"
 import { Textfit } from "react-textfit"
 
 import useAnimations from "../../hooks/useAnimations"
-import useWindowVars from "../../hooks/useWindowVars"
 import { Col, Divider, Row, theme, Typography } from "../UI"
 import ExperienceItem, { ExperienceData } from "./ExperienceItem"
+import useDimensions from "../../hooks/useDimensions"
 
 
 const Experience = (props: { data: ExperienceData[], innerRef: (node?: Element | null) => void }) => {
@@ -13,7 +13,7 @@ const Experience = (props: { data: ExperienceData[], innerRef: (node?: Element |
 
 	const [inView, setInView] = useState(false)
 
-	const { windowWidth } = useWindowVars()
+	const { windowWidth } = useDimensions()
 	const { t }           = useTranslation()
 
 	const animations = useAnimations()

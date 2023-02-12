@@ -6,10 +6,8 @@ import { useMain } from "../context"
 const useWindowVars = () => {
 	const { isTouchable, isMobile, scrollDirection } = useMain()
 
-	const [windowWidth, setWindowWidth]   = useState(window.innerWidth)
-	const [windowHeight, setWindowHeight] = useState(window.innerHeight)
-	const [pointerX, setPointerX]         = useState(windowWidth / 2)
-	const [pointerY, setPointerY]         = useState(windowHeight / 2)
+	const [pointerX, setPointerX] = useState(window.innerWidth / 2)
+	const [pointerY, setPointerY] = useState(window.innerHeight / 2)
 
 
 	const setMouseData = (evt: MouseEvent) => {
@@ -24,19 +22,12 @@ const useWindowVars = () => {
 		}
 	}
 
-	const setWindowData = () => {
-		setWindowHeight(window.innerHeight)
-		setWindowWidth(window.innerWidth)
-	}
-
 
 	useEffect(() => {
-		window.addEventListener('resize', setWindowData)
 		window.addEventListener('mousemove', setMouseData)
 		window.addEventListener('touchmove', setTouchData)
 
 		return () => {
-			window.removeEventListener('resize', setWindowData)
 			window.removeEventListener('mousemove', setMouseData)
 			window.removeEventListener('touchmove', setTouchData)
 		}
@@ -46,8 +37,6 @@ const useWindowVars = () => {
 		isTouchable,
 		isMobile,
 		scrollDirection,
-		windowWidth,
-		windowHeight,
 		pointerX,
 		pointerY,
 	}

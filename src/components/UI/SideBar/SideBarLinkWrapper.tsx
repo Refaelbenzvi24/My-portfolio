@@ -1,8 +1,8 @@
 import { HTMLMotionProps, motion } from "framer-motion"
 
 import { useMain } from "../../../context"
-import windowVariables from '../../../hooks/useWindowVars'
 import { defaultMainData } from '../Main/MainContext'
+import useDimensions from "../../../hooks/useDimensions"
 
 
 const { sideBarOpts: defaultSideBarOptions } = defaultMainData
@@ -13,7 +13,7 @@ const SideBarLink = (props: HTMLMotionProps<"div">) => {
 
 	const { sideBarState, sideBarOpts, setSideBarState, setOverlayState } = useMain()
 
-	const { windowWidth } = windowVariables()
+	const { windowWidth } = useDimensions()
 
 	const { shrinkPoint } = {
 		...sideBarOpts,

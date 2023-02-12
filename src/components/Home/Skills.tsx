@@ -4,8 +4,8 @@ import { motion } from "framer-motion"
 import { Textfit } from "react-textfit"
 
 import useAnimations from "../../hooks/useAnimations"
-import useWindowVars from "../../hooks/useWindowVars"
 import { Card, Col, Divider, isDark, Row, theme, Typography } from "../UI"
+import useDimensions from "../../hooks/useDimensions"
 
 
 export type SkillsData = Record<string, string[]>;
@@ -14,7 +14,7 @@ const SkillCard = (props: { skillItem: string, rowIndex: number, colIndex: numbe
 	const { skillItem, rowIndex, colIndex, index } = props
 
 	const animations      = useAnimations()
-	const { windowWidth } = useWindowVars()
+	const { windowWidth } = useDimensions()
 
 	const [inView, setInView] = useState(false)
 
@@ -48,7 +48,7 @@ const Skill = (props: { skill: [string, string[]], rowIndex: number, colIndex: n
 
 	const [inView, setInView] = useState(false)
 
-	const { windowWidth } = useWindowVars()
+	const { windowWidth } = useDimensions()
 	const animations      = useAnimations()
 
 	return (
@@ -84,7 +84,7 @@ const Skills = (props: { data: SkillsData[], innerRef: (node?: Element | null) =
 
 	const { t }           = useTranslation()
 	const animations      = useAnimations()
-	const { windowWidth } = useWindowVars()
+	const { windowWidth } = useDimensions()
 
 
 	return (

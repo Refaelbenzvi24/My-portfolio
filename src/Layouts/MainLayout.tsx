@@ -8,10 +8,9 @@ import AnimatedLandingLogo from "../components/MainLayout/AnimatedLandingLogo"
 import { ATagButton, Col, Divider, Main, Row, theme, Typography } from "../components/UI"
 import { useMain } from "../context"
 import useAnimations from "../hooks/useAnimations"
-import useWindowVars from "../hooks/useWindowVars"
-import { Vars } from "../modules/vars"
 import MainLayoutAppBar, { NavigationItemType } from "../components/MainLayout/AppBar"
 import MainLayoutMobileAppBar from "../components/MainLayout/MobileAppBar"
+import useDimensions from "../hooks/useDimensions"
 
 
 interface MainLayoutProps {
@@ -30,9 +29,8 @@ const MainLayout = (props: MainLayoutProps) => {
 
 	const [isLogoVisible, setIsLogoVisible] = useState<boolean>(isAnimationsActive)
 
-
 	const animations      = useAnimations()
-	const { windowWidth } = useWindowVars()
+	const { windowWidth } = useDimensions()
 
 	useEffect(() => {
 		setTimeout(() => {
@@ -41,6 +39,7 @@ const MainLayout = (props: MainLayoutProps) => {
 	}, [])
 
 	const delay = 4.3
+
 
 	return (
 		<>

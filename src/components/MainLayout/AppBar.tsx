@@ -6,8 +6,8 @@ import { interpolate, scrollToElement } from "../../utils/utils"
 import Logo from "../../assets/LogoSmall.webp"
 import LanguageSelector from "../LanguageSelector"
 import useAnimations from "../../hooks/useAnimations"
-import useWindowVars from "../../hooks/useWindowVars"
 import AnimationsToggle from "../AnimationsToggle"
+import useDimensions from "../../hooks/useDimensions"
 
 
 export interface NavigationItemType {
@@ -30,7 +30,7 @@ const MainLayoutAppBar = (props: MainLayoutAppBarProps) => {
 	const { delay, setCurrentNavigation, navigationOptions, currentNavigation } = props
 
 	const animations      = useAnimations()
-	const { windowWidth } = useWindowVars()
+	const { windowWidth } = useDimensions()
 
 	const { t } = useTranslation()
 

@@ -3,11 +3,11 @@ import { ReactNode, useState } from "react"
 import { Textfit } from "react-textfit"
 
 import useAnimations from "../../hooks/useAnimations"
-import useWindowVars from "../../hooks/useWindowVars"
 import { Col, Divider, isDark, Row, theme, Tooltip, Typography } from "../UI"
 import ATagButton from "../UI/Buttons/ATagButton"
 import { css } from "@emotion/css"
 import tw from "twin.macro"
+import useDimensions from "../../hooks/useDimensions"
 
 
 export interface ProjectData {
@@ -21,7 +21,7 @@ export interface ProjectData {
 const Project = (props: ProjectData & { index: number, listLength: number }) => {
 	const { title, description, githubLink, siteLink, technologies, index, listLength } = props
 
-	const { windowWidth } = useWindowVars()
+	const { windowWidth } = useDimensions()
 	const animation       = useAnimations()
 
 	const [inView, setInView] = useState(false)
@@ -129,7 +129,7 @@ const Projects = (props: { data: ProjectData[], innerRef: (node?: Element | null
 	const { data, innerRef } = props
 
 	const { t }           = useTranslation()
-	const { windowWidth } = useWindowVars()
+	const { windowWidth } = useDimensions()
 	const animations      = useAnimations()
 
 	const [inView, setInView] = useState(false)

@@ -15,16 +15,16 @@ import TopElevation from "../components/Home/TopElevation"
 import { Button, Col, Portal, theme, Tooltip } from "../components/UI"
 import data from "../data"
 import useAnimations, { generalAnimations } from "../hooks/useAnimations"
-import useWindowVars from "../hooks/useWindowVars"
 import MainLayout from "../Layouts/MainLayout"
 import { interpolate, scrollToElement } from "../utils/utils"
+import useDimensions from "../hooks/useDimensions"
 
 
 export default () => {
 	const { email, linksList, homeData, experience, projects, skillsList, navigationOptions } = data()
 	const [currentNavigation, setCurrentNavigation] = useState<{ label: string, value: string }>(navigationOptions[0])
 
-	const { windowWidth } = useWindowVars()
+	const { windowWidth } = useDimensions()
 
 	const { t } = useTranslation()
 

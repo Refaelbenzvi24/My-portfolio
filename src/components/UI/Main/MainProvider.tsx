@@ -46,8 +46,8 @@ const MainProvider = (props: MainProviderOptions): ReactElement => {
 	const isTouchListener = () => setIsTouchable(() => true)
 
 	const scrollDirectionHandler = () => {
-		const scrollDirection = window.scrollY > lastScrollY ? 'down' : 'up'
-		setScrollDirection(scrollDirection)
+		const currentScrollDirection = window.scrollY > lastScrollY ? 'down' : 'up'
+		if (scrollDirection !== currentScrollDirection) setScrollDirection(() => currentScrollDirection)
 		lastScrollY = window.scrollY
 	}
 

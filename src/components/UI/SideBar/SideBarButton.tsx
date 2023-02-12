@@ -7,12 +7,12 @@ import tw from "twin.macro"
 
 import { isDark } from '..'
 import { useMain } from "../../../context"
-import windowVariables from "../../../hooks/useWindowVars"
 import { ReactDivProps } from "../../../types"
 import IconButton from "../Buttons/IconButton"
 import theme from "../Utils/theme"
 import { transformTransition } from "../Utils/transitions"
 import { conditionalRotate, conditionalTranslate } from "../Utils/utils"
+import useDimensions from "../../../hooks/useDimensions"
 
 
 const SideBarButtonWrapper = styled(motion.div)(({ dark, width, state }: { state: boolean, width?: number, dark?: boolean }) => [
@@ -43,7 +43,7 @@ const SideBarButton = ({ className, dir, dark }: SideBarButtonProps) => {
 
 	const darkMode = dark || isDark()
 
-	const { windowWidth }        = windowVariables()
+	const { windowWidth }        = useDimensions()
 	const { width, shrinkPoint } = sideBarOpts
 
 	const setOpenState = (state: boolean) => {

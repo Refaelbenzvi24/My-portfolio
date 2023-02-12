@@ -9,11 +9,10 @@ import { motion } from "framer-motion"
 import tw from "twin.macro"
 
 import useAnimations from "../../hooks/useAnimations"
-import useWindowVars from "../../hooks/useWindowVars"
-import { Vars } from "../../modules/vars"
 import { interpolate } from "../../utils/utils"
 import { ATagButton, Col, isDark, Row, theme, Typography } from "../UI"
 import { useMain } from "../../context"
+import useDimensions from "../../hooks/useDimensions"
 
 
 const LaptopModel = lazy(() => import('./LaptopModel'))
@@ -37,7 +36,7 @@ const Home = (props: HomeProps) => {
 
 	const { t }                         = useTranslation()
 	const animations                    = useAnimations()
-	const { windowWidth, windowHeight } = useWindowVars()
+	const { windowWidth, windowHeight } = useDimensions()
 
 	const delay = 6
 

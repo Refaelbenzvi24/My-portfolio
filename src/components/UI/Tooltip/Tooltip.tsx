@@ -10,9 +10,9 @@ import { LongPressDetectEvents, useLongPress } from "use-long-press"
 import { LongPressEvent } from "use-long-press/dist/types"
 
 import { isDark, Typography } from '..'
-import useWindowVars from "../../../hooks/useWindowVars"
 import Portal from "../Portal/Portal"
 import theme from "../Utils/theme"
+import { useMain } from "../../../context"
 
 
 type Placement = `${'top' | 'bottom' | 'center'}-${'left' | 'right' | 'center'}`
@@ -112,7 +112,7 @@ interface TooltipProps extends HTMLMotionProps<"div"> {
 }
 
 const Tooltip = (props: TooltipProps & typeof defaultProps) => {
-	const { isTouchable } = useWindowVars()
+	const { isTouchable } = useMain()
 
 	const {
 		      children,
