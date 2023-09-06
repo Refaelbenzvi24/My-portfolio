@@ -162,17 +162,17 @@ const Home = (props: HomeProps) => {
 						camera={{ position: [0, 0, -30], fov: 35 }}>
 						{/* @ts-expect-error - types comes from the package and is out of my control.  */}
 						<three.pointLight position={[10, 10, 10]} intensity={1.5} color={spring.open.to([0, 1], ['#f0f0f0', '#d25578'])}/>
-						<Suspense fallback={null}>
-							<group visible={laptopColInView}
-							       rotation={[0, Math.PI, 0]}
-							       onClick={(e) => {
-								       e.stopPropagation()
-								       setOpen(!open)
-							       }}>
-								<LaptopModel open={open} scale={1.4} hinge={spring.open.to([0, 1], [1.575, -0.425])}/>
-							</group>
-							<Environment preset="city"/>
-						</Suspense>
+							<Suspense fallback={() => ''}>
+								<group visible={laptopColInView}
+									   rotation={[0, Math.PI, 0]}
+									   onClick={(e) => {
+										   e.stopPropagation()
+										   setOpen(!open)
+									   }}>
+									<LaptopModel open={open} scale={1.4} hinge={spring.open.to([0, 1], [1.575, -0.425])}/>
+								</group>
+								<Environment preset="city"/>
+							</Suspense>
 						<ContactShadows position={[0, -4.5, 0]} opacity={0.4} scale={20} blur={1.75} far={4.5}/>
 					</Canvas>
 				</motion.div>
