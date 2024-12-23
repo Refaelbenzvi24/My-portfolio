@@ -8,13 +8,14 @@ import { IconButtonProps } from "./UI/Buttons/IconButton"
 const LanguageSelector = (props: IconButtonProps) => {
 	const { i18n } = useTranslation()
 
-	const changeLanguage = async (language: Language): Promise<void> => {
+	const changeLanguage = async (language: Language) => {
 		await i18n.changeLanguage(language)
 		LocalStorage.setLanguage(language)
-		document.dir = i18n.dir()
+		window.document.dir = i18n.dir(language)
+		window.document.lang = language
 	}
 
-	const languageToggle = async (): Promise<void> => {
+	const languageToggle = async () => {
 		await changeLanguage(i18n.language === 'en' ? 'he' : 'en')
 	}
 

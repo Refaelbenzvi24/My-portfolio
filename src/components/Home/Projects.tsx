@@ -8,6 +8,7 @@ import ATagButton from "../UI/Buttons/ATagButton"
 import { css } from "@emotion/css"
 import tw from "twin.macro"
 import useDimensions from "../../hooks/useDimensions"
+import clsx from "clsx"
 
 
 export interface ProjectData {
@@ -18,7 +19,7 @@ export interface ProjectData {
 	siteLink?: string
 }
 
-const Project = (props: ProjectData & { index: number, listLength: number }) => {
+const Project = (props: ProjectData & { className?: string, index: number, listLength: number }) => {
 	const { title, description, githubLink, siteLink, technologies, index, listLength } = props
 
 	const { windowWidth } = useDimensions()
@@ -36,7 +37,7 @@ const Project = (props: ProjectData & { index: number, listLength: number }) => 
 			}}
 			viewport={{ once: true }}
 			onViewportEnter={() => setInView(true)}
-			className={`items-center space-y-[30px] w-full`}>
+			className={clsx(`items-center space-y-[30px] w-full`, props.className ?? "")}>
 			<Col className="pl-[10px] w-full">
 				<Row className={`justify-between pt-[24px] `}>
 					<Typography variant="h3" color={isDark() ? theme.colorScheme.accent : theme.colorScheme.body1}>
@@ -125,7 +126,7 @@ const Project = (props: ProjectData & { index: number, listLength: number }) => 
 	)
 }
 
-const Projects = (props: { data: ProjectData[], innerRef: (node?: Element | null) => void }) => {
+const Projects = (props: { data: ProjectData[], title?: string, innerRef: (node?: Element | null) => void }) => {
 	const { data, innerRef } = props
 
 	const { t }           = useTranslation()
@@ -146,7 +147,7 @@ const Projects = (props: { data: ProjectData[], innerRef: (node?: Element | null
 					            size={windowWidth > 1000 ? '' : 'inherit'}
 					            variant="h2"
 					            color={theme.colorScheme.primary}>
-						{t('projects.title')}
+						{props.title ?? t('projects.title')}
 					</Typography>
 				</Textfit>
 

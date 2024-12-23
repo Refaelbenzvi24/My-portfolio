@@ -30,7 +30,7 @@ const Experience = (props: { data: ExperienceData[], innerRef: (node?: Element |
 					            size={windowWidth > 1000 ? '' : 'inherit'}
 					            variant="h2"
 						color={theme.colorScheme.primary}>
-						{t('experience.title')}
+						{t('flagshipProjects.title')}
 					</Typography>
 				</Textfit>
 

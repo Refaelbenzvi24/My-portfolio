@@ -21,7 +21,7 @@ import useDimensions from "../hooks/useDimensions"
 
 
 export default () => {
-	const { email, linksList, homeData, experience, projects, skillsList, navigationOptions } = data()
+	const { email, linksList, homeData, experience, flagshipProjects, projects, skillsList, navigationOptions } = data()
 	const [currentNavigation, setCurrentNavigation] = useState<{ label: string, value: string }>(navigationOptions[0])
 
 	const { windowWidth } = useDimensions()
@@ -72,11 +72,13 @@ export default () => {
 					<Col
 						className={`${css`
 							& > div {
-								${tw`mt-[200px] pt-[180px]`};
+								${tw`mt-[200px] pt-[220px]`};
 							}
 						`} ${windowWidth > 1300 ? 'max-w-[920px] mx-auto' : ''}`}>
 
-						<Experience innerRef={experienceWrapperRef} data={experience}/>
+						<Projects title={t('experience.title')} innerRef={projectsWrapperRef} data={experience}/>
+
+						<Experience innerRef={experienceWrapperRef} data={flagshipProjects}/>
 
 						<Projects innerRef={projectsWrapperRef} data={projects}/>
 

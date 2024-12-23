@@ -63,7 +63,31 @@ const data = (): Data => {
 		resumeLink:     'https://drive.google.com/file/d/13Ka8Ii_-iuz22BqavhnzsT9oC-y509cs/view?usp=sharing',
 	}
 
-	const experience: Data["experience"] = [
+	const experience: Data["projects"] = [
+		{
+			title:        'Full Stack Developer - Utopia Tech Corp (2023 - Present)',
+			description:  <>
+				              <ul className={css`
+					              ${tw`pl-4 py-1.5 ml-4 rtl:pl-0 rtl:pr-4 space-y-3 list-disc`}
+					              li::marker {
+						              color: ${theme.colorScheme.secondary};
+					              }
+				              `}>
+					              <li>{t('experience.utopia.description.bullet1')}</li>
+					              <li>{t('experience.utopia.description.bullet2')}</li>
+					              <li>{t('experience.utopia.description.bullet3')}</li>
+					              <li>{t('experience.utopia.description.bullet4')}</li>
+					              <li>{t('experience.utopia.description.bullet5')}</li>
+					              <li>{t('experience.utopia.description.bullet6')}</li>
+					              <li>{t('experience.utopia.description.bullet7')}</li>
+				              </ul>
+			              </>,
+			technologies: ['Node.js', 'React', 'Express', 'PostgreSQL', 'TypeScript', 'JavaScript'],
+			githubLink:   'https://github.com/Refaelbenzvi24/Messaging-frontend',
+		}
+	]
+
+	const flagshipProjects: Data["experience"] = [
 		{
 			title:        'FitnessHub - Full Stack Developer - Self employed',
 			dates:        '2021-2022',
@@ -102,7 +126,7 @@ const data = (): Data => {
 			videoLink:    'https://www.youtube.com/watch?v=XGT6-gnB93Y',
 			description:  <>
 				              <p>
-					              {t('experience.fitnesshub.description.firstLine')}
+					              {t('flagshipProjects.fitnesshub.description.firstLine')}
 				              </p>
 				              <ul className={css`
 					              ${tw`pl-4 pt-2 rtl:pl-0 rtl:pr-4 list-disc`}
@@ -110,9 +134,9 @@ const data = (): Data => {
 						              color: ${theme.colorScheme.secondary};
 					              }
 				              `}>
-					              <li>{t('experience.fitnesshub.description.firstBullet')}</li>
-					              <li>{t('experience.fitnesshub.description.secondBullet')}</li>
-					              <li>{t('experience.fitnesshub.description.thirdBullet')}</li>
+					              <li>{t('flagshipProjects.fitnesshub.description.firstBullet')}</li>
+					              <li>{t('flagshipProjects.fitnesshub.description.secondBullet')}</li>
+					              <li>{t('flagshipProjects.fitnesshub.description.thirdBullet')}</li>
 				              </ul>
 			              </>,
 		}, {
@@ -152,17 +176,17 @@ const data = (): Data => {
 			githubLink:   'https://github.com/flashcards-app',
 			siteLink:     'https://flashcardsapps.netlify.app/',
 			description:  <>
-				              <p>{t('experience.flashcards.description.firstLine')}</p>
-				              <p className="pt-0.5">{t('experience.flashcards.description.secondLine')}</p>
+				              <p>{t('flagshipProjects.flashcards.description.firstLine')}</p>
+				              <p className="pt-0.5">{t('flagshipProjects.flashcards.description.secondLine')}</p>
 				              <ul className={css`
 					              ${tw`pl-4 pt-2 rtl:pl-0 rtl:pr-4 list-disc`}
 					              li::marker {
 						              color: ${theme.colorScheme.secondary};
 					              }
 				              `}>
-					              <li>{t('experience.flashcards.description.firstBullet')}</li>
-					              <li>{t('experience.flashcards.description.secondBullet')}</li>
-					              <li>{t('experience.flashcards.description.thirdBullet')}</li>
+					              <li>{t('flagshipProjects.flashcards.description.firstBullet')}</li>
+					              <li>{t('flagshipProjects.flashcards.description.secondBullet')}</li>
+					              <li>{t('flagshipProjects.flashcards.description.thirdBullet')}</li>
 				              </ul>
 			              </>,
 		}, {
@@ -203,8 +227,8 @@ const data = (): Data => {
 			githubLink:   'https://github.com/Cleary-by-francesca',
 			siteLink:     'https://shifterapp.netlify.app/',
 			description:  <>
-				              <p>{t('experience.shifter.description.firstLine')}</p>
-				              <p>{t('experience.shifter.description.secondLine')}</p>
+				              <p>{t('flagshipProjects.shifter.description.firstLine')}</p>
+				              <p>{t('flagshipProjects.shifter.description.secondLine')}</p>
 
 				              <ul className={css`
 					              ${tw`pl-4 pt-2 rtl:pl-0 rtl:pr-4 list-disc`}
@@ -212,9 +236,9 @@ const data = (): Data => {
 						              color: ${theme.colorScheme.secondary};
 					              }
 				              `}>
-					              <li>{t('experience.shifter.description.firstBullet')}</li>
-					              <li>{t('experience.shifter.description.secondBullet')}</li>
-					              <li>{t('experience.shifter.description.thirdBullet')}</li>
+					              <li>{t('flagshipProjects.shifter.description.firstBullet')}</li>
+					              <li>{t('flagshipProjects.shifter.description.secondBullet')}</li>
+					              <li>{t('flagshipProjects.shifter.description.thirdBullet')}</li>
 				              </ul>
 			              </>,
 		}]
@@ -345,7 +369,7 @@ const data = (): Data => {
 		{ label: t('nav.contact'), value: '#contact' },
 	]
 
-	return { email, linksList, homeData, experience, projects, skillsList, navigationOptions }
+	return { email, linksList, homeData, experience, flagshipProjects, projects, skillsList, navigationOptions }
 }
 
 export default data

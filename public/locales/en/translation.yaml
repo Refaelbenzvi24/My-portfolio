@@ -22,6 +22,20 @@
   },
   "experience": {
     "title": "Experience",
+    "utopia": {
+      "description": {
+        "bullet1": "Server-side development in JavaScript at NodeJS runtime using Express working with Elasticsearch Server and PostgreSQL",
+        "bullet2": "FrontEnd development using TypeScript/JavaScript, ReactJS",
+        "bullet3": "E2E design and development of applications on the cloud, including GCP Storage, and GKE",
+        "bullet4": "Led legacy system migration in the aspect of the data schema changes, migrate over 100 million records while ensuring data integrity",
+        "bullet5": "Implementing logging and error handling conventions across various systems to improve debugging and bug reproduce",
+        "bullet6": "Written an Integration and Unit test using Jest, Mocha, Sinon, and Chai - to enable continuous integration(CI/CD)",
+        "bullet7": "Developed a CLI tool to manage backend code permissions changes saving hundred of development hours & Support time as well"
+      }
+    }
+  },
+  "flagshipProjects": {
+    "title": "Flagship Projects",
     "fitnesshub": {
       "description": {
         "firstLine": "Working in collaboration with a fitness trainer and his trainees on a recipes and fitness web app.",
@@ -65,7 +79,7 @@
   },
   "technologies": "Technologies",
   "projects": {
-    "title": "My Projects",
+    "title": "Projects",
     "viterect": {
       "description": "A boilerplate/template built using Vite and React with a lot of configured and implemented tools ready to use, useful for those who want to start a new project and prefer to not invest their time in configuration and the setup of the project which can take a lot of time and delay the development. i18n for translation, PWA, file-based routing, API requests using React Query, unit testing using Jest and E2E tests with Cypress, CI/CD with GitHub Actions and GCloud."
     },
