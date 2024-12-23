@@ -22,7 +22,10 @@ import useDimensions from "../hooks/useDimensions"
 
 export default () => {
 	const { email, linksList, homeData, experience, flagshipProjects, projects, skillsList, navigationOptions } = data()
-	const [currentNavigation, setCurrentNavigation] = useState<{ label: string, value: string }>(navigationOptions[0])
+	const [currentNavigation, setCurrentNavigation]                                                             = useState<{
+		label: string,
+		value: string
+	}>(navigationOptions[0])
 
 	const { windowWidth } = useDimensions()
 
@@ -30,15 +33,17 @@ export default () => {
 
 	const animations = useAnimations()
 
-	const { ref: homeWrapperRef, inView: homeWrapperInView }             = useInView()
-	const { ref: experienceWrapperRef, inView: experienceWrapperInView } = useInView({ rootMargin: '-200px' })
-	const { ref: projectsWrapperRef, inView: projectsWrapperInView }     = useInView({ rootMargin: '-200px' })
-	const { ref: skillsWrapperRef, inView: skillsWrapperInView }         = useInView({ rootMargin: '-200px' })
-	const { ref: contactWrapperRef, inView: contactWrapperInView }       = useInView({ rootMargin: '-200px' })
+	const { ref: homeWrapperRef, inView: homeWrapperInView }                         = useInView()
+	const { ref: experienceWrapperRef, inView: experienceWrapperInView }             = useInView({ rootMargin: '-200px' })
+	const { ref: flagshipProjectsWrapperRef, inView: flagshipProjectsWrapperInView } = useInView({ rootMargin: '-200px' })
+	const { ref: projectsWrapperRef, inView: projectsWrapperInView }                 = useInView({ rootMargin: '-200px' })
+	const { ref: skillsWrapperRef, inView: skillsWrapperInView }                     = useInView({ rootMargin: '-200px' })
+	const { ref: contactWrapperRef, inView: contactWrapperInView }                   = useInView({ rootMargin: '-200px' })
 
 	useEffect(() => {
 		if (homeWrapperInView) setCurrentNavigation({ label: 'Home', value: '#main' })
 		if (experienceWrapperInView) setCurrentNavigation({ label: 'Experience', value: '#experience' })
+		if (flagshipProjectsWrapperInView) setCurrentNavigation({ label: 'Flagship Projects', value: '#flagship-projects' })
 		if (projectsWrapperInView) setCurrentNavigation({ label: 'Projects', value: '#projects' })
 		if (skillsWrapperInView) setCurrentNavigation({ label: 'Skills', value: '#skills' })
 		if (contactWrapperInView) setCurrentNavigation({ label: 'Contact', value: '#contact' })
@@ -76,7 +81,7 @@ export default () => {
 							}
 						`} ${windowWidth > 1300 ? 'max-w-[920px] mx-auto' : ''}`}>
 
-						<Projects title={t('experience.title')} innerRef={projectsWrapperRef} data={experience}/>
+						<Projects id="experience" title={t('experience.title')} innerRef={projectsWrapperRef} data={experience}/>
 
 						<Experience innerRef={experienceWrapperRef} data={flagshipProjects}/>
 

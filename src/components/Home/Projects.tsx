@@ -27,7 +27,9 @@ const Project = (props: ProjectData & { className?: string, index: number, listL
 
 	const [inView, setInView] = useState(false)
 
-	const { t } = useTranslation()
+	const { t, i18n } = useTranslation()
+
+	const dir = i18n.dir()
 
 	return (
 		<Col
@@ -39,12 +41,12 @@ const Project = (props: ProjectData & { className?: string, index: number, listL
 			onViewportEnter={() => setInView(true)}
 			className={clsx(`items-center space-y-[30px] w-full`, props.className ?? "")}>
 			<Col className="pl-[10px] w-full">
-				<Row className={`justify-between pt-[24px] `}>
+				<Row className={`justify-between pt-[24px] `} dir="ltr">
 					<Typography variant="h3" color={isDark() ? theme.colorScheme.accent : theme.colorScheme.body1}>
 						{title}
 					</Typography>
 
-					<Row className="space-x-3 rtl:flex-row-reverse rtl:justify-end pl-[6px]">
+					<Row className="space-x-3 rtl:flex-row-reverse rtl:justify-end pl-[6px]" dir={dir}>
 						{githubLink ? (
 							<Tooltip
 								color={theme.colorScheme.overlaysDark}
@@ -126,7 +128,7 @@ const Project = (props: ProjectData & { className?: string, index: number, listL
 	)
 }
 
-const Projects = (props: { data: ProjectData[], title?: string, innerRef: (node?: Element | null) => void }) => {
+const Projects = (props: { data: ProjectData[], id?: string, title?: string, innerRef: (node?: Element | null) => void }) => {
 	const { data, innerRef } = props
 
 	const { t }           = useTranslation()
@@ -136,7 +138,7 @@ const Projects = (props: { data: ProjectData[], title?: string, innerRef: (node?
 	const [inView, setInView] = useState(false)
 
 	return (
-		<Col ref={innerRef} className="space-y-[50px]" id="projects">
+		<Col ref={innerRef} className="space-y-[50px]" id={props.id ?? "projects"}>
 			<Row
 				animate={inView ? animations.sectionTitle.inView : animations.sectionTitle.outOfView}
 				viewport={{ once: true }}

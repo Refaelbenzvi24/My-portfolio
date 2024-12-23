@@ -19,7 +19,7 @@ const Experience = (props: { data: ExperienceData[], innerRef: (node?: Element |
 	const animations = useAnimations()
 
 	return (
-		<Col ref={innerRef} id="experience">
+		<Col ref={innerRef} id="flagship-projects">
 			<Row
 				animate={inView ? animations.sectionTitle.inView : animations.sectionTitle.outOfView}
 				viewport={{ once: true }}

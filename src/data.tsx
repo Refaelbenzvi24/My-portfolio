@@ -364,6 +364,7 @@ const data = (): Data => {
 	const navigationOptions: Data["navigationOptions"] = [
 		{ label: t('nav.home'), value: '#main' },
 		{ label: t('nav.experience'), value: '#experience' },
+		{ label: t('nav.flagshipProjects'), value: '#flagship-projects' },
 		{ label: t('nav.projects'), value: '#projects' },
 		{ label: t('nav.skills'), value: '#skills' },
 		{ label: t('nav.contact'), value: '#contact' },

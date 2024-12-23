@@ -15,7 +15,7 @@
     "emailInvalid": "יש להזין אימייל תקין",
     "messageRequired": "יש להזין הודעה"
   },
-  "getInTouch": "GET IN TOUCH",
+  "getInTouch": "צור קשר",
   "credit": {
     "main": "פותח ועוצב ע\"י ",
     "name": "רפאל בן צבי"
@@ -133,6 +133,7 @@
   "nav": {
     "home": "ראשי",
     "experience": "נסיון",
+    "flagshipProjects": "פרוייקטי דגל",
     "projects": "פרוייקטים",
     "skills": "כישורים",
     "contact": "יצירת קשר"
